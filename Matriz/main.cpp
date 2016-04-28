@@ -4,11 +4,16 @@
 
 int main(int argc, char* argv[]){
 
-	Matriz m = parser(argv[1],-1);
-
-	FILE* out = fopen(argv[2], "w");
-	m.ImprimirMatriz(out);
-	fclose(out);	
+	Matriz m = parser(argv[1],300);
+	Matriz imagenesTest = parserImgTest(argv[1],301,400);
+	for(int i = 0; i<imagenesTest.Filas(); i++){
+		int res = m.caenene(7, imagenesTest.obtenerFila(i));
+		if (res == imagenesTest.digitoRepresentado(i)){
+			cout << "Funciona bien" << endl;
+		} else {
+			cout << "Funciona mal" << endl;
+		}
+	}
 	/*
 	if (( argc != 4 ) || (argv[3][0] != '0' && argv[3][0] != '1' && argv[3][0] != '2') ){
 		printf("%s  [INPUT FILE] [OUTPUT FILE] [METHOD]\n", argv[0]);

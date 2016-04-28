@@ -20,6 +20,16 @@ class Matriz{
 
    		Matriz() {}
 
+   		Matriz(int fils, int columnas){
+			m.clear();
+			vector<float> fil(columnas,0);
+			vector< vector<float> > mtx(fils,fil);
+			m = mtx;
+			filas = fils;
+			cols = columnas;
+			// digitos = ???
+		};
+
 		Matriz(vector< vector <float> > mtx, vector<int> num){
 			m.clear();
 			m = mtx;
@@ -36,7 +46,23 @@ class Matriz{
 		int Columnas(){
 			return cols;
 		}
+
+		void modValor(int i, int j, float v){
+			m[i][j] = v;
+			return;
+		}
+
+		float obtenerValor(int i, int j){
+			return m[i][j];
+		}
+
+		vector<float> obtenerFila(int i){
+			return m[i];
+		}
 		
+		int digitoRepresentado(int i){
+			return digitos[i];
+		}
 
 		void ImprimirMatriz(FILE* out){
 			fprintf(out, "Imprimiendo matriz\n");
@@ -69,19 +95,20 @@ class Matriz{
 				normas.push_back(res);								
 			}
 
-			sort(normas);
+			sort(normas.begin(), normas.end());
 			for (int i = 0; i < k; ++i)	{
-				kmenores.push_back(normas[i])
+				kmenores.push_back(normas[i]);
 			}
 
-			int result = masVotado(menores);
+			int result;
+			result = masVotado(kmenores);
 			return result;
 		}
 
 		vector<float> resta(vector<float> v1,vector<float> v2){
 			vector<float> res;
 			for (int i = 0; i < v1.size(); ++i) {
-				res.push(v1[i]-v2[i]);
+				res.push_back(v1[i]-v2[i]);
 			}
 			return res;
 		}
@@ -95,7 +122,7 @@ class Matriz{
 			return sqrt(sum);			
 		}
 
-		int masVotado(vector<float,int> v){
+		int masVotado(vector<pair<float,int> > v){
 			vector<int> counting(10,0);
 			for (int i = 0; i < v.size(); ++i) {
 				counting[v[i].second]++;
@@ -110,6 +137,43 @@ class Matriz{
 			}
 			return max;
 
+		}
+
+		Matriz mult(Matriz m2){
+			Matriz res(filas, m2.Columnas());
+			for (int i = 0; i < filas; ++i){
+				for (int j = 0; j < m2.Columnas(); ++j){
+					int sumaProd = 0;
+					for (int h = 0; h < cols; ++h){
+						sumaProd += m[i][j+h] * m2.obtenerValor(i+h,j);
+					}
+					res.modValor(i,j,sumaProd);
+				}
+				
+			}
+		}
+
+		vector<float> multVect(vector<float> v, char lado){
+			vector<float> res;
+			if (lado == 'i'){
+				for (int i = 0; i < cols; ++i){
+					for (int j = 0; j < v.size(); ++j){
+						int num = v[j]*m[j][i];
+						res.push_back(num);
+					}
+				}
+			} else if (lado == 'd'){
+				for (int i = 0; i < cols; ++i){
+					for (int j = 0; j < v.size(); ++j){
+						int num = v[j]*m[i][j];
+						res.push_back(num);
+					}
+				}
+			} else {
+				cout << "SOS UN GIL" << endl;
+				exit(1);
+			}
+			return res;
 		}
 
 
