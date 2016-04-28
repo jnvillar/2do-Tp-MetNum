@@ -29,6 +29,7 @@ class Matriz{
 		};
 
 
+
 		int Filas(){
 			return filas;
 		}
@@ -112,5 +113,39 @@ class Matriz{
 
 		}
 
+		pair<vector<float>,float> dameAutovalorGuachin(int iter){
+			/*Genero Vector Random*/
+			srand (time(NULL));
+			vector<float> v;
+			for (int i = 0; i < filas; ++i) {
+				v.push_back(rand());
+			}
+			/*Genero Vector Random*/
 
+			/*Calculo Autovector*/
+			for (int i = 0; i < iter; ++i) {
+				vector<float> Bv = multVect(v,'d');
+				float normBv = norma2(Bv);
+				for (int j = 0; j < Bv.size(); ++j)	{
+					Bv[i] = Bv[i]/normBv;
+				}
+				v = Bv;				
+			}
+			/*Calculo Autovector*/
+
+			/*Calculo Autovalor*/
+			Bv = multVect(v,'d');
+			float vtBv = 0;
+			for (int i = 0; i < v.size(); ++i){
+				vtBv += v[i]*Bv[i];
+			}
+			float vtv = pot(norma2(v),2);
+			float autovalor = vtBv/vtv;
+			/*Calculo Autovalor*/
+
+			pair<vector<float>,float> res;
+			res.first() =  v;
+			res.second() = autovalor;
+			return res;
+		}
 };
