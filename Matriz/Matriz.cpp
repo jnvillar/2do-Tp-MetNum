@@ -163,7 +163,7 @@ class Matriz{
 					}
 				}
 			} else if (lado == 'd'){
-				for (int i = 0; i < cols; ++i){
+				for (int i = 0; i < filas; ++i){
 					for (int j = 0; j < v.size(); ++j){
 						int num = v[j]*m[i][j];
 						res.push_back(num);
@@ -174,6 +174,27 @@ class Matriz{
 				exit(1);
 			}
 			return res;
+		}
+
+		void restarMedia(){
+			// CALCULAMOS LAS MEDIAS
+			vector<float> media(cols,0);
+			for (int i = 0; i < filas; ++i){
+				for (int j = 0; j < cols; ++j){
+					media[j] += m[i][j];
+				}
+			}
+			for (int i = 0; i<media.size(); i++){
+				media[i] = media[i]/filas;
+			}
+
+			// RESTAMOS
+			for (int i = 0; i < filas; ++i){
+				for (int j = 0; j < cols; ++j){
+					m[i][j] -= media[j];
+				}
+			}
+
 		}
 
 
