@@ -160,17 +160,19 @@ class Matriz{
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
+					int num = 0;
 					for (int j = 0; j < v.size(); ++j){
-						int num = v[j]*m[j][i];
-						res.push_back(num);
+						num += v[j]*m[j][i];
 					}
+					res.push_back(num);
 				}
 			} else if (lado == 'd'){
 				for (int i = 0; i < filas; ++i){
+					int num = 0;
 					for (int j = 0; j < v.size(); ++j){
-						int num = v[j]*m[i][j];
-						res.push_back(num);
+						num += v[j]*m[i][j];
 					}
+					res.push_back(num);
 				}
 			} else {
 				cout << "SOS UN GIL" << endl;
@@ -215,7 +217,7 @@ class Matriz{
 				vector<float> Bv = multVect(v,'d');
 				float normBv = norma2(Bv);
 				for (int j = 0; j < Bv.size(); ++j)	{
-					Bv[i] = Bv[i]/normBv;
+					Bv[j] = Bv[j]/normBv;
 				}
 				v = Bv;				
 			}
