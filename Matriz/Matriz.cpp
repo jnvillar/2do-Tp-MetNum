@@ -27,7 +27,8 @@ class Matriz{
 			m = mtx;
 			filas = fils;
 			cols = columnas;
-			// digitos = ???
+			vector<int> dig(fils,0);
+			digitos = dig;
 		};
 
 		Matriz(vector< vector <float> > mtx, vector<int> num){
@@ -65,7 +66,7 @@ class Matriz{
 			return digitos[i];
 		}
 
-		void ImprimirMatriz(FILE* out){
+		void imprimirMatriz(FILE* out){
 			fprintf(out, "Imprimiendo matriz\n");
 			for (int i = 0; i < filas; i++){				
 				for (int j = 0; j < cols; j++){
@@ -146,12 +147,13 @@ class Matriz{
 				for (int j = 0; j < m2.Columnas(); ++j){
 					int sumaProd = 0;
 					for (int h = 0; h < cols; ++h){
-						sumaProd += m[i][j+h] * m2.obtenerValor(i+h,j);
+						sumaProd += m[i][h] * m2.obtenerValor(h,j);
 					}
 					res.modValor(i,j,sumaProd);
 				}
 				
 			}
+			return res;
 		}
 
 		vector<float> multVect(vector<float> v, char lado){
