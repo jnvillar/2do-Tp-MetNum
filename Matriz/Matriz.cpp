@@ -145,7 +145,7 @@ class Matriz{
 			Matriz res(filas, m2.Columnas());
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < m2.Columnas(); ++j){
-					int sumaProd = 0;
+					float sumaProd = 0;
 					for (int h = 0; h < cols; ++h){
 						sumaProd += m[i][h] * m2.obtenerValor(h,j);
 					}
@@ -160,7 +160,7 @@ class Matriz{
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
-					int num = 0;
+					float num = 0;
 					for (int j = 0; j < v.size(); ++j){
 						num += v[j]*m[j][i];
 					}
@@ -168,7 +168,7 @@ class Matriz{
 				}
 			} else if (lado == 'd'){
 				for (int i = 0; i < filas; ++i){
-					int num = 0;
+					float num = 0;
 					for (int j = 0; j < v.size(); ++j){
 						num += v[j]*m[i][j];
 					}
@@ -209,6 +209,10 @@ class Matriz{
 			vector<float> v;
 			for (int i = 0; i < filas; ++i) {
 				v.push_back(rand());
+			}
+			float normV = norma2(v);
+			for (int j = 0; j < v.size(); ++j)	{
+				v[j] = v[j]/normV;
 			}
 			/*Genero Vector Random*/
 
