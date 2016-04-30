@@ -54,6 +54,7 @@ int main(int argc, char* argv[]){
 	res.imprimirMatriz(stdout);
 	*/
 
+/*
 // 					MULTIPLICACION POR VECTOR
 	vector<float> fil1;
 	vector<float> fil2;
@@ -89,38 +90,37 @@ int main(int argc, char* argv[]){
 		cout << v[i] << "  ";
 	}
 	cout << endl;
+*/
 
 
 
 
-/*
 	// 					TEST AUTOVALORES Y AUTOVECTORES
 	vector<float> fil1;
 	vector<float> fil2;
-	vector<float> fil3;
-	fil1.push_back(4);
-	fil1.push_back(6);
-	fil1.push_back(2);
+	fil1.push_back(15);
+	fil1.push_back(3);
 
-	fil2.push_back(6);
-	fil2.push_back(34);
-	fil2.push_back(43);
+	fil2.push_back(3);
+	fil2.push_back(7);
 
-	fil3.push_back(2);
-	fil3.push_back(43);
-	fil3.push_back(101);
 
 	vector< vector<float> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
-	mtx.push_back(fil3); 
 
-	vector<int> a(3,0);
+	vector<int> a(2,0);
 	Matriz m(mtx,a);
 	m.imprimirMatriz(stdout);
-	float autov = m.dameAutovalorGuachin(20).second;
-	cout << autov << endl;
-*/
+	pair<vector<float>,float> res = m.dameAutovalorGuachin(5000);
+	
+	for (int i = 0; i < res.first.size(); ++i)
+	{
+		cout << res.first[i] << "   ";
+	}
+	cout << endl;
+	cout << res.second << endl;
+
 
 
 
