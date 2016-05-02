@@ -56,13 +56,6 @@ Matriz parser(char* file, int cantImagenes){ // cantImagenes con -1 es equivalen
 
 
 
-
-
-
-
-
-
-
 Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){ 
 
 	Matriz m;
