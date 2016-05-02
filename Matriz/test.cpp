@@ -112,14 +112,14 @@ int main(int argc, char* argv[]){
 	vector<int> a(2,0);
 	Matriz m(mtx,a);
 	m.imprimirMatriz(stdout);
-	pair<vector<float>,float> res = m.dameAutovalorGuachin(5000);
+	vector< vector<float> > res = m.obtenerAutovectores();
 	
-	for (int i = 0; i < res.first.size(); ++i)
-	{
-		cout << res.first[i] << "   ";
+	for (int i = 0; i < res.size(); ++i){
+		for (int j = 0; j < res[i].size(); ++j){
+			cout << res[i][j] << "   ";
+		}
+		cout << endl;
 	}
-	cout << endl;
-	cout << res.second << endl;
 
 
 

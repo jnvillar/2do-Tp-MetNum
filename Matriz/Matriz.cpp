@@ -171,7 +171,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
-		vector<float> multVect(vector<float> v, char lado){
+		vector<float> multxVect(vector<float> v, char lado){
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
@@ -219,7 +219,7 @@ class Matriz{
 		}
 
 
-		pair<vector<float>,float> dameAutovalorGuachin(int iter){
+		pair<vector<float>,float> metodoPotencia(int iter){
 			/*Genero Vector Random*/
 			srand (time(NULL));
 			vector<float> v;
@@ -234,7 +234,7 @@ class Matriz{
 
 			/*Calculo Autovector*/
 			for (int i = 0; i < iter; ++i) {
-				vector<float> Bv = multVect(v,'d');
+				vector<float> Bv = multxVect(v,'d');
 				float normBv = norma2(Bv);
 				for (int j = 0; j < Bv.size(); ++j)	{
 					Bv[j] = Bv[j]/normBv;
@@ -244,7 +244,7 @@ class Matriz{
 			/*Calculo Autovector*/
 
 			/*Calculo Autovalor*/
-			vector<float> Bv = multVect(v,'d');
+			vector<float> Bv = multxVect(v,'d');
 			float vtBv = 0;
 			for (int i = 0; i < v.size(); ++i){
 				vtBv += v[i]*Bv[i];
@@ -257,5 +257,41 @@ class Matriz{
 			res.first =  v;
 			res.second = autovalor;
 			return res;
+		}
+
+		
+
+		vector< vector<float> > obtenerAutovectores(){
+			vector< vector<float> > res;
+			vector<int> a(filas,0);
+			Matriz mtx(m,a);
+
+			for (int h = 0; h<filas; h++){
+
+				pair<vector<float>,float> autov = mtx.metodoPotencia(30);
+
+				vector<float> v = autov.first;
+				res.push_back(v);
+
+				vector< vector <float> > mat;
+				for (int i = 0; i<v.size(); i++){
+					vector <float> fil;
+					for (int j = 0; j < v.size(); j++){
+						fil.push_back(v[i]*v[j]);
+					}
+					mat.push_back(fil);
+				}
+
+
+
+				for (int i = 0; i<filas; i++){
+					for (int j = 0; j < cols; j++){
+						mtx.modValor(i,j, mtx.obtenerValor(i,j) - autov.second * mat[i][j]);
+					}
+				}	
+			}
+
+			return res;
+
 		}
 };
