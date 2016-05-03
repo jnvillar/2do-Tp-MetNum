@@ -54,7 +54,6 @@ class Matriz{
 		}
 		
 	public:	
-
 		//Constructor de matriz por defecto
    		Matriz() {}
 
@@ -294,4 +293,149 @@ class Matriz{
 			return res;
 
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		Matriz trasponer(){
+			vector<vector<float> > mtx;
+			for (int i = 0; i < cols; ++i) {
+				vector<float> fila;
+				for (int j = 0; j < filas; ++j) {
+					fila.push_back(obtenerValor(j,i));
+				}
+				mtx.push_back(fila);
+			}
+			vector<int> digitos(cols,0);
+			matriz res(mtx,digitos);
+			return res;
+		}
+
+		Matriz Mx(){
+			Matriz traspuesta = trasponer();
+			Matriz M = traspuesta.mult(this);
+
+			for (int i = 0; i < M.filas(); ++i) {
+				for (int j = 0; j < M.columnas(); ++j) {
+					float division = M.obtenerValor(i,j)/(filas-1);
+					M.modValor(i,j,division);
+				}
+			}
+
+			return M;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
+
