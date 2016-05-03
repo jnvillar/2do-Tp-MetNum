@@ -19,7 +19,7 @@ class Matriz{
 		// El vector en la posicion "i" de m es una imagen del digito en la posicion "i" de digitos
 
 		//Devuelve el resultado de la resta vectorial entre v1 y v2 (v1-v2)
-		vector<float> resta(vector<float> v1,vector<float> v2){
+		vector<float> resta(vector<float>& v1,vector<float>& v2){
 			vector<float> res;
 			for (int i = 0; i < v1.size(); ++i) {
 				res.push_back(v1[i]-v2[i]);
@@ -28,7 +28,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado de la norma vectorial 2 realizada sobre el vector v
-		float norma2(vector<float> v){
+		float norma2(vector<float>& v){
 			float sum = 0;
 			for (int i = 0; i < v.size(); ++i)
 			{
@@ -38,7 +38,7 @@ class Matriz{
 		}
 
 		//Devuelve el digito que más cantidad de veces aparece como segunda coordenada en los pares contenidos por el vector 
-		int masVotado(vector<pair<float,int> > v){
+		int masVotado(vector<pair<float,int> >& v){
 			vector<int> counting(10,0);
 			for (int i = 0; i < v.size(); ++i) {
 				counting[v[i].second]++;
@@ -54,7 +54,6 @@ class Matriz{
 		}
 		
 	public:	
-
 		//Constructor de matriz por defecto
    		Matriz() {}
 
@@ -111,6 +110,15 @@ class Matriz{
 			return digitos[i];
 		}
 
+		void cambiarDigitos(vector<int> dig){
+			digitos = dig;
+			return;
+		}
+
+		vector<int> obtenerDigitos(){
+			return digitos;
+		}
+
 		//Imprime la matriz en el directorio pasado como parametro
 		void imprimirMatriz(FILE* out){
 			fprintf(out, "Imprimiendo matriz\n");
@@ -134,13 +142,14 @@ class Matriz{
 		}
 
 		//Método kNN para asignarle un digito a una imagen dada
-		int caenene(int k, vector<float> img){
+		int caenene(int k, vector<float>& img){
 			
 			vector<pair<float,int> > normas;
 			vector<pair<float,int> > kmenores;
 			pair<float,int> res;			
-			for (int i = 0; i < filas; ++i) {				
-				res.first = norma2(resta(m[i],img));
+			for (int i = 0; i < filas; ++i) {		
+				vector<float> rest = resta(m[i],img);
+				res.first = norma2(rest);
 				res.second = digitos[i];
 				normas.push_back(res);								
 			}
@@ -156,7 +165,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*m2 
-		Matriz mult(Matriz m2){
+		Matriz mult(Matriz &m2){
 			Matriz res(filas, m2.Columnas());
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < m2.Columnas(); ++j){
@@ -172,7 +181,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
-		vector<float> multxVect(vector<float> v, char lado){
+		vector<float> multxVect(vector<float>& v, char lado){
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
@@ -230,9 +239,11 @@ class Matriz{
 			float normV = norma2(v);
 			for (int j = 0; j < v.size(); ++j)	{
 				v[j] = v[j]/normV;
-			}
+			}		
 			/*Genero Vector Random*/
 
+		
+			
 			/*Calculo Autovector*/
 			for (int i = 0; i < iter; ++i) {
 				vector<float> Bv = multxVect(v,'d');
@@ -243,6 +254,7 @@ class Matriz{
 				v = Bv;				
 			}
 			/*Calculo Autovector*/
+			
 
 			/*Calculo Autovalor*/
 			vector<float> Bv = multxVect(v,'d');
@@ -263,13 +275,16 @@ class Matriz{
 		
 
 		vector< vector<float> > obtenerAutovectores(){
+			cout << "obtenerAutovectores " << endl;
+
 			vector< vector<float> > res;
 			vector<int> a(filas,0);
 			Matriz mtx(m,a);
 
 			for (int h = 0; h<filas; h++){
+				cout << h << endl;
 
-				pair<vector<float>,float> autov = mtx.metodoPotencia(30);
+				pair<vector<float>,float> autov = mtx.metodoPotencia(15);
 
 				vector<float> v = autov.first;
 				res.push_back(v);
@@ -295,14 +310,62 @@ class Matriz{
 			return res;
 		}
 
-		Matriz cambioDeBase(vector< vector<float> > p){
+		Matriz cambioDeBase(vector< vector<float> >& p){
+			cout << "cambioDeBase " << endl;
+
 			vector<int> a(p.size(),0);
 			Matriz vt(p,a);
 			Matriz xt = trasponer();
-			Matriz res = vt.mult(xt);
+			Matriz rest = vt.mult(xt);
+			Matriz res = rest.trasponer();
+
+			return res;
+		}
+
+
+
+		Matriz trasponer(){
+			cout << "trasponer " << endl;
+
+			vector<vector<float> > mtx;
+			for (int i = 0; i < cols; ++i) {
+				vector<float> fila;
+				for (int j = 0; j < filas; ++j) {
+					fila.push_back(obtenerValor(j,i));
+				}
+				mtx.push_back(fila);
+			}
+			vector<int> digitos(cols,0);
+			Matriz res(mtx,digitos);
+			return res;
+		}
+
+		Matriz Mx(){
+			cout << "Mx " << endl;
+
+			Matriz traspuesta = trasponer();
+			Matriz mtx = traspuesta.mult(*this);
+
+			for (int i = 0; i < mtx.Filas(); ++i) {
+				for (int j = 0; j < mtx.Columnas(); ++j) {
+					float division = mtx.obtenerValor(i,j)/(filas-1);
+					mtx.modValor(i,j,division);
+				}
+			}
+
+			return mtx;
+		}
+
+		Matriz pca(){
+			cout << "pca " << endl;
+			restarMedia();
+			Matriz mx = Mx();
+			vector< vector<float> > p = mx.obtenerAutovectores();
+			Matriz res = cambioDeBase(p);
 			return res;
 		}
 
 
 
 };
+

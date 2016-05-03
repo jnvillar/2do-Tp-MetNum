@@ -77,7 +77,7 @@ Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){
 
 		// Parseo del resto del archivo
 		string st;
-		while (getline(in, st) && (cantImagenes != 0)){
+		while (getline(in, st) && (cantImagenes-imgDesde != 0)){
 			cantImagenes--;
 			istringstream iss;
 			iss.str(st);

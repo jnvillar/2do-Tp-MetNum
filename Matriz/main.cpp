@@ -4,14 +4,15 @@
 
 int main(int argc, char* argv[]){
 
-	Matriz m = parser(argv[1],300);
-	Matriz imagenesTest = parserImgTest(argv[1],301,400);
+	Matriz m = parser(argv[1],3000);
+	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		int res = m.caenene(7, imagenesTest.obtenerFila(i));
+		vector<float> fila = imagenesTest.obtenerFila(i);
+		int res = m.caenene(7, fila);
 		if (res == imagenesTest.digitoRepresentado(i)){
-			cout << "Funciona bien" << endl;
+			cout << i << ": Funciona bien" << endl;
 		} else {
-			cout << "Funciona mal" << endl;
+			cout << i << ": Funciona mal" << endl;
 		}
 	}
 	/*
