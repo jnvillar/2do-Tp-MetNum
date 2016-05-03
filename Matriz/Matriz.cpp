@@ -123,7 +123,8 @@ class Matriz{
 							fprintf(out, " %f", m[i][j]);							
 						} 
 					if(j == cols-1){
-						fprintf(out, "| %d \n", digitos[i]);
+						 // fprintf(out, "| %d \n", digitos[i]);
+						 fprintf(out, "| \n");
 					} else{ 
 						fprintf(out, "  ");
 					}									
@@ -292,6 +293,16 @@ class Matriz{
 			}
 
 			return res;
-
 		}
+
+		Matriz cambioDeBase(vector< vector<float> > p){
+			vector<int> a(p.size(),0);
+			Matriz vt(p,a);
+			Matriz xt = trasponer();
+			Matriz res = vt.mult(xt);
+			return res;
+		}
+
+
+
 };
