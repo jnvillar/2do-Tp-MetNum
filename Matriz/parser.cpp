@@ -28,6 +28,7 @@ Matriz parser(char* file, int cantImagenes){ // cantImagenes con -1 es equivalen
 			iss.str(st);
 
 			int numero;
+			//Extraemos digito que representa la imagen
 			iss>> numero;
 			numeroRepresentado.push_back(numero);
 			char aux;
@@ -37,7 +38,9 @@ Matriz parser(char* file, int cantImagenes){ // cantImagenes con -1 es equivalen
 			for (int i = 0; i<784; i++){
 
 				int pixel;
+				//Extraemos pixel
 				iss>> pixel;
+				//Extraemos espacio en blanco (solo para avanzar)
 				iss>> aux;
 				img.push_back(pixel);
 			}
@@ -56,7 +59,7 @@ Matriz parser(char* file, int cantImagenes){ // cantImagenes con -1 es equivalen
 
 
 
-Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){ 
+Matriz parserImgTest(char* file, int imgDesde, int imgHasta){ 
 
 	Matriz m;
 	
@@ -70,6 +73,7 @@ Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){
 		getline(in, str);
 		str.clear();
 
+
 		for(int i = 0; i< imgDesde-1; i++){
 			getline(in, str);
 			str.clear();
@@ -77,8 +81,8 @@ Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){
 
 		// Parseo del resto del archivo
 		string st;
-		while (getline(in, st) && (cantImagenes-imgDesde != 0)){
-			cantImagenes--;
+		while (getline(in, st) && (imgHasta-imgDesde != 0)){
+			imgHasta--;
 			istringstream iss;
 			iss.str(st);
 

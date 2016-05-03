@@ -111,7 +111,7 @@ int main(int argc, char* argv[]){
 
 	vector<int> a(2,0);
 	Matriz m(mtx,a);
-	m.imprimirMatriz(stdout);
+	//m.imprimirMatriz(stdout);
 	vector< vector<float> > res = m.obtenerAutovectores();
 	
 	for (int i = 0; i < res.size(); ++i){

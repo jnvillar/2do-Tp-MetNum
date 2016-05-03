@@ -119,26 +119,25 @@ class Matriz{
 			return digitos;
 		}
 
-		//Imprime la matriz en el directorio pasado como parametro
-		void imprimirMatriz(FILE* out){
-			fprintf(out, "Imprimiendo matriz\n");
-			for (int i = 0; i < filas; i++){				
+		//Imprime la matriz por cout
+		void imprimirMatriz(){
+			cout << "Imprimiendo matriz\n";
+			for (int i = 0; i < filas; i++){	
+				cout << "|";			
 				for (int j = 0; j < cols; j++){
-					if(j == 0){fprintf(out, "|");}
-						if(m[i][j]<0){					
-							fprintf(out, "%f", m[i][j]);
+						if(m[i][j] < 0){					
+							cout << m[i][j];
 						}else{
-							fprintf(out, " %f", m[i][j]);							
-						} 
+							cout << " " << m[i][j];					} 
 					if(j == cols-1){
 						 // fprintf(out, "| %d \n", digitos[i]);
-						 fprintf(out, "| \n");
+						 cout << "| \n" ;
 					} else{ 
-						fprintf(out, "  ");
+						cout << "  ";
 					}									
 				}			
 			}
-			fprintf(out, "\n");
+			cout << "\n";
 		}
 
 		//Método kNN para asignarle un digito a una imagen dada
@@ -228,7 +227,7 @@ class Matriz{
 
 		}
 
-
+		//Metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
 		pair<vector<float>,float> metodoPotencia(int iter){
 			/*Genero Vector Random*/
 			srand (time(NULL));
@@ -273,7 +272,7 @@ class Matriz{
 		}
 
 		
-
+		//Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
 		vector< vector<float> > obtenerAutovectores(){
 			cout << "obtenerAutovectores " << endl;
 
@@ -284,11 +283,14 @@ class Matriz{
 			for (int h = 0; h<filas; h++){
 				cout << h << endl;
 
+				//Aplico metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
 				pair<vector<float>,float> autov = mtx.metodoPotencia(15);
 
 				vector<float> v = autov.first;
 				res.push_back(v);
 
+				//Deflacion
+				//Calculo v*vt
 				vector< vector <float> > mat;
 				for (int i = 0; i<v.size(); i++){
 					vector <float> fil;
@@ -298,8 +300,7 @@ class Matriz{
 					mat.push_back(fil);
 				}
 
-
-
+				//Generamos matriz que tiene el resto de los autovalores iguales y 0
 				for (int i = 0; i<filas; i++){
 					for (int j = 0; j < cols; j++){
 						mtx.modValor(i,j, mtx.obtenerValor(i,j) - autov.second * mat[i][j]);
@@ -309,6 +310,8 @@ class Matriz{
 
 			return res;
 		}
+
+
 
 		Matriz cambioDeBase(vector< vector<float> >& p){
 			cout << "cambioDeBase " << endl;
@@ -340,6 +343,7 @@ class Matriz{
 			return res;
 		}
 
+		//Devuelve la matriz resultante de hacer (1/n-1) * (Mt * M) donde n es la cantidad de filas de la matriz
 		Matriz Mx(){
 			cout << "Mx " << endl;
 
@@ -356,6 +360,7 @@ class Matriz{
 			return mtx;
 		}
 
+		
 		Matriz pca(){
 			cout << "pca " << endl;
 			restarMedia();

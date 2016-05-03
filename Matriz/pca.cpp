@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 	mReducida.cambiarDigitos(digitoRepr);
 	for(int i = 0; i<imagenesTest.Filas(); i++){
 		vector<float> fila = imagenesTest.obtenerFila(i);
-		int res = mReducida.caenene(7, fila);
+		int res = mReducida.caenene(50, fila);
 		if (res == digitoRepr[i]){
 			cout << i << ": Funciona bien" << endl;
 		} else {
