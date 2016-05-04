@@ -119,26 +119,25 @@ class Matriz{
 			return digitos;
 		}
 
-		//Imprime la matriz en el directorio pasado como parametro
-		void imprimirMatriz(FILE* out){
-			fprintf(out, "Imprimiendo matriz\n");
-			for (int i = 0; i < filas; i++){				
+		//Imprime la matriz por cout
+		void imprimirMatriz(){
+			cout << "Imprimiendo matriz\n";
+			for (int i = 0; i < filas; i++){	
+				cout << "|";			
 				for (int j = 0; j < cols; j++){
-					if(j == 0){fprintf(out, "|");}
-						if(m[i][j]<0){					
-							fprintf(out, "%f", m[i][j]);
+						if(m[i][j] < 0){					
+							cout << m[i][j];
 						}else{
-							fprintf(out, " %f", m[i][j]);							
-						} 
+							cout << " " << m[i][j];					} 
 					if(j == cols-1){
 						 // fprintf(out, "| %d \n", digitos[i]);
-						 fprintf(out, "| \n");
+						 cout << "| \n" ;
 					} else{ 
-						fprintf(out, "  ");
+						cout << "  ";
 					}									
 				}			
 			}
-			fprintf(out, "\n");
+			cout << "\n";
 		}
 
 		//Método kNN para asignarle un digito a una imagen dada
@@ -166,6 +165,7 @@ class Matriz{
 
 		//Devuelve el resultado del producto matricial m*m2 
 		Matriz mult(Matriz &m2){
+			cout << "mult" << endl;
 			Matriz res(filas, m2.Columnas());
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < m2.Columnas(); ++j){
@@ -177,6 +177,8 @@ class Matriz{
 				}
 				
 			}
+			cout << "mult 2" << endl;
+
 			return res;
 		}
 
@@ -207,16 +209,16 @@ class Matriz{
 		}
 
 		//Calcula la media entre los elementos de cada una de las columnas de la matriz y luego se la resta a cada elemento de la columna respectivamente
-		void restarMedia(){
+		void restarMedia(Matriz& mtx){
 			// CALCULAMOS LAS MEDIAS
 			vector<float> media(cols,0);
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < cols; ++j){
-					media[j] += m[i][j];
+					media[j] += mtx.obtenerValor(i,j);
 				}
 			}
 			for (int i = 0; i<media.size(); i++){
-				media[i] = media[i]/filas;
+				media[i] = media[i]/mtx.Filas();
 			}
 
 			// RESTAMOS Y DIVIDIMOS
@@ -229,7 +231,7 @@ class Matriz{
 
 		}
 
-
+		//Metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
 		pair<vector<float>,float> metodoPotencia(int iter){
 			/*Genero Vector Random*/
 			srand (time(NULL));
@@ -274,7 +276,7 @@ class Matriz{
 		}
 
 		
-
+		//Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
 		vector< vector<float> > obtenerAutovectores(){
 			cout << "obtenerAutovectores " << endl;
 
@@ -285,11 +287,14 @@ class Matriz{
 			for (int h = 0; h<filas; h++){
 				cout << h << endl;
 
+				//Aplico metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
 				pair<vector<float>,float> autov = mtx.metodoPotencia(15);
 
 				vector<float> v = autov.first;
 				res.push_back(v);
 
+				//Deflacion
+				//Calculo v*vt
 				vector< vector <float> > mat;
 				for (int i = 0; i<v.size(); i++){
 					vector <float> fil;
@@ -299,8 +304,7 @@ class Matriz{
 					mat.push_back(fil);
 				}
 
-
-
+				//Generamos matriz que tiene el resto de los autovalores iguales y 0
 				for (int i = 0; i<filas; i++){
 					for (int j = 0; j < cols; j++){
 						mtx.modValor(i,j, mtx.obtenerValor(i,j) - autov.second * mat[i][j]);
@@ -310,6 +314,8 @@ class Matriz{
 
 			return res;
 		}
+
+
 
 		Matriz cambioDeBase(vector< vector<float> >& p){
 			cout << "cambioDeBase " << endl;
@@ -338,31 +344,33 @@ class Matriz{
 			}
 			vector<int> digitos(cols,0);
 			Matriz res(mtx,digitos);
+			cout << "trasponer 2" << endl;
+
 			return res;
 		}
 
+		//Devuelve la matriz resultante de hacer (Mt * M) 
 		Matriz Mx(){
 			cout << "Mx " << endl;
 
 			Matriz traspuesta = trasponer();
+
 			Matriz mtx = traspuesta.mult(*this);
 
 
 			return mtx;
 		}
 
-		Matriz pca(){
+
+		vector< vector<float> > pca(){
 			cout << "pca " << endl;
 			Matriz aux = *this;
-			restarMedia();
+			restarMedia(*this);
 			Matriz mx = Mx();
 
 			vector< vector<float> > p = mx.obtenerAutovectores();
-			Matriz res = aux.cambioDeBase(p);
-			return res;
+			return p;
 		}
-
-
 
 };
 
