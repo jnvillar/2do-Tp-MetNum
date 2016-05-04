@@ -219,10 +219,11 @@ class Matriz{
 				media[i] = media[i]/filas;
 			}
 
-			// RESTAMOS
+			// RESTAMOS Y DIVIDIMOS
+			float divi = sqrt(filas-1);
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < cols; ++j){
-					m[i][j] -= media[j];
+					m[i][j] = (m[i][j]-media[j])/divi;
 				}
 			}
 
@@ -346,22 +347,18 @@ class Matriz{
 			Matriz traspuesta = trasponer();
 			Matriz mtx = traspuesta.mult(*this);
 
-			for (int i = 0; i < mtx.Filas(); ++i) {
-				for (int j = 0; j < mtx.Columnas(); ++j) {
-					float division = mtx.obtenerValor(i,j)/(filas-1);
-					mtx.modValor(i,j,division);
-				}
-			}
 
 			return mtx;
 		}
 
 		Matriz pca(){
 			cout << "pca " << endl;
+			Matriz aux = *this;
 			restarMedia();
 			Matriz mx = Mx();
+
 			vector< vector<float> > p = mx.obtenerAutovectores();
-			Matriz res = cambioDeBase(p);
+			Matriz res = aux.cambioDeBase(p);
 			return res;
 		}
 

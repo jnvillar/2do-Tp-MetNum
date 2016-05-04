@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
 
 
 
-
+/*
 	// 					TEST AUTOVALORES Y AUTOVECTORES
 	vector<float> fil1;
 	vector<float> fil2;
@@ -120,6 +120,33 @@ int main(int argc, char* argv[]){
 		}
 		cout << endl;
 	}
+*/
+
+	// 					TEST TRASPONER
+	vector<float> fil1;
+	vector<float> fil2;
+	vector<float> fil3;
+	fil1.push_back(15);
+	fil1.push_back(3);
+
+	fil2.push_back(1);
+	fil2.push_back(7);
+
+	fil3.push_back(2);
+	fil3.push_back(4);
+
+
+
+	vector< vector<float> > mtx;
+	mtx.push_back(fil1); 
+	mtx.push_back(fil2); 
+	mtx.push_back(fil3); 
+
+	vector<int> a(3,0);
+	Matriz m(mtx,a);
+	m.imprimirMatriz(stdout);
+	Matriz t = m.trasponer();
+	t.imprimirMatriz(stdout);
 
 
 

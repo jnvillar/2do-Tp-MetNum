@@ -56,7 +56,7 @@ Matriz parser(char* file, int cantImagenes){ // cantImagenes con -1 es equivalen
 
 
 
-Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){ 
+Matriz parserImgTest(char* file, int imgDesde, int imgHasta){ 
 
 	Matriz m;
 	
@@ -77,8 +77,8 @@ Matriz parserImgTest(char* file, int imgDesde, int cantImagenes){
 
 		// Parseo del resto del archivo
 		string st;
-		while (getline(in, st) && (cantImagenes-imgDesde != 0)){
-			cantImagenes--;
+		while (getline(in, st) && (imgHasta-imgDesde != 0)){
+			imgHasta--;
 			istringstream iss;
 			iss.str(st);
 
