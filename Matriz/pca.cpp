@@ -4,15 +4,16 @@
 
 int main(int argc, char* argv[]){
 
-	Matriz m = parser(argv[1],3000);
+	Matriz imagenesTrain = parser(argv[1],3000);
 	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
-	vector<int> digitoRepr = m.obtenerDigitos();
+	vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
 	vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
-	Matriz mReducida = m.pca();
-	mReducida.cambiarDigitos(digitoRepr);
+	Matriz imagenesTrainReducida = imagenesTrain.pca();
+	Matriz imagenesTestReducida = imagenesTest.pca();
+	imagenesTrainReducida.cambiarDigitos(digitoRepr);
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTest.obtenerFila(i);
-		int res = mReducida.caenene(7, fila);
+		vector<float> fila = imagenesTestReducida.obtenerFila(i);
+		int res = imagenesTrainReducida.caenene(7, fila);
 		if (res == digitoRepr[i]){
 			cout << i << ": Funciona bien" << endl;
 		} else {
