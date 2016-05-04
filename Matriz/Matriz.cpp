@@ -372,5 +372,50 @@ class Matriz{
 			return p;
 		}
 
+		Matriz pls_da(int iteraciones, int metpot){
+			
+			vector<vector<float> > autovec;
+
+			for (int i = 0; i < iteraciones; ++i) {
+
+			/*Calculo M*/
+			Matriz multizq;
+			Matriz multder;
+			Matriz m;
+			Matriz Yt = trasponer(Y);
+			Matriz Xt = trasponer(X);
+			multizq = Xt.mult(Y);
+			multder = Yt.mult(X);
+			m = multizq.mult(multder);
+			/*Calculo M*/
+
+			/*Calculo autovector asociado al autovalor mas grande*/		
+			pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
+			Mayor = m.metodoPotencia(metpot); //ya esta normalizado
+			vector<float> ti = X.multder(Mayor.first);	
+			autovector.push_back(Mayor.first); // Guardo autovector
+			normalizarVector(ti);
+			/*Calculo autovector asociado al autovalor mas grande*/
+
+			/*Auxiliares*/
+			Matriz tit = trasponer(ti);
+			Matriz ti_tit = ti.mult(tit);
+			/*Auxiliares*/
+
+			/*Actualizo X*/
+			Matriz ti_tit_X = ti_tit.mult(X);
+			X.restar(ti_tit_X);
+			/*Actualizo X*/
+
+			/*Actualizo Y*/
+			Matriz ti_tit_Y = ti_tit.mult(Y);
+			Y.restar(ti_tit_Y);
+			/*Actualizo Y*/
+			
+			}
+			vector<float> digitos(iteraciones,0);
+			Matriz(autovector,digitos);
+		}
+
 };
 
