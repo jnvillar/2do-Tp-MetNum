@@ -383,7 +383,7 @@ class Matriz{
 		}
 
 
-		vector<vector<float> > pls_da(int iteraciones, int metpot){
+		vector<vector<float> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot){
 			
 			vector<vector<float> > autovec;
 
@@ -393,8 +393,8 @@ class Matriz{
 			Matriz multizq;
 			Matriz multder;
 			Matriz m;
-			Matriz Yt = trasponer(Y);
-			Matriz Xt = trasponer(X);
+			Matriz Yt = Y.trasponer();
+			Matriz Xt = X.trasponer();
 			multizq = Xt.mult(Y);
 			multder = Yt.mult(X);
 			m = multizq.mult(multder);
@@ -403,24 +403,24 @@ class Matriz{
 			/*Calculo autovector asociado al autovalor mas grande*/		
 			pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
 			Mayor = m.metodoPotencia(metpot); //ya esta normalizado
-			vector<float> ti = X.multder(Mayor.first);	
+
+			vector<float> ti = X.multxVect(Mayor.first,'d');	
 			autovector.push_back(Mayor.first); // Guardo autovector
 			normalizarVector(ti);
 			/*Calculo autovector asociado al autovalor mas grande*/
 
 			/*Auxiliares*/
-			Matriz tit = trasponer(ti);
-			Matriz ti_tit = ti.mult(tit);
+			Matriz ti_tit = ti.multxVect(tu);
 			/*Auxiliares*/
 
 			/*Actualizo X*/
 			Matriz ti_tit_X = ti_tit.mult(X);
-			X.restar(ti_tit_X);
+			X.restaMatrices(ti_tit_X);
 			/*Actualizo X*/
 
 			/*Actualizo Y*/
 			Matriz ti_tit_Y = ti_tit.mult(Y);
-			Y.restar(ti_tit_Y);
+			Y.restaMatrices(ti_tit_Y);
 			/*Actualizo Y*/
 			
 			}

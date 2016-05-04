@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 	Matriz Y = preY(digitoRepr);
 	Y.restarMedia(Y);
 
-	vector<vector<float> > autovec = pls_da(iteraciones,argv[3]);
+	vector<vector<float> > autovec = pls_da(X,Y,iteraciones,argv[3]);
 
 	X.cambioDeBase(autovec);
 
