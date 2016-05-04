@@ -383,7 +383,7 @@ class Matriz{
 		}
 
 
-		Matriz pls_da(int iteraciones, int metpot){
+		vector<vector<float> > pls_da(int iteraciones, int metpot){
 			
 			vector<vector<float> > autovec;
 
@@ -424,8 +424,8 @@ class Matriz{
 			/*Actualizo Y*/
 			
 			}
-			vector<float> digitos(iteraciones,0);
-			Matriz(autovector,digitos);
+			
+			return autovector;
 		}
 
 
