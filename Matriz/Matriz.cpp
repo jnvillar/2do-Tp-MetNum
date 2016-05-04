@@ -231,6 +231,13 @@ class Matriz{
 
 		}
 
+		void normalizarVector(vector<float>& v){
+			float normV = norma2(v);
+			for (int j = 0; j < v.size(); ++j)	{
+				v[j] = v[j]/normV;
+			}	
+		}
+
 		//Metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
 		pair<vector<float>,float> metodoPotencia(int iter){
 			/*Genero Vector Random*/
@@ -239,10 +246,9 @@ class Matriz{
 			for (int i = 0; i < filas; ++i) {
 				v.push_back(rand());
 			}
-			float normV = norma2(v);
-			for (int j = 0; j < v.size(); ++j)	{
-				v[j] = v[j]/normV;
-			}		
+			
+			normalizarVector(v);
+				
 			/*Genero Vector Random*/
 
 		
@@ -250,10 +256,7 @@ class Matriz{
 			/*Calculo Autovector*/
 			for (int i = 0; i < iter; ++i) {
 				vector<float> Bv = multxVect(v,'d');
-				float normBv = norma2(Bv);
-				for (int j = 0; j < Bv.size(); ++j)	{
-					Bv[j] = Bv[j]/normBv;
-				}
+				normalizarVector(Bv);
 				v = Bv;				
 			}
 			/*Calculo Autovector*/
@@ -304,7 +307,8 @@ class Matriz{
 					mat.push_back(fil);
 				}
 
-				//Generamos matriz que tiene el resto de los autovalores iguales y 0
+				// Deflacion
+				// Generamos matriz que tiene el resto de los autovalores iguales y 0
 				for (int i = 0; i<filas; i++){
 					for (int j = 0; j < cols; j++){
 						mtx.modValor(i,j, mtx.obtenerValor(i,j) - autov.second * mat[i][j]);
@@ -315,7 +319,13 @@ class Matriz{
 			return res;
 		}
 
-
+		void restaMatrices(Matriz& m2){
+			for (int i = 0; i<filas; i++){
+				for (int j = 0; j < cols; j++){
+					m[i][j] -= m2.obtenerValor(i,j);
+				}
+			}
+		}
 
 		Matriz cambioDeBase(vector< vector<float> >& p){
 			cout << "cambioDeBase " << endl;
@@ -371,6 +381,18 @@ class Matriz{
 			vector< vector<float> > p = mx.obtenerAutovectores();
 			return p;
 		}
+
+		Matriz preY(vector<int> dig){
+			vector< vector<float> > mtx;
+			for (int i = 0; i<dig.size(); i++){
+				vector<float> fil(10,-1);
+				fil[dig[i]] = 1;
+				mtx.push_back(fil);
+			}
+			vector<int> a(dig.size(),0);
+			Matriz res(mtx,a);
+		}
+
 
 };
 
