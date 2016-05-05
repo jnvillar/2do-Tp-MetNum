@@ -328,7 +328,7 @@ class Matriz{
 
 		
 		//Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
-		vector< vector<float> > obtenerAutovectores(int cantAutov){
+		vector< vector<float> > obtenerAutovectores(int cantAutov, int cantIterMetPot){
 			cout << "obtenerAutovectores " << endl;
 
 			vector< vector<float> > res;
@@ -339,7 +339,7 @@ class Matriz{
 				cout << h << endl;
 
 				//Aplico metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
-				pair<vector<float>,float> autov = mtx.metodoPotencia(15);
+				pair<vector<float>,float> autov = mtx.metodoPotencia(cantIterMetPot);
 
 				vector<float> v = autov.first;
 				res.push_back(v);
@@ -417,14 +417,14 @@ class Matriz{
 		}
 
 
-		vector< vector<float> > pca(int cantAutov){
+		vector< vector<float> > pca(int cantAutov, int cantIterMetPot){
 			cout << "pca " << endl;
 			Matriz aux = *this;
 			restarMedia(*this);
 			Matriz mx = Mx();
 
 
-			vector< vector<float> > p = mx.obtenerAutovectores(cantAutov);
+			vector< vector<float> > p = mx.obtenerAutovectores(cantAutov,cantIterMetPot);
 			return p;
 		}
 
@@ -455,7 +455,8 @@ class Matriz{
 				normalizarVector(ti);
 				/*Calculo autovector asociado al autovalor mas grande*/
 
-				/*Auxiliares*/
+				/*
+				//Auxiliares
 				vector< vector <float> > mat;
 				for (int i = 0; i<ti.size(); i++){
 					vector <float> fil;
@@ -466,17 +467,46 @@ class Matriz{
 				}
 				vector<int> a(ti.size(),0);
 				Matriz ti_tit(mat,a);
-				/*Auxiliares*/
+				//Auxiliares
 
-				/*Actualizo X*/
+				//Actualizo X
 				Matriz ti_tit_X = ti_tit.mult(X);
 				X.restaMatrices(ti_tit_X);
-				/*Actualizo X*/
+				//Actualizo X
 
-				/*Actualizo Y*/
+				//Actualizo Y
 				Matriz ti_tit_Y = ti_tit.mult(Y);
 				Y.restaMatrices(ti_tit_Y);
-				/*Actualizo Y*/
+				//Actualizo Y
+				*/
+
+
+				vector <float> tit_X = X.multxVect(ti,'i');
+				vector< vector <float> > mat;
+				for (int i = 0; i<ti.size(); i++){
+					vector <float> fil;
+					for (int j = 0; j < ti.size(); j++){
+						fil.push_back(ti[i]*tit_X[j]);
+					}
+					mat.push_back(fil);
+				}
+				vector<int> a(ti.size(),0);
+				Matriz ti_tit_X(mat,a);
+				X.restaMatrices(ti_tit_X);
+
+
+				vector <float> tit_Y = X.multxVect(ti,'i');
+				vector< vector <float> > mat2;
+				for (int i = 0; i<ti.size(); i++){
+					vector <float> fil;
+					for (int j = 0; j < ti.size(); j++){
+						fil.push_back(ti[i]*tit_Y[j]);
+					}
+					mat2.push_back(fil);
+				}
+				vector<int> a2(ti.size(),0);
+				Matriz ti_tit_Y(mat2,a);
+				Y.restaMatrices(ti_tit_Y);
 			
 			}
 			
