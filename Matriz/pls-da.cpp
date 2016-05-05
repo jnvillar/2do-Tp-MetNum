@@ -1,8 +1,8 @@
 #include "parser.cpp"
 
-#include "parser.cpp"
 
 int main(int argc, char* argv[]){
+	/*
 	// Iteraciones
 	int iteraciones = argv[2];
 	//Obtengo X a partir del train
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]){
 	vector<vector<float> > autovec = pls_da(X,Y,iteraciones,argv[3]);
 
 	X.cambioDeBase(autovec);
-
-
+*/
+	return 0;
 	
 }

@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 	vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
 	vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
-	vector< vector<float> > cambioBase = imagenesTrain.pca();
+	vector< vector<float> > cambioBase = imagenesTrain.pca(100);
 	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase);
 
 	imagenesTest.restarMedia(imagenesTrain);

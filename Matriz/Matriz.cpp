@@ -167,6 +167,7 @@ class Matriz{
 		Matriz mult(Matriz &m2){
 			cout << "mult" << endl;
 			Matriz res(filas, m2.Columnas());
+			cout << "ciclo" << endl;
 			for (int i = 0; i < filas; ++i){
 				for (int j = 0; j < m2.Columnas(); ++j){
 					float sumaProd = 0;
@@ -175,9 +176,31 @@ class Matriz{
 					}
 					res.modValor(i,j,sumaProd);
 				}
-				
 			}
+			cout << "ciclo 2" << endl;
+
 			cout << "mult 2" << endl;
+
+			return res;
+		}
+
+		Matriz multMatrxSim(){
+			cout << "multMatrxSim" << endl;
+			Matriz res(cols, cols);
+			cout << "ciclo" << endl;
+			for (int i = 0; i < cols; ++i){
+				for (int j = 0; j <=i; ++j){
+					float sumaProd = 0;
+					for (int h = 0; h < filas; ++h){
+						sumaProd += m[h][i] * m[h][j];
+					}
+					res.modValor(i,j,sumaProd);
+					res.modValor(j,i,sumaProd);
+				}
+			}
+			cout << "ciclo 2" << endl;
+
+			cout << "multMatrxSim 2" << endl;
 
 			return res;
 		}
@@ -206,6 +229,32 @@ class Matriz{
 				exit(1);
 			}
 			return res;
+		}
+
+		// Modifica v
+		void multxVect2(vector<float>& v, char lado){
+			vector<float> copiaV = v;
+			if (lado == 'i'){
+				for (int i = 0; i < cols; ++i){
+					float num = 0;
+					for (int j = 0; j < v.size(); ++j){
+						num += copiaV[j]*m[j][i];
+					}
+					v[i] = num;
+				}
+			} else if (lado == 'd'){
+				for (int i = 0; i < filas; ++i){
+					float num = 0;
+					for (int j = 0; j < v.size(); ++j){
+						num += copiaV[j]*m[i][j];
+					}
+					v[i] = num;
+				}
+			} else {
+				cout << "SOS UN GIL" << endl;
+				exit(1);
+			}
+			return;
 		}
 
 		//Calcula la media entre los elementos de cada una de las columnas de la matriz y luego se la resta a cada elemento de la columna respectivamente
@@ -255,9 +304,8 @@ class Matriz{
 			
 			/*Calculo Autovector*/
 			for (int i = 0; i < iter; ++i) {
-				vector<float> Bv = multxVect(v,'d');
-				normalizarVector(Bv);
-				v = Bv;				
+				multxVect2(v,'d');
+				normalizarVector(v);
 			}
 			/*Calculo Autovector*/
 			
@@ -280,14 +328,14 @@ class Matriz{
 
 		
 		//Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
-		vector< vector<float> > obtenerAutovectores(){
+		vector< vector<float> > obtenerAutovectores(int cantAutov){
 			cout << "obtenerAutovectores " << endl;
 
 			vector< vector<float> > res;
 			vector<int> a(filas,0);
 			Matriz mtx(m,a);
 
-			for (int h = 0; h<filas; h++){
+			for (int h = 0; h<cantAutov; h++){
 				cout << h << endl;
 
 				//Aplico metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
@@ -363,22 +411,20 @@ class Matriz{
 		Matriz Mx(){
 			cout << "Mx " << endl;
 
-			Matriz traspuesta = trasponer();
-
-			Matriz mtx = traspuesta.mult(*this);
-
+			Matriz mtx = multMatrxSim();
 
 			return mtx;
 		}
 
 
-		vector< vector<float> > pca(){
+		vector< vector<float> > pca(int cantAutov){
 			cout << "pca " << endl;
 			Matriz aux = *this;
 			restarMedia(*this);
 			Matriz mx = Mx();
 
-			vector< vector<float> > p = mx.obtenerAutovectores();
+
+			vector< vector<float> > p = mx.obtenerAutovectores(cantAutov);
 			return p;
 		}
 
@@ -405,12 +451,21 @@ class Matriz{
 			Mayor = m.metodoPotencia(metpot); //ya esta normalizado
 
 			vector<float> ti = X.multxVect(Mayor.first,'d');	
-			autovector.push_back(Mayor.first); // Guardo autovector
+			autovec.push_back(Mayor.first); // Guardo autovector
 			normalizarVector(ti);
 			/*Calculo autovector asociado al autovalor mas grande*/
 
 			/*Auxiliares*/
-			Matriz ti_tit = ti.multxVect(tu);
+			vector< vector <float> > mat;
+			for (int i = 0; i<ti.size(); i++){
+				vector <float> fil;
+				for (int j = 0; j < ti.size(); j++){
+					fil.push_back(ti[i]*ti[j]);
+				}
+				mat.push_back(fil);
+			}
+			vector<int> a(ti.size(),0);
+			Matriz ti_tit(mat,a);
 			/*Auxiliares*/
 
 			/*Actualizo X*/
@@ -425,7 +480,7 @@ class Matriz{
 			
 			}
 			
-			return autovector;
+			return autovec;
 		}
 
 
