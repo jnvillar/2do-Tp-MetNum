@@ -16,7 +16,7 @@ Matriz preY(vector<int> dig){
 
 int main(int argc, char* argv[]){
 
-	if (argc != 4){
+	if (argc != 5){
 		printf("%s  [INPUT FILE] [CANTIDAD ITERACIONES PLS] [CANTIDAD ITERACIONES METODO POTENCIA] [CANTIDAD VECINOS]\n", argv[0]);
 		exit(1);
 	}

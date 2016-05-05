@@ -431,6 +431,9 @@ class Matriz{
 
 		vector<vector<float> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot){
 			
+
+			X.restarMedia(X);
+
 			vector<vector<float> > autovec;
 
 			for (int i = 0; i < iteraciones; ++i) {
@@ -449,6 +452,8 @@ class Matriz{
 				/*Calculo autovector asociado al autovalor mas grande*/		
 				pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
 				Mayor = m.metodoPotencia(metpot); //ya esta normalizado
+
+
 
 				vector<float> ti = X.multxVect(Mayor.first,'d');	
 				autovec.push_back(Mayor.first); // Guardo autovector
