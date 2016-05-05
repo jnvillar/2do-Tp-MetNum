@@ -184,8 +184,8 @@ class Matriz{
 			return res;
 		}
 
-		Matriz multMatrxSim(){
-			cout << "multMatrxSim" << endl;
+		Matriz multXtX(){
+			cout << "multXtX" << endl;
 			Matriz res(cols, cols);
 			cout << "ciclo" << endl;
 			for (int i = 0; i < cols; ++i){
@@ -200,7 +200,7 @@ class Matriz{
 			}
 			cout << "ciclo 2" << endl;
 
-			cout << "multMatrxSim 2" << endl;
+			cout << "multXtX 2" << endl;
 
 			return res;
 		}
@@ -411,7 +411,7 @@ class Matriz{
 		Matriz Mx(){
 			cout << "Mx " << endl;
 
-			Matriz mtx = multMatrxSim();
+			Matriz mtx = multXtX();
 
 			return mtx;
 		}

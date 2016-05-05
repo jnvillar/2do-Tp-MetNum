@@ -181,7 +181,7 @@ int main(int argc, char* argv[]){
 	Matriz res = m2.mult(m);
 	res.imprimirMatriz();
 
-	Matriz res2 = m.multMatrxSim();
+	Matriz res2 = m.multXtX();
 	res2.imprimirMatriz();
 
 
