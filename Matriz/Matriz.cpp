@@ -257,7 +257,7 @@ class Matriz{
 			return;
 		}
 
-		//Calcula la media entre los elementos de cada una de las columnas de la matriz y luego se la resta a cada elemento de la columna respectivamente
+		//Calcula la media entre los elementos de cada una de las columnas de la matriz y luego se la resta a cada elemento de la columna respectivamente. Ademas divide por sqrt(n-1) cada elemento
 		void restarMedia(Matriz& mtx){
 			// CALCULAMOS LAS MEDIAS
 			vector<float> media(cols,0);
@@ -435,48 +435,48 @@ class Matriz{
 
 			for (int i = 0; i < iteraciones; ++i) {
 
-			/*Calculo M*/
-			Matriz multizq;
-			Matriz multder;
-			Matriz m;
-			Matriz Yt = Y.trasponer();
-			Matriz Xt = X.trasponer();
-			multizq = Xt.mult(Y);
-			multder = Yt.mult(X);
-			m = multizq.mult(multder);
-			/*Calculo M*/
+				/*Calculo M*/
+				Matriz multizq;
+				Matriz multder;
+				Matriz m;
+				Matriz Yt = Y.trasponer();
+				Matriz Xt = X.trasponer();
+				multizq = Xt.mult(Y);
+				multder = Yt.mult(X);
+				m = multizq.mult(multder);
+				/*Calculo M*/
 
-			/*Calculo autovector asociado al autovalor mas grande*/		
-			pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
-			Mayor = m.metodoPotencia(metpot); //ya esta normalizado
+				/*Calculo autovector asociado al autovalor mas grande*/		
+				pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
+				Mayor = m.metodoPotencia(metpot); //ya esta normalizado
 
-			vector<float> ti = X.multxVect(Mayor.first,'d');	
-			autovec.push_back(Mayor.first); // Guardo autovector
-			normalizarVector(ti);
-			/*Calculo autovector asociado al autovalor mas grande*/
+				vector<float> ti = X.multxVect(Mayor.first,'d');	
+				autovec.push_back(Mayor.first); // Guardo autovector
+				normalizarVector(ti);
+				/*Calculo autovector asociado al autovalor mas grande*/
 
-			/*Auxiliares*/
-			vector< vector <float> > mat;
-			for (int i = 0; i<ti.size(); i++){
-				vector <float> fil;
-				for (int j = 0; j < ti.size(); j++){
-					fil.push_back(ti[i]*ti[j]);
+				/*Auxiliares*/
+				vector< vector <float> > mat;
+				for (int i = 0; i<ti.size(); i++){
+					vector <float> fil;
+					for (int j = 0; j < ti.size(); j++){
+						fil.push_back(ti[i]*ti[j]);
+					}
+					mat.push_back(fil);
 				}
-				mat.push_back(fil);
-			}
-			vector<int> a(ti.size(),0);
-			Matriz ti_tit(mat,a);
-			/*Auxiliares*/
+				vector<int> a(ti.size(),0);
+				Matriz ti_tit(mat,a);
+				/*Auxiliares*/
 
-			/*Actualizo X*/
-			Matriz ti_tit_X = ti_tit.mult(X);
-			X.restaMatrices(ti_tit_X);
-			/*Actualizo X*/
+				/*Actualizo X*/
+				Matriz ti_tit_X = ti_tit.mult(X);
+				X.restaMatrices(ti_tit_X);
+				/*Actualizo X*/
 
-			/*Actualizo Y*/
-			Matriz ti_tit_Y = ti_tit.mult(Y);
-			Y.restaMatrices(ti_tit_Y);
-			/*Actualizo Y*/
+				/*Actualizo Y*/
+				Matriz ti_tit_Y = ti_tit.mult(Y);
+				Y.restaMatrices(ti_tit_Y);
+				/*Actualizo Y*/
 			
 			}
 			
@@ -484,18 +484,10 @@ class Matriz{
 		}
 
 
-		Matriz preY(vector<int> dig){
-			vector< vector<float> > mtx;
-			for (int i = 0; i<dig.size(); i++){
-				vector<float> fil(10,-1);
-				fil[dig[i]] = 1;
-				mtx.push_back(fil);
-			}
-			vector<int> a(dig.size(),0);
-			Matriz res(mtx,a);
-		}
+		
 
 
 
 };
+
 
