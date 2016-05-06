@@ -36,6 +36,7 @@ int main(int argc, char* argv[]){
 
 	//Calculamos preY 
 	Matriz Y = preY(digitoRepr);
+
 	//Le restamos la media y dividimos por sqrt(n-1) para obtener Y
 	Y.restarMedia(Y);
 

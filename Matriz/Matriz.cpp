@@ -439,59 +439,30 @@ class Matriz{
 			for (int i = 0; i < iteraciones; ++i) {
 
 				/*Calculo M*/
-				Matriz multizq;
-				Matriz multder;
-				Matriz m;
+
 				Matriz Yt = Y.trasponer();
 				Matriz Xt = X.trasponer();
-				multizq = Xt.mult(Y);
-				multder = Yt.mult(X);
-				m = multizq.mult(multder);
+				Matriz XtY = Xt.mult(Y);
+				Matriz YtX = Yt.mult(X);
+				Matriz mi = XtY.mult(YtX);
 				/*Calculo M*/
 
 				/*Calculo autovector asociado al autovalor mas grande*/		
 				pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
-				Mayor = m.metodoPotencia(metpot); //ya esta normalizado
-
-
+				Mayor = mi.metodoPotencia(metpot); //ya esta normalizado
 
 				vector<float> ti = X.multxVect(Mayor.first,'d');	
 				autovec.push_back(Mayor.first); // Guardo autovector
 				normalizarVector(ti);
 				/*Calculo autovector asociado al autovalor mas grande*/
 
-				/*
-				//Auxiliares
-				vector< vector <float> > mat;
-				for (int i = 0; i<ti.size(); i++){
-					vector <float> fil;
-					for (int j = 0; j < ti.size(); j++){
-						fil.push_back(ti[i]*ti[j]);
-					}
-					mat.push_back(fil);
-				}
-				vector<int> a(ti.size(),0);
-				Matriz ti_tit(mat,a);
-				//Auxiliares
-
-				//Actualizo X
-				Matriz ti_tit_X = ti_tit.mult(X);
-				X.restaMatrices(ti_tit_X);
-				//Actualizo X
-
-				//Actualizo Y
-				Matriz ti_tit_Y = ti_tit.mult(Y);
-				Y.restaMatrices(ti_tit_Y);
-				//Actualizo Y
-				*/
-
-
+				
 				vector <float> tit_X = X.multxVect(ti,'i');
 				vector< vector <float> > mat;
-				for (int i = 0; i<ti.size(); i++){
+				for (int h = 0; h<ti.size(); h++){
 					vector <float> fil;
 					for (int j = 0; j < ti.size(); j++){
-						fil.push_back(ti[i]*tit_X[j]);
+						fil.push_back(ti[h]*tit_X[j]);
 					}
 					mat.push_back(fil);
 				}
@@ -502,10 +473,10 @@ class Matriz{
 
 				vector <float> tit_Y = Y.multxVect(ti,'i');
 				vector< vector <float> > mat2;
-				for (int i = 0; i<ti.size(); i++){
+				for (int h = 0; h<ti.size(); h++){
 					vector <float> fil;
 					for (int j = 0; j < ti.size(); j++){
-						fil.push_back(ti[i]*tit_Y[j]);
+						fil.push_back(ti[h]*tit_Y[j]);
 					}
 					mat2.push_back(fil);
 				}
