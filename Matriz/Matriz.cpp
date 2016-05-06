@@ -19,7 +19,7 @@ class Matriz{
 		// El vector en la posicion "i" de m es una imagen del digito en la posicion "i" de digitos
 
 		//Devuelve el resultado de la resta vectorial entre v1 y v2 (v1-v2)
-		vector<float> resta(vector<float>& v1,vector<float>& v2){
+		vector<float> resta(const vector<float>& v1,const vector<float>& v2){
 			vector<float> res;
 			for (int i = 0; i < v1.size(); ++i) {
 				res.push_back(v1[i]-v2[i]);
@@ -28,7 +28,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado de la norma vectorial 2 realizada sobre el vector v
-		float norma2(vector<float>& v){
+		float norma2(const vector<float>& v){
 			float sum = 0;
 			for (int i = 0; i < v.size(); ++i)
 			{
@@ -38,7 +38,7 @@ class Matriz{
 		}
 
 		//Devuelve el digito que más cantidad de veces aparece como segunda coordenada en los pares contenidos por el vector 
-		int masVotado(vector<pair<float,int> >& v){
+		int masVotado(const vector<pair<float,int> >& v){
 			vector<int> counting(10,0);
 			for (int i = 0; i < v.size(); ++i) {
 				counting[v[i].second]++;
@@ -141,7 +141,7 @@ class Matriz{
 		}
 
 		//Método kNN para asignarle un digito a una imagen dada
-		int caenene(int k, vector<float>& img){
+		int caenene(int k, const vector<float>& img){
 			
 			vector<pair<float,int> > normas;
 			vector<pair<float,int> > kmenores;
@@ -206,7 +206,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
-		vector<float> multxVect(vector<float>& v, char lado){
+		vector<float> multxVect(const vector<float>& v, char lado){
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
@@ -257,7 +257,7 @@ class Matriz{
 			return;
 		}
 
-		//Calcula la media entre los elementos de cada una de las columnas de la matriz y luego se la resta a cada elemento de la columna respectivamente. Ademas divide por sqrt(n-1) cada elemento
+		//Calcula la media entre los elementos de cada una de las columnas de la matriz pasada como parametro y luego se la resta a cada elemento de la columna de la matriz del objeto respectivamente. Ademas divide por sqrt(n-1) cada elemento
 		void restarMedia(Matriz& mtx){
 			// CALCULAMOS LAS MEDIAS
 			vector<float> media(cols,0);
@@ -375,12 +375,12 @@ class Matriz{
 			}
 		}
 
-		Matriz cambioDeBase(vector< vector<float> >& p){
+		Matriz cambioDeBase(const vector< vector<float> >& p){
 			cout << "cambioDeBase " << endl;
 
 			vector<int> a(p.size(),0);
 			Matriz vt(p,a);
-			Matriz xt = trasponer();
+			Matriz xt = trasponer(); 
 			Matriz rest = vt.mult(xt);
 			Matriz res = rest.trasponer();
 
@@ -388,7 +388,7 @@ class Matriz{
 		}
 
 
-
+		//Devuelve la matriz traspuesta
 		Matriz trasponer(){
 			cout << "trasponer " << endl;
 
@@ -429,7 +429,7 @@ class Matriz{
 		}
 
 
-		vector<vector<float> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot){
+		vector<vector<float> > pls_da(Matriz X, Matriz& Y, int iteraciones, int metpot){
 			
 
 			X.restarMedia(X);
