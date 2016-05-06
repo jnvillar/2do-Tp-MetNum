@@ -62,6 +62,7 @@ int main(int argc, char* argv[]){
 			cout << i << ": Funciona bien" << endl;
 		} else {
 			cout << i << ": Funciona mal" << endl;
+			cout << "res = " << res << " y deberia ser " << digitoRepr2[i] << endl;
 		}
 	}
 	

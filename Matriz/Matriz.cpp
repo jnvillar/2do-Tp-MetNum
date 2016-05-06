@@ -500,7 +500,7 @@ class Matriz{
 				X.restaMatrices(ti_tit_X);
 
 
-				vector <float> tit_Y = X.multxVect(ti,'i');
+				vector <float> tit_Y = Y.multxVect(ti,'i');
 				vector< vector <float> > mat2;
 				for (int i = 0; i<ti.size(); i++){
 					vector <float> fil;
