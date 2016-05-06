@@ -22,8 +22,8 @@ int main(int argc, char* argv[]){
 	}
 
 	//Guardamos digitos que representa cada imagen del train y del test
-	Matriz imagenesTrain = parser(argv[1],3000);
-	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
+	Matriz imagenesTrain = parser(argv[1],10000);
+	Matriz imagenesTest = parserImgTest(argv[1],10001,10300);
 	// Matriz imagenesTrain2 = imagenesTrain;
 	
 	int cantIterPls = atoi(argv[2]);
@@ -44,10 +44,10 @@ int main(int argc, char* argv[]){
 	vector< vector<float> > cambioBase = imagenesTrain.pls_da(imagenesTrain,Y,cantIterPls,cantIterMetPot);
 
 	//Aplicamos el cambio de base al train y al test
-	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase);
+	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 
 	//Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
-	imagenesTest.restarMedia(imagenesTrain); //ESTO FUNCIONA PORQUE EN pls_da imagenesTrain ya no se toma por referencia
+	//imagenesTest.restarMedia(imagenesTrain); //ESTO FUNCIONA PORQUE EN pls_da imagenesTrain ya no se toma por referencia
 
 	//Aplicamos el cambio de base al test
 	Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
@@ -63,7 +63,6 @@ int main(int argc, char* argv[]){
 			cout << i << ": Funciona bien" << endl;
 		} else {
 			cout << i << ": Funciona mal" << endl;
-			cout << "res = " << res << " y deberia ser " << digitoRepr2[i] << endl;
 		}
 	}
 	

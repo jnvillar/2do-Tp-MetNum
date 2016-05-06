@@ -80,12 +80,12 @@ class Matriz{
 
 
 		//Devuelve el numero de filas de la matriz 
-		int Filas(){
+		int Filas() const{
 			return filas;
 		}
 
 		//Devuelve el numero de columnas de la matriz
-		int Columnas(){
+		int Columnas() const{
 			return cols;
 		}
 
@@ -96,7 +96,7 @@ class Matriz{
 		}
 
 		//Devuelve el valor en la posicion i,j de la matriz
-		float obtenerValor(int i, int j){
+		float obtenerValor(int i, int j) const{
 			return m[i][j];
 		}
 
@@ -164,7 +164,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*m2 
-		Matriz mult(Matriz &m2){
+		Matriz mult(const Matriz &m2){
 			cout << "mult" << endl;
 			Matriz res(filas, m2.Columnas());
 			cout << "ciclo" << endl;
@@ -258,7 +258,7 @@ class Matriz{
 		}
 
 		//Calcula la media entre los elementos de cada una de las columnas de la matriz pasada como parametro y luego se la resta a cada elemento de la columna de la matriz del objeto respectivamente. Ademas divide por sqrt(n-1) cada elemento
-		void restarMedia(Matriz& mtx){
+		void restarMedia(const Matriz& mtx){
 			// CALCULAMOS LAS MEDIAS
 			vector<float> media(cols,0);
 			for (int i = 0; i < filas; ++i){
@@ -420,8 +420,8 @@ class Matriz{
 		vector< vector<float> > pca(int cantAutov, int cantIterMetPot){
 			cout << "pca " << endl;
 			Matriz aux = *this;
-			restarMedia(*this);
-			Matriz mx = Mx();
+			restarMedia(aux); // 	PREGUNTAR
+			Matriz mx = aux.Mx();
 
 
 			vector< vector<float> > p = mx.obtenerAutovectores(cantAutov,cantIterMetPot);
@@ -434,7 +434,7 @@ class Matriz{
 
 			X.restarMedia(X);
 
-			vector<vector<float> > autovec;
+			vector< vector<float> > autovec;
 
 			for (int i = 0; i < iteraciones; ++i) {
 
