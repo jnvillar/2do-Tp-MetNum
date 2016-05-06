@@ -19,7 +19,7 @@ class Matriz{
 		// El vector en la posicion "i" de m es una imagen del digito en la posicion "i" de digitos
 
 		//Devuelve el resultado de la resta vectorial entre v1 y v2 (v1-v2)
-		vector<float> resta(const vector<float>& v1,const vector<float>& v2){
+		vector<float> resta(const vector<float>& v1,const vector<float>& v2) const{
 			vector<float> res;
 			for (int i = 0; i < v1.size(); ++i) {
 				res.push_back(v1[i]-v2[i]);
@@ -28,7 +28,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado de la norma vectorial 2 realizada sobre el vector v
-		float norma2(const vector<float>& v){
+		float norma2(const vector<float>& v) const{
 			float sum = 0;
 			for (int i = 0; i < v.size(); ++i)
 			{
@@ -38,7 +38,7 @@ class Matriz{
 		}
 
 		//Devuelve el digito que más cantidad de veces aparece como segunda coordenada en los pares contenidos por el vector 
-		int masVotado(const vector<pair<float,int> >& v){
+		int masVotado(const vector<pair<float,int> >& v) const{
 			vector<int> counting(10,0);
 			for (int i = 0; i < v.size(); ++i) {
 				counting[v[i].second]++;
@@ -101,7 +101,7 @@ class Matriz{
 		}
 
 		//Devuelve la fila i de la matriz
-		vector<float> obtenerFila(int i){
+		vector<float> obtenerFila(int i) const{
 			return m[i];
 		}
 		
@@ -141,7 +141,7 @@ class Matriz{
 		}
 
 		//Método kNN para asignarle un digito a una imagen dada
-		int caenene(int k, const vector<float>& img){
+		int caenene(int k, const vector<float>& img) const{
 			
 			vector<pair<float,int> > normas;
 			vector<pair<float,int> > kmenores;
@@ -164,7 +164,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*m2 
-		Matriz mult(const Matriz &m2){
+		Matriz mult(const Matriz &m2) const{
 			cout << "mult" << endl;
 			Matriz res(filas, m2.Columnas());
 			cout << "ciclo" << endl;
@@ -184,7 +184,7 @@ class Matriz{
 			return res;
 		}
 
-		Matriz multXtX(){
+		Matriz multXtX() const{
 			cout << "multXtX" << endl;
 			Matriz res(cols, cols);
 			cout << "ciclo" << endl;
@@ -206,7 +206,7 @@ class Matriz{
 		}
 
 		//Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
-		vector<float> multxVect(const vector<float>& v, char lado){
+		vector<float> multxVect(const vector<float>& v, char lado) const{
 			vector<float> res;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
@@ -232,7 +232,7 @@ class Matriz{
 		}
 
 		// Modifica v
-		void multxVect2(vector<float>& v, char lado){
+		void multxVect2(vector<float>& v, char lado) const{
 			vector<float> copiaV = v;
 			if (lado == 'i'){
 				for (int i = 0; i < cols; ++i){
@@ -280,7 +280,7 @@ class Matriz{
 
 		}
 
-		void normalizarVector(vector<float>& v){
+		void normalizarVector(vector<float>& v) const{
 			float normV = norma2(v);
 			for (int j = 0; j < v.size(); ++j)	{
 				v[j] = v[j]/normV;
@@ -288,7 +288,7 @@ class Matriz{
 		}
 
 		//Metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
-		pair<vector<float>,float> metodoPotencia(int iter){
+		pair<vector<float>,float> metodoPotencia(int iter) const{
 			/*Genero Vector Random*/
 			srand (time(NULL));
 			vector<float> v;
@@ -328,7 +328,7 @@ class Matriz{
 
 		
 		//Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
-		vector< vector<float> > obtenerAutovectores(int cantAutov, int cantIterMetPot){
+		vector< vector<float> > obtenerAutovectores(int cantAutov, int cantIterMetPot) const{
 			cout << "obtenerAutovectores " << endl;
 
 			vector< vector<float> > res;
@@ -367,7 +367,7 @@ class Matriz{
 			return res;
 		}
 
-		void restaMatrices(Matriz& m2){
+		void restaMatrices(const Matriz& m2){
 			for (int i = 0; i<filas; i++){
 				for (int j = 0; j < cols; j++){
 					m[i][j] -= m2.obtenerValor(i,j);
