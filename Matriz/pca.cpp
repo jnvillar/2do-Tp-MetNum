@@ -25,12 +25,16 @@ int main(int argc, char* argv[]){
 
 	//Calculamos el cambio de base mediante pca
 	vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+	
+	//Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+	imagenesTest.restarMedia(imagenesTrain);		
+	imagenesTrain.restarMedia(imagenesTrain);		
+
 	//Aplicamos el cambio de base al train
 	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 
 
-	//Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
-	//imagenesTest.restarMedia(imagenesTrain); 		// PREGUNTAR SI NO HACE FALTA
+	
 	
 	//Aplicamos el cambio de base al test
 	Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);

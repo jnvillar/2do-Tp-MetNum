@@ -417,10 +417,10 @@ class Matriz{
 		}
 
 
-		vector< vector<float> > pca(int cantAutov, int cantIterMetPot){
+		vector< vector<float> > pca(int cantAutov, int cantIterMetPot) const{
 			cout << "pca " << endl;
 			Matriz aux = *this;
-			restarMedia(aux); // 	PREGUNTAR
+			aux.restarMedia(aux); // 	PREGUNTAR
 			Matriz mx = aux.Mx();
 
 
@@ -429,7 +429,7 @@ class Matriz{
 		}
 
 
-		vector<vector<float> > pls_da(Matriz X, Matriz& Y, int iteraciones, int metpot){
+		vector<vector<float> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot) const{
 			
 
 			X.restarMedia(X);
