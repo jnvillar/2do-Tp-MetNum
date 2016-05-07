@@ -43,15 +43,19 @@ int main(int argc, char* argv[]){
 	imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
 	//Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
 		vector<float> fila = imagenesTestReducida.obtenerFila(i);
 		int res = imagenesTrainReducida.caenene(cantVecinos, fila);
 		if (res == digitoRepr2[i]){
+			aciertos++;
 			cout << i << ": Funciona bien" << endl;
 		} else {
 			cout << i << ": Funciona mal" << endl;
 		}
 	}
+	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+	cout << hitRate << endl;
 	
 	return 0;
   

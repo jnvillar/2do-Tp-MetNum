@@ -156,15 +156,12 @@ int main(int argc, char* argv[]){
 	vector<float> fil3;
 	fil1.push_back(1);
 	fil1.push_back(2);
-	fil1.push_back(3);
 
 	fil2.push_back(4);
 	fil2.push_back(5);
-	fil2.push_back(6);
 
 	fil3.push_back(7);
 	fil3.push_back(8);
-	fil3.push_back(9);
 
 	vector< vector<float> > mtx;
 	mtx.push_back(fil1); 

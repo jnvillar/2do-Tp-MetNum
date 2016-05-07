@@ -205,6 +205,9 @@ class Matriz{
 			return res;
 		}
 
+
+
+
 		//Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
 		vector<float> multxVect(const vector<float>& v, char lado) const{
 			vector<float> res;
@@ -420,7 +423,7 @@ class Matriz{
 		vector< vector<float> > pca(int cantAutov, int cantIterMetPot) const{
 			cout << "pca " << endl;
 			Matriz aux = *this;
-			aux.restarMedia(aux); // 	PREGUNTAR
+			aux.restarMedia(aux);
 			Matriz mx = aux.Mx();
 
 
@@ -439,13 +442,14 @@ class Matriz{
 			for (int i = 0; i < iteraciones; ++i) {
 
 				/*Calculo M*/
-
 				Matriz Yt = Y.trasponer();
 				Matriz Xt = X.trasponer();
 				Matriz XtY = Xt.mult(Y);
 				Matriz YtX = Yt.mult(X);
-				Matriz mi = XtY.mult(YtX);
+				Matriz mi = XtY.mult(YtX);			
 				/*Calculo M*/
+
+
 
 				/*Calculo autovector asociado al autovalor mas grande*/		
 				pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
