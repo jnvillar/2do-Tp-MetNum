@@ -14,6 +14,7 @@ Matriz preY(vector<int> dig){
 }
 
 
+
 int main(int argc, char* argv[]){
 
 	if (argc != 5){

@@ -494,10 +494,34 @@ class Matriz{
 		}
 
 
-		
 
+
+		Matriz subMatriz(int desde, int hasta){
+			vector< vector <float> > mtx;
+			vector<int> dig;
+			for (int i = desde; i < hasta; ++i){
+				mtx.push_back(obtenerFila(i));
+				dig.push_back(digitoRepresentado(i));
+			}
+			Matriz res(mtx,dig);
+			return res;
+		}
+		
+		Matriz subMatriz(int desde1, int hasta1, int desde2, int hasta2){
+			vector< vector <float> > mtx;
+			vector<int> dig;
+			for (int i = desde1; i < hasta1; ++i){
+				mtx.push_back(obtenerFila(i));
+				dig.push_back(digitoRepresentado(i));
+			}
+			for (int i = desde2; i < hasta2; ++i){
+				mtx.push_back(obtenerFila(i));
+				dig.push_back(digitoRepresentado(i));
+			}
+			Matriz res(mtx,dig);
+			return res;
+		}
 
 
 };
-
 
