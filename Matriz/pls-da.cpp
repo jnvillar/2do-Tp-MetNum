@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//Guardamos digitos que representa cada imagen del train y del test
-	Matriz imagenesTrain = parser(argv[1],-1);
+	Matriz imagenesTrain = parser(argv[1],3000);
 	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
 	// Matriz imagenesTrain2 = imagenesTrain;
 	

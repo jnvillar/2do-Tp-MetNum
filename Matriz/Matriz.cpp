@@ -491,17 +491,16 @@ class Matriz{
                 vector<float> tit_X = X.multxVect(ti,'i');
                 cout << "5" << endl;
 
+
                 vector< vector <float> > mat;
                 for (int h = 0; h<ti.size(); h++){
                     vector <float> fil;
-                    for (int j = 0; j < ti.size(); j++){
+                    for (int j = 0; j < tit_X.size(); j++){
                         fil.push_back(ti[h]*tit_X[j]);
                     }
                     mat.push_back(fil);
                 }
-                while(true){
-                    
-                }
+               
                 cout << "6" << endl;
 
                 vector<int> a(ti.size(),0);
@@ -514,7 +513,7 @@ class Matriz{
                 vector< vector <float> > mat2;
                 for (int h = 0; h<ti.size(); h++){
                     vector <float> fil;
-                    for (int j = 0; j < ti.size(); j++){
+                    for (int j = 0; j < tit_Y.size(); j++){
                         fil.push_back(ti[h]*tit_Y[j]);
                     }
                     mat2.push_back(fil);
