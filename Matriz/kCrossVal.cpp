@@ -15,20 +15,20 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
 	imagenesTrain.restarMedia(imagenesTrain);		
 
 	//Aplicamos el cambio de base al train
-	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+	Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 	
 	
 	//Aplicamos el cambio de base al test
-	Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+	Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
 
 	//Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
-	imagenesTrainReducida.cambiarDigitos(digitoRepr);
+	imagenesTrainReducida->cambiarDigitos(digitoRepr);
 
 	//Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
 	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTestReducida.obtenerFila(i);
-		int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+		vector<float> fila = imagenesTestReducida->obtenerFila(i);
+		int res = imagenesTrainReducida->caenene(cantVecinos, fila);
 		if (res == digitoRepr2[i]){
 			aciertos++;
 			cout << i << ": Funciona bien" << endl;
@@ -37,6 +37,8 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
 		}
 	}
 	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+	delete imagenesTrainReducida;
+	delete imagenesTestReducida;
 	return hitRate;
 }
 
@@ -65,21 +67,21 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
 
 
 	//Aplicamos el cambio de base al train y al test
-	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+	Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 
 	
 
 	//Aplicamos el cambio de base al test
-	Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+	Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
 
 	//Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
-	imagenesTrainReducida.cambiarDigitos(digitoRepr);
+	imagenesTrainReducida->cambiarDigitos(digitoRepr);
 
 	//Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
 	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTestReducida.obtenerFila(i);
-		int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+		vector<float> fila = imagenesTestReducida->obtenerFila(i);
+		int res = imagenesTrainReducida->caenene(cantVecinos, fila);
 		if (res == digitoRepr2[i]){
 			aciertos++;
 			cout << i << ": Funciona bien" << endl;
@@ -88,6 +90,8 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
 		}
 	}
 	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+	delete imagenesTrainReducida;
+	delete imagenesTestReducida;
 	return hitRate;
 }
 

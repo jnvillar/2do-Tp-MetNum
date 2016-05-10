@@ -149,7 +149,7 @@ int main(int argc, char* argv[]){
 	t.imprimirMatriz();
 	*/
 
-
+/*
 	//					TEST MULTIPLICACION MATRIZ MEJORADA
 	vector<float> fil1;
 	vector<float> fil2;
@@ -180,7 +180,7 @@ int main(int argc, char* argv[]){
 
 	Matriz res2 = m.multXtX();
 	res2.imprimirMatriz();
-
+*/
 
 
 	return 0;
