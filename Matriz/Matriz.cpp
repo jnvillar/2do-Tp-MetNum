@@ -525,3 +525,14 @@ class Matriz{
 
 };
 
+Matriz preY(vector<int> dig){
+	vector< vector<float> > mtx;
+	for (int i = 0; i<dig.size(); i++){
+		vector<float> fil(10,-1);
+		fil[dig[i]] = 1;
+		mtx.push_back(fil);
+	}
+	vector<int> a(dig.size(),0);
+	Matriz res(mtx,a);
+	return res;
+}
