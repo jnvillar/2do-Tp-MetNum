@@ -9,7 +9,7 @@
 #include <tuple>
  using namespace std;
 
-int debug = 1;
+int debug = 0;
 
 class Matriz{
 
@@ -348,6 +348,9 @@ class Matriz{
             pair<vector<float>,float> res;
             res.first =  v;
             res.second = autovalor;
+            FILE* out = fopen("test1.out","a");
+            fprintf(out, "%f\n", autovalor);
+            fclose(out);
             return res;
         }
 
@@ -469,16 +472,13 @@ class Matriz{
                 delete Xt;
                 Matriz* mi = XtY.multXXt();         
                 /*Calculo M*/
-                cout << "1" << endl;
 
 
                 /*Calculo autovector asociado al autovalor mas grande*/     
                 pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
-                cout << "2" << endl;
 
                 Mayor = mi->metodoPotencia(metpot); //ya esta normalizado
                 delete mi;
-                cout << "3" << endl;
 
                 vector<float> ti = X.multxVect(Mayor.first,'d');    
                 autovec.push_back(Mayor.first); // Guardo autovector
@@ -486,10 +486,8 @@ class Matriz{
                 /*Calculo autovector asociado al autovalor mas grande*/
 
 
-                cout << "4" << endl;
                 
                 vector<float> tit_X = X.multxVect(ti,'i');
-                cout << "5" << endl;
 
 
                 vector< vector <float> > mat;
@@ -501,13 +499,11 @@ class Matriz{
                     mat.push_back(fil);
                 }
                
-                cout << "6" << endl;
 
                 vector<int> a(ti.size(),0);
                 Matriz ti_tit_X(mat,a);
                 X.restaMatrices(ti_tit_X);
 
-                cout << "7" << endl;
 
                 vector <float> tit_Y = Y.multxVect(ti,'i');
                 vector< vector <float> > mat2;
@@ -569,4 +565,117 @@ Matriz preY(vector<int> dig){
     vector<int> a(dig.size(),0);
     Matriz res(mtx,a);
     return res;
+}
+
+
+
+float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+    vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+    vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+    //Calculamos el cambio de base mediante pca
+    vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+    
+    //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+    imagenesTest.restarMedia(imagenesTrain);        
+    imagenesTrain.restarMedia(imagenesTrain);       
+
+    //Aplicamos el cambio de base al train
+    Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+    
+    
+    //Aplicamos el cambio de base al test
+    Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+    //Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
+    imagenesTrainReducida->cambiarDigitos(digitoRepr);
+
+    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+    int aciertos = 0;
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTestReducida->obtenerFila(i);
+        int res = imagenesTrainReducida->caenene(cantVecinos, fila);
+        if (res == digitoRepr2[i]){
+            aciertos++;
+            cout << i << ": Funciona bien" << endl;
+        } else {
+            cout << i << ": Funciona mal" << endl;
+        }
+    }
+    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+    delete imagenesTrainReducida;
+    delete imagenesTestReducida;
+    return hitRate;
+}
+
+
+float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+
+    //Guardamos digitos que representa cada imagen del train y del test
+    vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+    vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+    //Calculamos preY 
+    Matriz Y = preY(digitoRepr);
+
+    //Le restamos la media y dividimos por sqrt(n-1) para obtener Y
+    Y.restarMedia(Y);
+
+    Matriz X = imagenesTrain;
+
+    //Calculamos el cambio de base mediante pls-da
+    vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+
+
+    //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+    imagenesTest.restarMedia(imagenesTrain); 
+    imagenesTrain.restarMedia(imagenesTrain); 
+
+
+    //Aplicamos el cambio de base al train y al test
+    Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+
+    
+
+    //Aplicamos el cambio de base al test
+    Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+    //Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
+    imagenesTrainReducida->cambiarDigitos(digitoRepr);
+
+    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+    int aciertos = 0;
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTestReducida->obtenerFila(i);
+        int res = imagenesTrainReducida->caenene(cantVecinos, fila);
+        if (res == digitoRepr2[i]){
+            aciertos++;
+            cout << i << ": Funciona bien" << endl;
+        } else {
+            cout << i << ": Funciona mal" << endl;
+        }
+    }
+    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+    delete imagenesTrainReducida;
+    delete imagenesTestReducida;
+    return hitRate;
+}
+
+
+
+
+float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+    int aciertos = 0;
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTest.obtenerFila(i);
+        int res = imagenesTrain.caenene(cantVecinos, fila);
+        if (res == imagenesTest.digitoRepresentado(i)){
+            aciertos++;
+            cout << i << ": Funciona bien" << endl;
+        } else {
+            cout << i << ": Funciona mal" << endl;
+        }
+    }
+    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+    return hitRate;
 }

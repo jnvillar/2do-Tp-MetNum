@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//Parseo de imagenes del train y del test
-	Matriz imagenesTrain = parser(argv[1],3000);
+	Matriz imagenesTrain = parser(argv[1],-1);
 	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
 
 	int cantAutov = atoi(argv[2]);

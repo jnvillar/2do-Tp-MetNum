@@ -4,6 +4,8 @@ all:
 	g++ -O3 -g -std=c++11 -o pca pca.cpp
 	g++ -O3 -g -std=c++11 -o pls-da pls-da.cpp
 	g++ -O3 -g -std=c++11 -o kCrossVal kCrossVal.cpp
+	g++ -O3 -g -std=c++11 -o testCatedra testCatedra.cpp
+
 
 clean:
-	rm -f knn test pca pls-da kCrossVal
+	rm -f knn test pca pls-da kCrossVal testCatedra

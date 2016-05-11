@@ -94,25 +94,35 @@ int main(int argc, char* argv[]){
 
 
 
-/*
+
 	// 					TEST AUTOVALORES Y AUTOVECTORES
 	vector<float> fil1;
 	vector<float> fil2;
-	fil1.push_back(15);
-	fil1.push_back(3);
+	vector<float> fil3;
 
-	fil2.push_back(3);
-	fil2.push_back(7);
+	fil1.push_back(1);
+	fil1.push_back(0);
+	fil1.push_back(0);
+
+	fil2.push_back(1);
+	fil2.push_back(2);
+	fil2.push_back(0);
+
+	fil3.push_back(0);
+	fil3.push_back(0);
+	fil3.push_back(3);
+
 
 
 	vector< vector<float> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
+	mtx.push_back(fil3); 
 
-	vector<int> a(2,0);
+	vector<int> a(3,0);
 	Matriz m(mtx,a);
 	//m.imprimirMatriz(stdout);
-	vector< vector<float> > res = m.obtenerAutovectores();
+	vector< vector<float> > res = m.obtenerAutovectores(3,100);
 	
 	for (int i = 0; i < res.size(); ++i){
 		for (int j = 0; j < res[i].size(); ++j){
@@ -120,7 +130,7 @@ int main(int argc, char* argv[]){
 		}
 		cout << endl;
 	}
-*/
+
 	/*
 	// 					TEST TRASPONER
 	vector<float> fil1;
