@@ -122,7 +122,7 @@ int main(int argc, char* argv[]){
 	vector<int> a(3,0);
 	Matriz m(mtx,a);
 	//m.imprimirMatriz(stdout);
-	vector< vector<float> > res = m.obtenerAutovectores(3,100);
+	vector< vector<float> > res = m.obtenerAutovectores(3,200);
 	
 	for (int i = 0; i < res.size(); ++i){
 		for (int j = 0; j < res[i].size(); ++j){

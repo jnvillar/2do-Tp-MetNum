@@ -101,7 +101,8 @@ int main(int argc, char* argv[]){
 			Matriz train(mtxTrain,numeroReprTrain);
 			Matriz test(mtxTest,numeroReprTest);
 
-			usarPls(train,test,gamma,20,k);
+			usarPca(train,test,alpha,40,k);
+			usarPls(train,test,gamma,40,k);
 
 		}
 

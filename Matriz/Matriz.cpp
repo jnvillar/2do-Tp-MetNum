@@ -349,7 +349,7 @@ class Matriz{
             res.first =  v;
             res.second = autovalor;
             FILE* out = fopen("test1.out","a");
-            fprintf(out, "%f\n", autovalor);
+            fprintf(out, "%e\n", autovalor);
             fclose(out);
             return res;
         }
@@ -391,7 +391,7 @@ class Matriz{
                     }
                 }   
             }
-
+exit(0);
             return res;
         }
 
