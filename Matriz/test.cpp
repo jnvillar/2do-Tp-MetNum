@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
 
 
 
-
+/*
 	// 					TEST AUTOVALORES Y AUTOVECTORES
 	vector<float> fil1;
 	vector<float> fil2;
@@ -130,6 +130,7 @@ int main(int argc, char* argv[]){
 		}
 		cout << endl;
 	}
+*/
 
 	/*
 	// 					TEST TRASPONER

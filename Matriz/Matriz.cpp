@@ -187,9 +187,9 @@ class Matriz{
             return res;
         }
 
-        Matriz* multXtX() const{
+        Matriz multXtX() const{
             if(debug == 1) cout << "multXtX" << endl;
-            Matriz* res = new Matriz(cols, cols);
+            Matriz res(cols, cols);
             if(debug == 1) cout << "ciclo" << endl;
             for (int i = 0; i < cols; ++i){
                 for (int j = 0; j <=i; ++j){
@@ -197,8 +197,8 @@ class Matriz{
                     for (int h = 0; h < filas; ++h){
                         sumaProd += m[h][i] * m[h][j];
                     }
-                    res->modValor(i,j,sumaProd);
-                    res->modValor(j,i,sumaProd);
+                    res.modValor(i,j,sumaProd);
+                    res.modValor(j,i,sumaProd);
                 }
             }
             if(debug == 1) cout << "ciclo 2" << endl;
@@ -208,9 +208,9 @@ class Matriz{
             return res;
         }
 
-        Matriz* multXXt() const{
+        Matriz multXXt() const{
             if(debug == 1) cout << "multXXt" << endl;
-            Matriz* res = new Matriz(filas, filas);
+            Matriz res(filas, filas);
             if(debug == 1) cout << "ciclo" << endl;
             for (int i = 0; i < filas; ++i){
                 for (int j = 0; j <=i; ++j){
@@ -218,8 +218,8 @@ class Matriz{
                     for (int h = 0; h < cols; ++h){
                         sumaProd += m[i][h] * m[j][h];
                     }
-                    res->modValor(i,j,sumaProd);
-                    res->modValor(j,i,sumaProd);
+                    res.modValor(i,j,sumaProd);
+                    res.modValor(j,i,sumaProd);
                 }
             }
             if(debug == 1) cout << "ciclo 2" << endl;
@@ -391,7 +391,6 @@ class Matriz{
                     }
                 }   
             }
-exit(0);
             return res;
         }
 
@@ -403,16 +402,15 @@ exit(0);
             }
         }
 
-        Matriz* cambioDeBase(const vector< vector<float> >& p){
+        Matriz cambioDeBase(const vector< vector<float> >& p){
             if(debug == 1) cout << "cambioDeBase " << endl;
 
             vector<int> a(p.size(),0);
             Matriz vt(p,a);
-            Matriz* xt = trasponer(); 
-            Matriz rest = vt.mult(*xt);
-            delete xt;
+            Matriz xt = trasponer(); 
+            Matriz rest = vt.mult(xt);
 
-            Matriz* res = rest.trasponer();
+            Matriz res = rest.trasponer();
 
 
             return res;
@@ -420,7 +418,7 @@ exit(0);
 
 
         //Devuelve la matriz traspuesta
-        Matriz* trasponer(){
+        Matriz trasponer(){
             if(debug == 1) cout << "trasponer " << endl;
 
             vector<vector<float> > mtx;
@@ -432,7 +430,7 @@ exit(0);
                 mtx.push_back(fila);
             }
             vector<int> digitos(cols,0);
-            Matriz* res = new Matriz(mtx,digitos);
+            Matriz res(mtx,digitos);
             if(debug == 1) cout << "trasponer 2" << endl;
 
             return res;
@@ -447,10 +445,9 @@ exit(0);
             aux.restarMedia(aux);
 
             if(debug == 1) cout << "Mx " << endl;   
-            Matriz* mx = aux.multXtX();
+            Matriz mx = aux.multXtX();
 
-            vector< vector<float> > p = mx->obtenerAutovectores(cantAutov,cantIterMetPot);
-            delete mx;
+            vector< vector<float> > p = mx.obtenerAutovectores(cantAutov,cantIterMetPot);
             return p;
         }
 
@@ -467,18 +464,16 @@ exit(0);
             for (int i = 0; i < iteraciones; ++i) {
 
                 /*Calculo M*/
-                Matriz* Xt = X.trasponer();
-                Matriz XtY = Xt->mult(Y);
-                delete Xt;
-                Matriz* mi = XtY.multXXt();         
+                Matriz Xt = X.trasponer();
+                Matriz XtY = Xt.mult(Y);
+                Matriz mi = XtY.multXXt();         
                 /*Calculo M*/
 
 
                 /*Calculo autovector asociado al autovalor mas grande*/     
                 pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
 
-                Mayor = mi->metodoPotencia(metpot); //ya esta normalizado
-                delete mi;
+                Mayor = mi.metodoPotencia(metpot); //ya esta normalizado
 
                 vector<float> ti = X.multxVect(Mayor.first,'d');    
                 autovec.push_back(Mayor.first); // Guardo autovector
@@ -581,20 +576,20 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
     imagenesTrain.restarMedia(imagenesTrain);       
 
     //Aplicamos el cambio de base al train
-    Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+    Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
     
     
     //Aplicamos el cambio de base al test
-    Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+    Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
 
     //Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
-    imagenesTrainReducida->cambiarDigitos(digitoRepr);
+    imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
     int aciertos = 0;
     for(int i = 0; i<imagenesTest.Filas(); i++){
-        vector<float> fila = imagenesTestReducida->obtenerFila(i);
-        int res = imagenesTrainReducida->caenene(cantVecinos, fila);
+        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
             aciertos++;
             cout << i << ": Funciona bien" << endl;
@@ -603,8 +598,7 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
         }
     }
     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
-    delete imagenesTrainReducida;
-    delete imagenesTestReducida;
+ 
     return hitRate;
 }
 
@@ -633,21 +627,21 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
 
 
     //Aplicamos el cambio de base al train y al test
-    Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+    Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 
     
 
     //Aplicamos el cambio de base al test
-    Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+    Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
 
     //Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
-    imagenesTrainReducida->cambiarDigitos(digitoRepr);
+    imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
     int aciertos = 0;
     for(int i = 0; i<imagenesTest.Filas(); i++){
-        vector<float> fila = imagenesTestReducida->obtenerFila(i);
-        int res = imagenesTrainReducida->caenene(cantVecinos, fila);
+        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
             aciertos++;
             cout << i << ": Funciona bien" << endl;
@@ -656,8 +650,7 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
         }
     }
     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
-    delete imagenesTrainReducida;
-    delete imagenesTestReducida;
+
     return hitRate;
 }
 

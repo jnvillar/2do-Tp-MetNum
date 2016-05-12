@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//Parseo de imagenes del train y del test
-	Matriz imagenesTrain = parser(argv[1],-1);
+	Matriz imagenesTrain = parser(argv[1],3000);
 	Matriz imagenesTest = parserImgTest(argv[1],3001,3101);
 
 	int cantAutov = atoi(argv[2]);
@@ -31,22 +31,22 @@ int main(int argc, char* argv[]){
 	imagenesTrain.restarMedia(imagenesTrain);		
 
 	//Aplicamos el cambio de base al train
-	Matriz* imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+	Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
 
 
 	
 	
 	//Aplicamos el cambio de base al test
-	Matriz* imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+	Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
 
 	//Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
-	imagenesTrainReducida->cambiarDigitos(digitoRepr);
+	imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
 	//Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
 	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTestReducida->obtenerFila(i);
-		int res = imagenesTrainReducida->caenene(cantVecinos, fila);
+		vector<float> fila = imagenesTestReducida.obtenerFila(i);
+		int res = imagenesTrainReducida.caenene(cantVecinos, fila);
 		if (res == digitoRepr2[i]){
 			aciertos++;
 			cout << i << ": Funciona bien" << endl;
@@ -56,8 +56,7 @@ int main(int argc, char* argv[]){
 	}
 	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
 	cout << hitRate << endl;
-	delete imagenesTrainReducida;
-	delete imagenesTestReducida;
+
 	return 0;
   
 }
