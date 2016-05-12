@@ -348,9 +348,9 @@ class Matriz{
             pair<vector<float>,float> res;
             res.first =  v;
             res.second = autovalor;
-            FILE* out = fopen("test1.out","a");
-            fprintf(out, "%e\n", autovalor);
-            fclose(out);
+            //FILE* out = fopen("test1.out","a");
+            //fprintf(out, "%e\n", autovalor);
+            //fclose(out);
             return res;
         }
 
