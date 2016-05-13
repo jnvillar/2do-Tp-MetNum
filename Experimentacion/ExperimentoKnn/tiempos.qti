@@ -1,0 +1,293 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	4
+<table>
+CantImgTrain	60	2	13/05/16 15:59
+geometry	11	6	490	493	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	Tiempos	2
+<data>
+0	100	0.026322
+1	300	0.076361
+2	500	0.130872
+3	700	0.17891
+4	900	0.234718
+5	1100	0.291168
+6	1300	0.342969
+7	1500	0.397751
+8	1700	0.44882
+9	1900	0.49342
+10	2100	0.557695
+11	2300	0.607889
+12	2500	0.663752
+13	2700	0.718333
+14	2900	0.772861
+15	3100	0.811036
+16	3300	0.880129
+17	3500	0.929688
+18	3700	0.987845
+19	3900	1.041093
+20	4100	1.090207
+21	4300	1.140379
+22	4500	1.178708
+23	4700	1.25261
+24	4900	1.307413
+25	5100	1.358753
+26	5300	1.417955
+27	5500	1.479891
+28	5700	1.523092
+29	5900	1.578816
+30	6100	1.63009
+31	6300	1.673277
+32	6500	1.727677
+33	6700	1.789969
+34	6900	1.835802
+35	7100	1.894464
+36	7300	1.947399
+37	7500	2.008375
+38	7700	2.079115
+39	7900	2.113559
+40	8100	2.147086
+41	8300	2.212629
+42	8500	2.215842
+43	8700	2.273792
+44	8900	2.372004
+45	9100	2.427491
+46	9300	2.483236
+47	9500	2.547462
+48	9700	2.663152
+49	9900	2.663571
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	13/05/16 16:02
+geometry	188	106	646	539	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	626	476
+<PageGeometry>0.00783699	0.0101833	0.981191	0.96945</PageGeometry>
+PlotTitle	Variación en la cantidad de imagenes train	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad imagenes train	Tiempo (seg)			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	15	75	0	0	0
+ScaleFont0	Ubuntu	13	75	0	0	0
+ScaleFont1	Ubuntu	13	75	0	0	0
+ScaleFont2	Ubuntu	13	75	0	0	0
+ScaleFont3	Ubuntu	13	75	0	0	0
+AxisFont0	Ubuntu	13	50	0	0	0
+AxisFont1	Ubuntu	13	50	0	0	0
+AxisFont2	Ubuntu	13	50	0	0	0
+AxisFont3	Ubuntu	13	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#212121	#212121	#212121	#212121
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	CantImgTrain_1	CantImgTrain_2	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	59	1
+scale	0	-0.5	3	0	8	5	0	0
+scale	1	-0.5	3	0	8	5	0	0
+scale	2	0	10000	0	6	5	0	0
+scale	3	0	10000	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>28.011204481793</x>
+<y>965.75342465753</y>
+<right>305.322128851541</right>
+<bottom>866.438356164384</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+</Text>
+<Font>Ubuntu	13	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<table>
+CantVecinos	50	2	13/05/16 16:42
+geometry	1382	26	447	540	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	Tiempos	2
+<data>
+0	5	0.820338
+1	15	0.803006
+2	25	0.794495
+3	35	0.79127
+4	45	0.806216
+5	55	0.802427
+6	65	0.79456
+7	75	0.794804
+8	85	0.792154
+9	95	0.795038
+10	105	0.794263
+11	115	0.794366
+12	125	0.7927
+13	135	0.794044
+14	145	0.791022
+15	155	0.792025
+16	165	0.794145
+17	175	0.795506
+18	185	0.791665
+19	195	0.809426
+20	205	0.793414
+21	215	0.795047
+22	225	0.79478
+23	235	0.793174
+24	245	0.792017
+25	255	0.792338
+26	265	0.792903
+27	275	0.794203
+28	285	0.79262
+29	295	0.790237
+30	305	0.793212
+31	315	0.793545
+32	325	0.79318
+33	335	0.796477
+34	345	0.804539
+</data>
+</table>
+<multiLayer>
+Gráfica2	1	1	13/05/16 16:44
+geometry	733	135	643	512	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	625	449
+<PageGeometry>0.00787402	0.0107759	0.984252	0.967672</PageGeometry>
+PlotTitle	Variación en la cantidad de vecinos	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de vecinos	Tiempo (seg)			
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	14	75	0	0	0
+ScaleFont0	Ubuntu	12	75	0	0	0
+ScaleFont1	Ubuntu	12	75	0	0	0
+ScaleFont2	Ubuntu	12	75	0	0	0
+ScaleFont3	Ubuntu	12	75	0	0	0
+AxisFont0	Ubuntu	12	50	0	0	0
+AxisFont1	Ubuntu	12	50	0	0	0
+AxisFont2	Ubuntu	12	50	0	0	0
+AxisFont3	Ubuntu	12	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#212121	#212121	#212121	#212121
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	CantVecinos_1	CantVecinos_2	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	49	1
+scale	0	0.685	1.025	0	8	5	0	0
+scale	1	0.685	1.025	0	8	5	0	0
+scale	2	0	350	0	8	5	0	0
+scale	3	0	350	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>28.011204481793</x>
+<y>965.75342465753</y>
+<right>305.322128851541</right>
+<bottom>866.438356164384</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+</Text>
+<Font>Ubuntu	12	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
