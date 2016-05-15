@@ -9,21 +9,21 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
-	FILE* out = fopen("result.txt","w");
+	FILE* out = fopen("k.txt","w");
 
-	for(int j = 0; j<35; j++){
+	for(int j = 0; j<30; j++){
 
 		int cantTrain = atoi(argv[2]);
 		int cantTest = atoi(argv[3]);
 		Matriz m = parser(argv[1],cantTrain);
 		Matriz imagenesTest = parserImgTest(argv[1],cantTrain+1,cantTrain+1+cantTest);
-		int cantVecinos = atoi(argv[4])+j*10;
+		int cantVecinos = atoi(argv[4])+j*1;
 
 
-		float tiempo = 0;
+		//float tiempo = 0;
 		float hitRate;
-		for(int h = 0; h<50; h++){
-			clock_t t = clock();
+		for(int h = 0; h<1; h++){
+		//	clock_t t = clock();
 
 			int aciertos = 0;
 			for(int i = 0; i<imagenesTest.Filas(); i++){
@@ -35,12 +35,13 @@ int main(int argc, char* argv[]){
 				}
 			}
 			hitRate = (float )aciertos/(float )imagenesTest.Filas();
-			t = clock() - t;
-			tiempo += (((float)t)/CLOCKS_PER_SEC);
+		//	t = clock() - t;
+		//	tiempo += (((float)t)/CLOCKS_PER_SEC);
 		}
-		tiempo = tiempo/50;
-		fprintf(out, "%f\n", tiempo);
-		cout << "tiempo: " << tiempo << endl;
+		//tiempo = tiempo/50;
+		//fprintf(out, "%f\n", tiempo);
+		//cout << "tiempo: " << tiempo << endl;
+		fprintf(out, "k: %d %f\n", cantVecinos, hitRate);
 		cout << "hitRate: " << hitRate << endl;
 
 

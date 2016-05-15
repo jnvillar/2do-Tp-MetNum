@@ -108,7 +108,7 @@ class Matriz{
         }
         
         //Devuelve el dígito que representa la imagen representada por la fila i de la matriz 
-        int digitoRepresentado(int i){
+        int digitoRepresentado(int i) const{
             return digitos[i];
         }
 
@@ -521,7 +521,7 @@ class Matriz{
 
 
 
-        Matriz subMatriz(int desde, int hasta){
+        Matriz subMatriz(int desde, int hasta) const{
             vector< vector <float> > mtx;
             vector<int> dig;
             for (int i = desde; i < hasta; ++i){
@@ -532,7 +532,7 @@ class Matriz{
             return res;
         }
         
-        Matriz subMatriz(int desde1, int hasta1, int desde2, int hasta2){
+        Matriz subMatriz(int desde1, int hasta1, int desde2, int hasta2) const{
             vector< vector <float> > mtx;
             vector<int> dig;
             for (int i = desde1; i < hasta1; ++i){
