@@ -28,7 +28,7 @@ int main(int argc, char* argv[]){
 
 		for(int h = 0; h<outliers; h++){
 			clock_t t1 = clock();
-			vector< vector<float> > cambioBase1 = trainPca.pca(alfa+aumento,20);		
+			vector< vector<float> > cambioBase1 = trainPca.pca(alfa+(aumento*j),20);		
 			t1 = clock() - t1;
 			tiempoPca += (((float)t1)/CLOCKS_PER_SEC);
 
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
 			vector<int> digitoRepr = trainPls.obtenerDigitos();
 			Matriz Y = preY(digitoRepr);
 			Y.restarMedia(Y);
-			vector< vector<float> > cambioBase2 = trainPls.pls_da(trainPls,Y,gamma+aumento,20);		
+			vector< vector<float> > cambioBase2 = trainPls.pls_da(trainPls,Y,(gamma+aumento),20);		
 			t2 = clock() - t2;
 			tiempoPls += (((float)t2)/CLOCKS_PER_SEC);
 		}		
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]){
 		fprintf(out2, "%f\n", tiempoPls);		
 		cout << "tiempoPls: " << tiempoPls << endl;	
 
-		cout << iteraciones << endl;
+		cout << j << endl;
 	}
 
 	fclose(out1);
