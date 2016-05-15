@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 
-	FILE* out = fopen("kAux.txt","w");
+	FILE* out = fopen("kHR.txt","w");
 
 	for(int j = 0; j<10; j++){
 	
