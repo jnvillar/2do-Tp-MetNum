@@ -9,7 +9,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
-	int cantTrain = 42000;	
+	int cantTrain = 20000;	
 	int alfa = atoi(argv[2]);
 	int gamma = atoi(argv[2]);
 	int aumento = atoi(argv[3]);
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
 			vector<int> digitoRepr = trainPls.obtenerDigitos();
 			Matriz Y = preY(digitoRepr);
 			Y.restarMedia(Y);
-			vector< vector<float> > cambioBase2 = trainPls.pls_da(trainPls,Y,(gamma+aumento),20);		
+			vector< vector<float> > cambioBase2 = trainPls.pls_da(trainPls,Y,(gamma+(aumento*j),20);		
 			t2 = clock() - t2;
 			tiempoPls += (((float)t2)/CLOCKS_PER_SEC);
 		}		
