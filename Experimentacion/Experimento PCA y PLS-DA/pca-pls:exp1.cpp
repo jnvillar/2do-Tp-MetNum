@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
 		fprintf(out2, "%f\n", tiempoPls);		
 		cout << "tiempoPls: " << tiempoPls << endl;	
 		
-		cout << iteraciones << endl;
+		cout << j << endl;
 	}
 
 	fclose(out1);
