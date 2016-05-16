@@ -563,6 +563,57 @@ Matriz preY(vector<int> dig){
 }
 
 
+vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<int> FN){
+
+    //Calculo de precision
+    vector<float> precision;
+    float total_prec = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        //Calculo precision del digito i y lo sumo a total_prec para calcular promedio de precisiones
+        float precision_i = (float ) VP[i]/((float ) VP[i]/(float ) FP[i]);
+        precision.push_back(precision_i);
+        total_prec += precision_i;
+    }
+    total_prec = total_prec/10;
+    //La ultima posicion del vector contiene el promedio
+
+    //Calculo de recall
+    vector<float> recall;
+    float total_recall = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        //Calculo recall del digito i y lo sumo a total_recall para calcular promedio de los recall
+        float recall_i = (float ) VP[i]/((float ) VP[i]/(float ) FN[i]);
+        recall.push_back(recall_i);
+        total_recall += recall_i;
+    }
+    total_recall = total_recall/10;
+    //La ultima posicion del vector contiene el promedio
+    recall.push_back(total_recall);
+
+    //Calculo de f1-score
+    vector<float> f1Score;
+    float total_f1Score = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        //Calculo recall del digito i y lo sumo a total_recall para calcular promedio de los recall
+        float f1Score_i = 2 * precision[i] * recall[i] / (precision[i] + recall[i]);
+        recall.push_back(f1Score_i);
+        total_f1Score += f1Score_i;
+    }
+    total_f1Score = total_f1Score/10;
+    //La ultima posicion del vector contiene el promedio
+    f1Score.push_back(total_f1Score);
+
+    vector< vector<float> > res;
+    res.push_back(precision);
+    res.push_back(recall);
+    res.push_back(f1Score);
+
+    return res;
+}
+
 
 float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -600,6 +651,59 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
  
     return hitRate;
+}
+
+vector< vector<float> > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+    vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+    vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+    //Calculamos el cambio de base mediante pca
+    vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+    
+    //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+    imagenesTest.restarMedia(imagenesTrain);        
+    imagenesTrain.restarMedia(imagenesTrain);       
+
+    //Aplicamos el cambio de base al train
+    Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+    
+    
+    //Aplicamos el cambio de base al test
+    Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+    //Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
+    imagenesTrainReducida.cambiarDigitos(digitoRepr);
+
+    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+    int aciertos = 0;
+
+    //Para calcular metricas precision, recall y f1-score 
+    vector<int> VP(10, 0);
+    vector<int> FP(10, 0);
+    vector<int> FN(10, 0);
+
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+        if (res == digitoRepr2[i]){
+            aciertos++;
+            VP[res]++;
+        } else {
+            FP[res]++;
+            FN[digitoRepr2[i]]++;
+        }
+    }
+    //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
+    vector<float> hitRate;
+    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+
+    //Calculo precision, recall y f1-score
+    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+
+    //Agregamos el hit rate
+    metricas.push_back(hitRate);
+
+    return metricas;
 }
 
 
@@ -654,7 +758,71 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
     return hitRate;
 }
 
+vector< vector<float> > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
+    //Guardamos digitos que representa cada imagen del train y del test
+    vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+    vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+    //Calculamos preY 
+    Matriz Y = preY(digitoRepr);
+
+    //Le restamos la media y dividimos por sqrt(n-1) para obtener Y
+    Y.restarMedia(Y);
+
+    Matriz X = imagenesTrain;
+
+    //Calculamos el cambio de base mediante pls-da
+    vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+
+
+    //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+    imagenesTest.restarMedia(imagenesTrain); 
+    imagenesTrain.restarMedia(imagenesTrain); 
+
+
+    //Aplicamos el cambio de base al train y al test
+    Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+
+    
+
+    //Aplicamos el cambio de base al test
+    Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+    //Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
+    imagenesTrainReducida.cambiarDigitos(digitoRepr);
+
+    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+    int aciertos = 0;
+
+    //Para calcular metricas precision, recall y f1-score 
+    vector<int> VP(10, 0);
+    vector<int> FP(10, 0);
+    vector<int> FN(10, 0);
+
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+        if (res == digitoRepr2[i]){
+            aciertos++;
+            VP[res]++;
+        } else {
+            FP[res]++;
+            FN[digitoRepr2[i]]++;
+        }
+    }
+    //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
+    vector<float> hitRate;
+    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+
+    //Calculo precision, recall y f1-score
+    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+
+    //Agregamos el hit rate
+    metricas.push_back(hitRate);
+
+    return metricas;
+}
 
 
 float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
@@ -672,3 +840,38 @@ float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
     return hitRate;
 }
+
+
+vector< vector<float> > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+    int aciertos = 0;
+    //Para calcular metricas precision, recall y f1-score 
+    vector<int> VP(10, 0);
+    vector<int> FP(10, 0);
+    vector<int> FN(10, 0);
+
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        vector<float> fila = imagenesTest.obtenerFila(i);
+        int res = imagenesTrain.caenene(cantVecinos, fila);
+        if (res == imagenesTest.digitoRepresentado(i)){
+            aciertos++;
+            VP[res]++;
+        } else {
+            FP[res]++;
+            FN[imagenesTest.digitoRepresentado(i)]++;
+        }
+    }
+    //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
+    vector<float> hitRate;
+    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+
+    //Calculo precision, recall y f1-score
+    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+
+    //Agregamos el hit rate
+    metricas.push_back(hitRate);
+
+    return metricas;
+}
+
+
