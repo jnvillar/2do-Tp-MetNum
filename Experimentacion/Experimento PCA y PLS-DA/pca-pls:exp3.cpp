@@ -76,8 +76,7 @@ int main(int argc, char* argv[]){
 		fprintf(out1, "%s %d %s %d \n", "Iteracion:",u,"Aplha:",cantAutov);
 		fprintf(out2, "%s %d %s %d \n", "Iteracion:",u,"Gamma:",cantAutov);
 		fprintf(out3, "%s %d %s %d \n", "Iteracion:",u,"k:",cantVecinos);
-			
-		
+		if(debug)cout<<"Iteracion "<< u << endl;  		
 
 		vector<float> aux(1,0);
 		vector<vector<float> > metricasPromPca = crearvector(11,3);
