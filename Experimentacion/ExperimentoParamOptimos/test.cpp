@@ -14,12 +14,12 @@ vector<float> sumarVectores(vector<float> v1, vector<float> v2)
   return res;
 }
 
-vector<float> dividirVector(vector<float> v, int divisor)
+vector<float> dividirVector(vector<float> v, float divisor)
 {
   vector<float> res;
   for (int i = 0; i < v.size(); i++)
   {
-    res.push_back(v[i]/(float ) divisor);
+    res.push_back(v[i]/divisor);
   }
   return res;
 }
@@ -75,11 +75,11 @@ int main(int argc, char* argv[]){
           Matriz test = imagenes.subMatriz(i*tamConj,(i+1)*tamConj); 
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos pca con kNN
-          vector< vector<float> > res = usarPca2(train,test,cantAutov,cantIterMetPot,cantVecinos);
-          precision = sumarVectores(precision, res[0]);
-          recall = sumarVectores(recall, res[1]);
-          f1Score = sumarVectores(f1Score, res[2]);
-          hR += res[3][0];
+          pair< vector< vector<float> >, vector< vector<float> > > res = usarPca2(train,test,cantAutov,cantIterMetPot,cantVecinos);
+          precision = sumarVectores(precision, res.first[0]);
+          recall = sumarVectores(recall, res.first[1]);
+          f1Score = sumarVectores(f1Score, res.first[2]);
+          hR += res.first[3][0];
         }
 
       }
@@ -104,11 +104,11 @@ int main(int argc, char* argv[]){
           Matriz test = imagenes.subMatriz(i*tamConj,(i+1)*tamConj);
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos pls con kNN
-          vector< vector<float> > res = usarPls2(train,test,cantIterPls,cantIterMetPot,cantVecinos);
-          precision = sumarVectores(precision, res[0]);
-          recall = sumarVectores(recall, res[1]);
-          f1Score = sumarVectores(f1Score, res[2]);
-          hR += res[3][0];
+          pair< vector< vector<float> >, vector< vector<float> > > res = usarPls2(train,test,cantIterPls,cantIterMetPot,cantVecinos);
+          precision = sumarVectores(precision, res.first[0]);
+          recall = sumarVectores(recall, res.first[1]);
+          f1Score = sumarVectores(f1Score, res.first[2]);
+          hR += res.first[3][0];
         }
 
       } 
@@ -129,11 +129,11 @@ int main(int argc, char* argv[]){
           Matriz test = imagenes.subMatriz(i*tamConj,(i+1)*tamConj);
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos kNN
-          vector< vector<float> > res = usarKnn2(train,test,cantVecinos);
-          precision = sumarVectores(precision, res[0]);
-          recall = sumarVectores(recall, res[1]);
-          f1Score = sumarVectores(f1Score, res[2]);
-          hR += res[3][0];
+          pair< vector< vector<float> >, vector< vector<float> > > res = usarKnn2(train,test,cantVecinos);
+          precision = sumarVectores(precision, res.first[0]);
+          recall = sumarVectores(recall, res.first[1]);
+          f1Score = sumarVectores(f1Score, res.first[2]);
+          hR += res.first[3][0];
         }
 
       }
