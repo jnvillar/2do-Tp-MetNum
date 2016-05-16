@@ -27,8 +27,28 @@ void promedio(vector<vector<float> > &m, float k){
 	}
 }
 
+void imprimir(FILE* salida, string a ,vector<float> v){
+	fprintf(salida, "%s:\n", a.c_str() );
+	for (int i = 0; i < v.size(); ++i){			
+		fprintf(salida, "%d ,%f\n", i, v[i]);		
+	}
+}
+
+void imprimirMatConf(FILE* salida, string a, vector<vector<float> > v){
+	fprintf(salida, "%s\n", "MatConf");
+	for (int i = 0; i < v.size(); ++i){
+		for (int j = 0; j < v[i].size(); ++j){
+		fprintf(salida, "%f,", v[i][j]);		
+		}
+		fprintf(salida, "\n");
+	}
+}
+
+
+
 int main(int argc, char* argv[]){
-	if (argc != 8 && argc != 6){		
+	bool debug = true;
+	if (argc != 7){		
 		cout << "USO " << argv[0] << "[1 INPUT FILE] [2 CANT DE IMAGENES] [3 CANT DE AUTOVECTORES] [4 CANTIDAD ITERACIONES METODO POTENCIA] [5 CANTIDAD VECINOS] [6 K]" << endl;
 		return 0;
 	}
@@ -61,6 +81,7 @@ int main(int argc, char* argv[]){
 	vector<vector<float> > confKnn = crearvector(10,10);
 
 	for(int i = 0; i<k; i++){
+		if(debug)cout<<"Grupo "<< i << endl;  
 		Matriz testpca = imagenesPca.subMatriz(i*tamConj,(i+1)*tamConj);
 		Matriz testplc = imagenesPls.subMatriz(i*tamConj,(i+1)*tamConj);
 		Matriz testknn = imagenesKnn.subMatriz(i*tamConj,(i+1)*tamConj);
@@ -68,21 +89,30 @@ int main(int argc, char* argv[]){
 		Matriz trainpls = imagenesPls.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
 		Matriz trainknn = imagenesKnn.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
 
+		if(debug)cout<< "metricas Pca" << endl;
 		pair<vector<vector<float> >,vector<vector<float> > > metricasPca= usarPca2(trainpca,testpca,cantAutov,cantIterMetPot,cantVecinos);
+		if(debug)cout<< "Listo" << endl;
+		if(debug)cout<< "Metricas Pls" << endl;
 		pair<vector<vector<float> >,vector<vector<float> > > metricasPls= usarPls2(trainpls,testplc,cantAutov,cantIterMetPot,cantVecinos);
+		if(debug)cout<< "Listo" << endl;
+		if(debug)cout<< "Metricas Knn" << endl;
 		pair<vector<vector<float> >,vector<vector<float> > > metricasKnn= usarKnn2(trainknn,testknn,cantVecinos);	
-		
+		if(debug)cout<< "Listo" << endl;
+
+		if(debug)cout<< "Guardando Metricas" << endl;
 		sumMat(metricasPromPca,metricasPca.first);
 		sumMat(metricasPromPls,metricasPls.first);
 		sumMat(metricasPromKnn,metricasKnn.first);
-
 		sumMat(confPca,metricasPca.second);
 		sumMat(confPls,metricasPls.second);
 		sumMat(confKnn,metricasKnn.second);
+		if(debug)cout<< "Listo" << endl;
 		
 	}
 
 	//SACO PROMEDIO
+
+	if(debug)cout<< "Promedios" << endl;
 
 	promedio(metricasPromPca,k);
 	promedio(metricasPromPls,k);
@@ -90,67 +120,41 @@ int main(int argc, char* argv[]){
 	promedio(confPca,k);
 	promedio(confPls,k);
 	promedio(confKnn,k);
+
+	if(debug)cout<< "Imprimiendo" << endl;
 	
 	// IMPRIMO PRESICION
-		fprintf(out1, "%s\n", "Precision");			
-		fprintf(out2, "%s\n", "Presicion");				
-		fprintf(out3, "%s\n", "Presicion");	
+	
+	for (int i = 0; i < 4; ++i){
+		if (i==0){
+			imprimir(out1,"Presicion",metricasPromPca[i]);
+			imprimir(out2,"Presicion",metricasPromPls[i]);	
+			imprimir(out3,"Presicion",metricasPromKnn[i]);	
+		}
 
-	for (int i = 0; i < 11; ++i){			
-		fprintf(out1, "Numero: %d ,%f\n", i, metricasPromPca[0][i]);			
-		fprintf(out2, "Numero: %d ,%f\n", i, metricasPromPls[0][i]);				
-		fprintf(out3, "Numero: %d ,%f\n", i, metricasPromKnn[0][i]);			
-	}
+		if (i==1){
+			imprimir(out1,"Recall",metricasPromPca[i]);
+			imprimir(out2,"Recall",metricasPromPls[i]);	
+			imprimir(out3,"Recall",metricasPromKnn[i]);
+		}
 
-	// IMPRIMO RECALL
-		fprintf(out1, "%s\n", "Recall");			
-		fprintf(out2, "%s\n", "Recall");				
-		fprintf(out3, "%s\n", "Recall");	
+		if (i==2){
+			imprimir(out1,"F1-Score",metricasPromPca[i]);
+			imprimir(out2,"F1-Score",metricasPromPls[i]);	
+			imprimir(out3,"F1-Score",metricasPromKnn[i]);
+		}
 
-	for (int i = 0; i < 11; ++i){
-		fprintf(out1, "Numero: %d ,%f\n", i, metricasPromPca[1][i]);			
-		fprintf(out2, "Numero: %d ,%f\n", i, metricasPromPls[1][i]);				
-		fprintf(out3, "Numero: %d ,%f\n", i, metricasPromKnn[1][i]);			
-	}
-
-	// IMPRIMO F1-SCORE
-		fprintf(out1, "%s\n", "F1-Score");			
-		fprintf(out2, "%s\n", "F1-Score");				
-		fprintf(out3, "%s\n", "F1-Score");	
-
-	for (int i = 0; i < 11; ++i){
-		fprintf(out1, "Numero: %d ,%f\n", i, metricasPromPca[2][i]);			
-		fprintf(out2, "Numero: %d ,%f\n", i, metricasPromPls[2][i]);				
-		fprintf(out3, "Numero: %d ,%f\n", i, metricasPromKnn[2][i]);			
-	}
-
-	// IMPRIMO HITRATE
-
-	fprintf(out1, "%s\n", "Hit rate");			
-	fprintf(out2, "%s\n", "Hit rate");				
-	fprintf(out3, "%s\n", "Hit rate");	
-	fprintf(out1, "%f\n", metricasPromPca[3][0]);			
-	fprintf(out2, "%f\n", metricasPromPls[3][0]);				
-	fprintf(out3, "%f\n", metricasPromKnn[3][0]);
-
+		if(i==3){
+			imprimir(out1,"Hitrate",metricasPromPca[i]);
+			imprimir(out2,"Hitrate",metricasPromPls[i]);	
+			imprimir(out3,"Hitrate",metricasPromKnn[i]);
+		}
+	}		
 	// IMPRIMO MATCONF
 
-	fprintf(out1, "%s\n", "MatConf");			
-	fprintf(out2, "%s\n", "MatConf");				
-	fprintf(out3, "%s\n", "MatConf");	
-
-	for (int i = 0; i < 10; ++i){
-		for (int j = 0; j < 10; ++j){
-		fprintf(out1, "%f,", confPca[i][j]);			
-		fprintf(out2, "%f,", confPls[i][j]);				
-		fprintf(out3, "%f,", confKnn[i][j]);	
-		}
-		fprintf(out1, "\n");			
-		fprintf(out2, "\n");				
-		fprintf(out3, "\n");	
-	}
-
-
+	imprimirMatConf(out1,"MatConf",confPca);
+	imprimirMatConf(out2,"MatConf",confPls);
+	imprimirMatConf(out3,"MatConf",confKnn);
 
 return 0;
 
