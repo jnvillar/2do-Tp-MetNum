@@ -35,12 +35,13 @@ void imprimir(FILE* salida, string a ,vector<float> v){
 }
 
 void imprimirMatConf(FILE* salida, string a, vector<vector<float> > v){
-	fprintf(salida, "%s\n", "MatConf");
+	fprintf(salida, "%s\n", "MatConf:");
 	for (int i = 0; i < v.size(); ++i){
+		fprintf(salida, "%s\n", "|");
 		for (int j = 0; j < v[i].size(); ++j){
-		fprintf(salida, "%f,", v[i][j]);		
+		fprintf(salida, "%f   ", v[i][j]);		
 		}
-		fprintf(salida, "\n");
+		fprintf(salida, "%s\n", "|");	
 	}
 }
 
