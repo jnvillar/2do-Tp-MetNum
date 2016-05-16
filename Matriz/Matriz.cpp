@@ -586,6 +586,8 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
         total_prec += precision_i;
     }
     total_prec = total_prec/10;
+    precision.push_back(total_prec);
+
     //La ultima posicion del vector contiene el promedio
 
     //Calculo de recall
@@ -608,8 +610,8 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
     for (int i = 0; i < 10; i++)
     {
         //Calculo recall del digito i y lo sumo a total_recall para calcular promedio de los recall
-        float f1Score_i = 2 * precision[i] * recall[i] / (precision[i] + recall[i]);
-        recall.push_back(f1Score_i);
+        float f1Score_i = (2 * precision[i] * recall[i]) / (precision[i] + recall[i]);
+        f1Score.push_back(f1Score_i);
         total_f1Score += f1Score_i;
     }
     total_f1Score = total_f1Score/10;
