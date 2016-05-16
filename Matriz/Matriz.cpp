@@ -562,6 +562,16 @@ Matriz preY(vector<int> dig){
     return res;
 }
 
+vector< vector<float> > MatConf(){
+    vector<float> fila(10,0);
+    vector<vector<float> > mat;
+    for (int i = 0; i < 10; ++i)
+    {
+        mat.push_back(fila);
+    }
+    return mat;
+}
+
 
 vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<int> FN){
 
@@ -653,7 +663,7 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
     return hitRate;
 }
 
-vector< vector<float> > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
@@ -681,14 +691,17 @@ vector< vector<float> > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int 
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
+    vector<vector<float> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
         vector<float> fila = imagenesTestReducida.obtenerFila(i);
         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
+            matConf[res][res]++;
             aciertos++;
             VP[res]++;
         } else {
+            matConf[digitoRepr2[i]][res]++;
             FP[res]++;
             FN[digitoRepr2[i]]++;
         }
@@ -703,7 +716,11 @@ vector< vector<float> > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int 
     //Agregamos el hit rate
     metricas.push_back(hitRate);
 
-    return metricas;
+    pair<vector< vector<float> >,vector< vector<float> > > res;
+    res.first = metricas;
+    res.second = matConf;
+
+    return res;
 }
 
 
@@ -758,7 +775,7 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
     return hitRate;
 }
 
-vector< vector<float> > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
     //Guardamos digitos que representa cada imagen del train y del test
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -799,14 +816,17 @@ vector< vector<float> > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int 
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
+    vector<vector<float> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
         vector<float> fila = imagenesTestReducida.obtenerFila(i);
         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
+            matConf[res][res]++;
             aciertos++;
             VP[res]++;
         } else {
+            matConf[digitoRepr2[i]][res]++;
             FP[res]++;
             FN[digitoRepr2[i]]++;
         }
@@ -820,8 +840,11 @@ vector< vector<float> > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int 
 
     //Agregamos el hit rate
     metricas.push_back(hitRate);
+    pair<vector< vector<float> >,vector< vector<float> > > res;
+    res.first = metricas;
+    res.second = matConf;
 
-    return metricas;
+    return res;
 }
 
 
@@ -842,21 +865,24 @@ float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
 }
 
 
-vector< vector<float> > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+pair<vector< vector<float> >,vector< vector<float> > > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
     int aciertos = 0;
     //Para calcular metricas precision, recall y f1-score 
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
+    vector<vector<float> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
         vector<float> fila = imagenesTest.obtenerFila(i);
         int res = imagenesTrain.caenene(cantVecinos, fila);
         if (res == imagenesTest.digitoRepresentado(i)){
+            matConf[res][res]++;
             aciertos++;
             VP[res]++;
         } else {
+           matConf[imagenesTest.digitoRepresentado(i)][res]++;
             FP[res]++;
             FN[imagenesTest.digitoRepresentado(i)]++;
         }
@@ -867,11 +893,16 @@ vector< vector<float> > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int 
 
     //Calculo precision, recall y f1-score
     vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+    metricas.push_back(hitRate);
+    pair<vector< vector<float> >,vector< vector<float> > > res;
+    res.first = metricas;
+    res.second = matConf;
+
 
     //Agregamos el hit rate
-    metricas.push_back(hitRate);
+   
 
-    return metricas;
+    return res;
 }
 
 
