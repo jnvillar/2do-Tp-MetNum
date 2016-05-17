@@ -39,7 +39,7 @@ void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
 	for (int i = 0; i < v.size(); ++i){
 		salida << "|";
 		for (int j = 0; j < v[i].size(); ++j){
-			salida <<  v[i][j] ;		
+			salida <<  v[i][j] <<" ";		
 		}
 		salida << "|" << endl;	
 	}
