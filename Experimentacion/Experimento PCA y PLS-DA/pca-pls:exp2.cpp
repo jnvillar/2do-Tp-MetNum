@@ -9,12 +9,12 @@
 
 int main(int argc, char* argv[]){
 
-	if (argc != 6){
-		printf("%s  [1 INPUT FILE] [2 ALPHA Y GAMMA INCIAL] [3 AUMENTAR ALPHA Y GAMMA] [4 ITERACIONES] [5 OUTLIERS] \n", argv[0]);
+	if (argc != 7){
+		printf("%s  [1 INPUT FILE] [2 ALPHA Y GAMMA INCIAL] [3 AUMENTAR ALPHA Y GAMMA] [4 ITERACIONES] [5 OUTLIERS] [6 CANT IMAGENES]\n", argv[0]);
 		exit(1);
 	}
 
-	int cantTrain = 20000;	
+	int cantTrain = atoi((argv[6]));	
 	int alfa = atoi(argv[2]);
 	int gamma = atoi(argv[2]);
 	int aumento = atoi(argv[3]);

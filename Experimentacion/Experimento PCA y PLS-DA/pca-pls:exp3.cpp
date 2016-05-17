@@ -32,8 +32,8 @@ void imprimir(ostream &salida, string a ,vector<float> v){
 	for (int i = 0; i < v.size()-1; ++i){			
 		salida << i << " "<< v[i] << endl;		
 	}
-	salida << "Promedio" << endl;
-	salida << i << " "<< v[i] << endl;
+	salida << "Promedio " << a.c_str() << endl;
+	salida << v[v.size()-1] << endl;
 }
 
 void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
