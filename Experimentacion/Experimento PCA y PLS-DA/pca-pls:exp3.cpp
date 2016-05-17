@@ -29,9 +29,11 @@ void promedio(vector<vector<float> > &m, float k){
 
 void imprimir(ostream &salida, string a ,vector<float> v){
 	salida << a.c_str() << endl;
-	for (int i = 0; i < v.size(); ++i){			
+	for (int i = 0; i < v.size()-1; ++i){			
 		salida << i << " "<< v[i] << endl;		
 	}
+	salida << "Promedio" << endl;
+	salida << i << " "<< v[i] << endl;
 }
 
 void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
