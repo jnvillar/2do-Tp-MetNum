@@ -35,7 +35,7 @@ void imprimir(ostream &salida, string a ,vector<float> v){
 }
 
 void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
-	salida << "MatConf " << endl;
+	salida << "MatConf: " << endl;
 	for (int i = 0; i < v.size(); ++i){
 		salida << "|";
 		for (int j = 0; j < v[i].size(); ++j){
@@ -76,9 +76,9 @@ int main(int argc, char* argv[]){
 
 	for (int u = 0; u < iteraciones; ++u){
 
-		out1 << "Iteracion " << u << " Alpha " << cantAutov << endl;
-		out2 << "Iteracion " << u << " Gamma " << cantAutov << endl;
-		out3 << "Iteracion " << u << " k " << cantVecinos << endl;		
+		out1 << "Iteracion: " << u << " Alpha: " << cantAutov << endl;
+		out2 << "Iteracion: " << u << " Gamma: " << cantAutov << endl;
+		out3 << "Iteracion: " << u << " k: " << cantVecinos << endl;		
 		if(debug)cout<<"Iteracion "<< u << endl;  		
 
 		vector<float> aux(1,0);
@@ -139,34 +139,34 @@ int main(int argc, char* argv[]){
 		
 		for (int i = 0; i < 4; ++i){
 			if (i==0){
-				imprimir(out1,"Presicion",metricasPromPca[i]);
-				imprimir(out2,"Presicion",metricasPromPls[i]);	
-				imprimir(out3,"Presicion",metricasPromKnn[i]);	
+				imprimir(out1,"Presicion:",metricasPromPca[i]);
+				imprimir(out2,"Presicion:",metricasPromPls[i]);	
+				imprimir(out3,"Presicion:",metricasPromKnn[i]);	
 			}
 
 			if (i==1){
-				imprimir(out1,"Recall",metricasPromPca[i]);
-				imprimir(out2,"Recall",metricasPromPls[i]);	
-				imprimir(out3,"Recall",metricasPromKnn[i]);
+				imprimir(out1,"Recall:",metricasPromPca[i]);
+				imprimir(out2,"Recall:",metricasPromPls[i]);	
+				imprimir(out3,"Recall:",metricasPromKnn[i]);
 			}
 
 			if (i==2){
-				imprimir(out1,"F1-Score",metricasPromPca[i]);
-				imprimir(out2,"F1-Score",metricasPromPls[i]);	
-				imprimir(out3,"F1-Score",metricasPromKnn[i]);
+				imprimir(out1,"F1-Score:",metricasPromPca[i]);
+				imprimir(out2,"F1-Score:",metricasPromPls[i]);	
+				imprimir(out3,"F1-Score:",metricasPromKnn[i]);
 			}
 
 			if(i==3){
-				imprimir(out1,"Hitrate",metricasPromPca[i]);
-				imprimir(out2,"Hitrate",metricasPromPls[i]);	
-				imprimir(out3,"Hitrate",metricasPromKnn[i]);
+				imprimir(out1,"Hitrate:",metricasPromPca[i]);
+				imprimir(out2,"Hitrate:",metricasPromPls[i]);	
+				imprimir(out3,"Hitrate:",metricasPromKnn[i]);
 			}
 		}		
 		// IMPRIMO MATCONF
 
-		imprimirMatConf(out1,"MatConf",confPca);
-		imprimirMatConf(out2,"MatConf",confPls);
-		imprimirMatConf(out3,"MatConf",confKnn);
+		imprimirMatConf(out1,"MatConf:",confPca);
+		imprimirMatConf(out2,"MatConf:",confPls);
+		imprimirMatConf(out3,"MatConf:",confKnn);
 
 		cantAutov+= aumentar;
 		cantVecinos+= aumentar;
