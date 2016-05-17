@@ -36,41 +36,6 @@ WindowLabel		2
 19	200	0.90972	0.915177
 </data>
 </table>
-<table>
-Tabla2	30	3	17/05/16 19:57
-geometry	0	256	445	632	
-header	1[X]	PLS-DA (K=7)[Y]	PCA (K=7)[Y]
-ColWidth	100	100	100	
-<com>
-</com>
-ColType	0;0/13	0;0/13	0;0/13
-ReadOnlyColumn	0	0	0
-HiddenColumn	0	0	0
-Comments				
-WindowLabel		2
-<data>
-0	5	0.799714	0.751735
-1	15	0.837912	0.852589
-2	25	0.867267	0.873099
-3	35	0.875165	0.888803
-4	45	0.881873	0.888688
-5	55	0.887167	0.893087
-6	65	0.890444	0.896024
-7	75	0.891724	0.895621
-8	85	0.892445	0.894745
-9	95	0.892054	0.895849
-10	105	0.892256	0.897252
-11	115	0.893093	0.896025
-12	125	0.894366	0.89639
-13	135	0.89534	0.896897
-14	145	0.894056	0.897615
-15	155	0.893751	0.897488
-16	165	0.893537	0.89793
-17	175	0.893556	0.897806
-18	185	0.893805	0.895302
-19	195	0.894497	0.894863
-</data>
-</table>
 <multiLayer>
 Gráfica1	1	1	17/05/16 15:28
 geometry	487	29	1178	727	active
@@ -82,8 +47,8 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	7	5	1161	663
-<PageGeometry>0.00598291	0.00736377	0.992308	0.976436</PageGeometry>
+ggeometry	7	5	1160	663
+<PageGeometry>0.00598291	0.00736377	0.991453	0.976436</PageGeometry>
 PlotTitle	Precisión Promedio PLS-DA vs PCA	#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
@@ -141,8 +106,8 @@ EnabledTickLabels	1	1	1	1
 <LineStyle>0</LineStyle>
 <x>199.38650306748</x>
 <y>0.80130111524164</y>
-<right>24.8359887535145</right>
-<bottom>0.938065099457504</bottom>
+<right>250</right>
+<bottom>0.754089219330855</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
@@ -164,4 +129,39 @@ EnabledTickLabels	1	1	1	1
 <LinkXAxes>0</LinkXAxes>
 <ScaleLayers>1</ScaleLayers>
 </multiLayer>
+<table>
+Tabla2	30	3	17/05/16 19:57
+geometry	0	256	445	632	
+header	1[X]	PLS-DA (K=7)[Y]	PCA (K=7)[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	5	0.799714	0.751735
+1	15	0.837912	0.852589
+2	25	0.867267	0.873099
+3	35	0.875165	0.888803
+4	45	0.881873	0.888688
+5	55	0.887167	0.893087
+6	65	0.890444	0.896024
+7	75	0.891724	0.895621
+8	85	0.892445	0.894745
+9	95	0.892054	0.895849
+10	105	0.892256	0.897252
+11	115	0.893093	0.896025
+12	125	0.894366	0.89639
+13	135	0.89534	0.896897
+14	145	0.894056	0.897615
+15	155	0.893751	0.897488
+16	165	0.893537	0.89793
+17	175	0.893556	0.897806
+18	185	0.893805	0.895302
+19	195	0.894497	0.894863
+</data>
+</table>
 <open>1</open>

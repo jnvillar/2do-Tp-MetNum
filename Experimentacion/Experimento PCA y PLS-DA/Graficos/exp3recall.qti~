@@ -1,10 +1,10 @@
 QtiPlot 0.9.8 project file
 <scripting-lang>	muParser
-<windows>	3
+<windows>	2
 <table>
 Tabla1	30	3	17/05/16 15:35
 geometry	0	0	445	220	
-header	Autovalores[X]	PCA (K=4)[Y]	PLS-DA (K=4)[Y]
+header	Autovalores[X]	PCA[Y]	PLS-DA[Y]
 ColWidth	100	100	100	
 <com>
 </com>
@@ -38,7 +38,7 @@ WindowLabel		2
 </table>
 <multiLayer>
 Gráfica1	1	1	17/05/16 15:42
-geometry	281	81	1444	699	active
+geometry	182	125	1603	815	active
 WindowLabel		2
 Margins	5	5	5	5
 Spacing	5	5
@@ -47,8 +47,8 @@ Alignement	0	0
 <AlignPolicy>0</AlignPolicy>
 <CommonAxes>0</CommonAxes>
 <graph>
-ggeometry	5	18	1429	633
-<PageGeometry>0.00348189	0.0276498	0.995125	0.97235</PageGeometry>
+ggeometry	5	20	1588	747
+<PageGeometry>0.0031348	0.0260756	0.995611	0.973924</PageGeometry>
 PlotTitle	Recall PLS-DA vs PCA	#000000	4228
 <Antialiasing>0</Antialiasing>
 <Autoscaling>1</Autoscaling>
@@ -65,27 +65,25 @@ AxesTitleColors	#000000	#000000	#000000	#000000
 AxesTitleAlignment	5124	4	5124	4
 AxesTitleDistance	2	-1	2	-1
 InvertedTitle	0	0	0	0
-TitleFont	Ubuntu	20	75	0	0	0
-ScaleFont0	Ubuntu	17	75	0	0	0
-ScaleFont1	Ubuntu	17	75	0	0	0
-ScaleFont2	Ubuntu	17	75	0	0	0
-ScaleFont3	Ubuntu	17	75	0	0	0
-AxisFont0	Ubuntu	17	50	0	0	0
-AxisFont1	Ubuntu	17	50	0	0	0
-AxisFont2	Ubuntu	17	50	0	0	0
-AxisFont3	Ubuntu	17	50	0	0	0
+TitleFont	Ubuntu	24	75	0	0	0
+ScaleFont0	Ubuntu	20	75	0	0	0
+ScaleFont1	Ubuntu	20	75	0	0	0
+ScaleFont2	Ubuntu	20	75	0	0	0
+ScaleFont3	Ubuntu	20	75	0	0	0
+AxisFont0	Ubuntu	20	50	0	0	0
+AxisFont1	Ubuntu	20	50	0	0	0
+AxisFont2	Ubuntu	20	50	0	0	0
+AxisFont3	Ubuntu	20	50	0	0	0
 AxesColors	#000000	#000000	#000000	#000000
 AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
 AxesBaseline	0	0	0	0	
 CanvasBackground	#ffffff	0
-curve	Tabla1_Autovalores	Tabla1_PCA (K=4)	2	1	#0000ff	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	29	1
-curve	Tabla1_Autovalores	Tabla1_PLS-DA (K=4)	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	29	1
-curve	Tabla2_1	Tabla2_PCA (K=7)	2	1	#ff0000	0	1	7	3	#ff0000	#ff0000	0	#000000	14	1	2	0	0	29	1
-curve	Tabla2_1	Tabla2_PLS-DA (K=7)	2	1	#008000	0	1	7	4	#008000	#00ff00	0	#000000	14	1	2	0	0	29	1
-scale	0	0.65	0.95	0	7	5	0	0
-scale	1	0.65	0.95	0	7	5	0	0
-scale	2	0	250	0	6	5	0	0
-scale	3	0	250	0	6	5	0	0
+curve	Tabla1_Autovalores	Tabla1_PCA	2	1	#0000ff	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	29	1
+curve	Tabla1_Autovalores	Tabla1_PLS-DA	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	29	1
+scale	0	0.76	1	0	5	5	0	0
+scale	1	0.76	1	0	5	5	0	0
+scale	2	0	200	0	5	5	0	0
+scale	3	0	200	0	5	5	0	0
 LabelsFormat	0	6	0	6	0	6	0	6
 AxisType	0	0	0	0	
 MajorTicks	1	1	1	1
@@ -104,20 +102,18 @@ EnabledTickLabels	1	1	1	1
 <Color>#ffffff</Color>
 <FrameWidth>1</FrameWidth>
 <LineStyle>0</LineStyle>
-<x>208.62745098039</x>
-<y>0.80030181086519</y>
-<right>241.176470588235</right>
-<bottom>0.747786720321932</bottom>
+<x>6.1752988047809</x>
+<y>0.98647887323944</y>
+<right>48.804780876494</right>
+<bottom>0.949633802816901</bottom>
 <attachTo>1</attachTo>
 <onTop>1</onTop>
 <visible>1</visible>
 <Text>
 \l(1)%(1)
 \l(2)%(2)
-\l(3)%(3)
-\l(4)%(4)
 </Text>
-<Font>Ubuntu	12	50	0	0	0</Font>
+<Font>Ubuntu	22	50	0	0	0</Font>
 <TextColor>#000000</TextColor>
 <Background>#ffffff</Background>
 <Alpha>0</Alpha>
@@ -129,39 +125,4 @@ EnabledTickLabels	1	1	1	1
 <LinkXAxes>0</LinkXAxes>
 <ScaleLayers>1</ScaleLayers>
 </multiLayer>
-<table>
-Tabla2	30	3	17/05/16 20:25
-geometry	0	234	445	220	
-header	1[X]	PCA (K=7)[Y]	PLS-DA (K=7)[Y]
-ColWidth	100	100	100	
-<com>
-</com>
-ColType	0;0/13	0;0/13	0;0/13
-ReadOnlyColumn	0	0	0
-HiddenColumn	0	0	0
-Comments				
-WindowLabel		2
-<data>
-0	5	0.691944	0.729551
-1	15	0.832055	0.810756
-2	25	0.859609	0.848808
-3	35	0.877149	0.860549
-4	45	0.877042	0.868347
-5	55	0.882937	0.874043
-6	65	0.885848	0.878413
-7	75	0.88602	0.880542
-8	85	0.885195	0.881215
-9	95	0.88606	0.880772
-10	105	0.887168	0.881346
-11	115	0.88684	0.882644
-12	125	0.886464	0.883758
-13	135	0.886791	0.885034
-14	145	0.887869	0.883021
-15	155	0.88777	0.883067
-16	165	0.888021	0.882578
-17	175	0.888426	0.882601
-18	185	0.885044	0.882722
-19	195	0.885549	0.883922
-</data>
-</table>
 <open>1</open>
