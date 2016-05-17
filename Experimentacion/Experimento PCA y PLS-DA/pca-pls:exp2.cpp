@@ -1,4 +1,9 @@
 #include "../../Matriz/parser.cpp"
+#include <iostream>
+#include <ctime>
+#include <sstream>
+#include <fstream>
+
 
 
 
@@ -16,8 +21,10 @@ int main(int argc, char* argv[]){
 	int iteraciones = atoi(argv[4]);	
 	int outliers = atoi(argv[5]);
 
-	FILE* out1 = fopen("resultPca2.txt","w");
-	FILE* out2 = fopen("resultPls2.txt","w");
+	ofstream out1; 
+	out1.open("resultPca2.txt");
+	ofstream out2; 
+	out2.open("resultPls2.txt");
 
 	for(int j = 0; j<iteraciones; j++){				
 
@@ -42,19 +49,20 @@ int main(int argc, char* argv[]){
 		}		
 
 		tiempoPca = tiempoPca/outliers;
-		tiempoPls = tiempoPls/outliers;		
+		tiempoPls = tiempoPls/outliers;
 
-		fprintf(out1, "%f\n", tiempoPca);		
+		
+		out1 << tiempoPca << endl;				
 		cout << "tiempoPca: " << tiempoPca << endl;		
 
-		fprintf(out2, "%f\n", tiempoPls);		
+		out2 << tiempoPls << endl;	
 		cout << "tiempoPls: " << tiempoPls << endl;	
 
 		cout << j << endl;
 	}
 
-	fclose(out1);
-	fclose(out2);
+	out1.close();
+	out2.close();
 	return 0;
   
 }

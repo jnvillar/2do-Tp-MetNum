@@ -27,21 +27,21 @@ void promedio(vector<vector<float> > &m, float k){
 	}
 }
 
-void imprimir(FILE* salida, string a ,vector<float> v){
-	fprintf(salida, "%s:\n", a.c_str() );
+void imprimir(ostream &salida, string a ,vector<float> v){
+	salida << a.c_str() << endl;
 	for (int i = 0; i < v.size(); ++i){			
-		fprintf(salida, "%d ,%f\n", i, v[i]);		
+		salida << i << " "<< v[i] << endl;		
 	}
 }
 
-void imprimirMatConf(FILE* salida, string a, vector<vector<float> > v){
-	fprintf(salida, "%s\n", "MatConf:");
+void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
+	salida << "MatConf " << endl;
 	for (int i = 0; i < v.size(); ++i){
-		fprintf(salida, "%s", "|");
+		salida << "|";
 		for (int j = 0; j < v[i].size(); ++j){
-		fprintf(salida, "%f   ", v[i][j]);		
+			salida <<  v[i][j] ;		
 		}
-		fprintf(salida, "%s\n", "|");	
+		salida << "|" << endl;	
 	}
 }
 
@@ -53,10 +53,12 @@ int main(int argc, char* argv[]){
 		cout << "USO " << argv[0] << "[1 INPUT FILE] [2 CANT DE IMAGENES] [3 CANT DE AUTOVECTORES] [4 CANTIDAD ITERACIONES METODO POTENCIA] [5 CANTIDAD VECINOS] [6 K-FOLD] [7 AUMENTAR AUTOV Y K EN] [8 ITERACIONES]" << endl;
 		return 0;
 	}
-
-	FILE* out1 = fopen("calidadPca.txt","w");
-	FILE* out2 = fopen("calidadPls.txt","w");
-	FILE* out3 = fopen("calidadKnn.txt","w");	
+	ofstream out1; 
+	out1.open("calidadPca.txt");
+	ofstream out2; 
+	out2.open("calidadPls.txt");
+	ofstream out3; 
+	out3.open("calidadKnn.txt");
 
 	int cantIm = atoi(argv[2]);
 	int cantAutov = atoi(argv[3]);
@@ -73,9 +75,10 @@ int main(int argc, char* argv[]){
 	Matriz imagenesKnn = parser(argv[1],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
 
 	for (int u = 0; u < iteraciones; ++u){
-		fprintf(out1, "%s %d %s %d \n", "Iteracion:",u,"Aplha:",cantAutov);
-		fprintf(out2, "%s %d %s %d \n", "Iteracion:",u,"Gamma:",cantAutov);
-		fprintf(out3, "%s %d %s %d \n", "Iteracion:",u,"k:",cantVecinos);
+
+		out1 << "Iteracion " << u << " Alpha " << cantAutov << endl;
+		out2 << "Iteracion " << u << " Gamma " << cantAutov << endl;
+		out3 << "Iteracion " << u << " k " << cantVecinos << endl;		
 		if(debug)cout<<"Iteracion "<< u << endl;  		
 
 		vector<float> aux(1,0);
@@ -127,9 +130,8 @@ int main(int argc, char* argv[]){
 		promedio(metricasPromPca,k);
 		promedio(metricasPromPls,k);
 		promedio(metricasPromKnn,k);
-		promedio(confPca,k);
-		promedio(confPls,k);
-		promedio(confKnn,k);
+		
+		//A LA MATRIZ DE CONFUSION NO SE LE SACA EL PROMEDIO
 
 		if(debug)cout<< "Imprimiendo" << endl;
 		
