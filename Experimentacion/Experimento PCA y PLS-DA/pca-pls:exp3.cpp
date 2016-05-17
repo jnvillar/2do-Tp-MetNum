@@ -39,11 +39,11 @@ void imprimir(ostream &salida, string a ,vector<float> v){
 void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
 	salida << "MatConf: " << endl;
 	for (int i = 0; i < v.size(); ++i){
-		salida << "|";
+		salida << "[";
 		for (int j = 0; j < v[i].size(); ++j){
-			salida <<  v[i][j] <<" ";		
+			salida <<  v[i][j] <<",";		
 		}
-		salida << "|" << endl;	
+		salida << "]" << endl;	
 	}
 }
 
