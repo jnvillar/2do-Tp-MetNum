@@ -1,0 +1,128 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	30	3	17/05/16 15:35
+geometry	0	0	445	220	
+header	Autovalores[X]	PCA[Y]	PLS-DA[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	10	0.7778	0.8076
+1	20	0.8846	0.8782
+2	30	0.906	0.8984
+3	40	0.9116	0.9052
+4	50	0.911	0.9074
+5	60	0.9162	0.9124
+6	70	0.913	0.9104
+7	80	0.9152	0.911
+8	90	0.9132	0.9092
+9	100	0.9156	0.9124
+10	110	0.9114	0.9122
+11	120	0.9154	0.9132
+12	130	0.9164	0.9142
+13	140	0.9154	0.9146
+14	150	0.9142	0.9126
+15	160	0.9152	0.9142
+16	170	0.915	0.9136
+17	180	0.9152	0.9136
+18	190	0.9144	0.9126
+19	200	0.9046	0.9132
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	17/05/16 15:42
+geometry	125	81	1603	815	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	1	21	1588	747
+<PageGeometry>0.000626959	0.0273794	0.995611	0.973924</PageGeometry>
+PlotTitle	Hitrate Promedio PLS-DA vs PCA	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Autovectores	Hitrate		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	24	75	0	0	0
+ScaleFont0	Ubuntu	20	75	0	0	0
+ScaleFont1	Ubuntu	20	75	0	0	0
+ScaleFont2	Ubuntu	20	75	0	0	0
+ScaleFont3	Ubuntu	20	75	0	0	0
+AxisFont0	Ubuntu	20	50	0	0	0
+AxisFont1	Ubuntu	20	50	0	0	0
+AxisFont2	Ubuntu	20	50	0	0	0
+AxisFont3	Ubuntu	20	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_Autovalores	Tabla1_PCA	2	1	#0000ff	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	29	1
+curve	Tabla1_Autovalores	Tabla1_PLS-DA	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	29	1
+scale	0	0.76	1	0	5	5	0	0
+scale	1	0.76	1	0	5	5	0	0
+scale	2	0	200	0	5	5	0	0
+scale	3	0	200	0	5	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>6.1752988047809</x>
+<y>0.98647887323944</y>
+<right>48.804780876494</right>
+<bottom>0.949633802816901</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+</Text>
+<Font>Ubuntu	22	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

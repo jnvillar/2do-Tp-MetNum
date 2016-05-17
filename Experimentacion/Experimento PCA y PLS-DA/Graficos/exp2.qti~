@@ -1,0 +1,190 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	62	3	17/05/16 16:49
+geometry	0	0	445	220	
+header	Autovalores[X]	PCA[Y]	PLS-DA[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	5	16.4474	1.65849
+1	10	15.1021	4.72595
+2	20	16.7262	7.90307
+3	30	16.8658	10.8356
+4	40	15.4653	13.1627
+5	50	17.1497	17.9764
+6	60	17.2308	21.2087
+7	70	17.4136	24.2148
+8	80	17.4957	28.0742
+9	90	17.6745	31.6338
+10	100	17.7735	36.0933
+11	110	17.8756	38.6843
+12	120	18.0216	40.9494
+13	130	18.4066	46.5272
+14	140	18.2573	47.4325
+15	150	18.3884	48.2811
+16	160	17.8651	54.8708
+17	170	18.6405	60.1452
+18	180	18.7983	62.1819
+19	190	18.9036	64.5432
+20	200	17.5681	57.2733
+21	210	19.2105	70.4319
+22	220	19.1622	73.5888
+23	230	19.4878	75.8984
+24	240	19.5813	78.4867
+25	250	19.7735	81.6803
+26	260	19.8304	78.855
+27	270	19.9558	87.0718
+28	280	18.6229	84.2459
+29	290	20.2059	91.658
+30	300	20.2005	90.567
+31	310	20.3545	101.33
+32	320	19.1327	99.8534
+33	330	19.2616	102.129
+34	340	20.9017	114.934
+35	350	20.8331	112.135
+36	360	21.156	115.895
+37	370	21.2614	114.41
+38	380	21.506	122.139
+39	390	21.5435	132.682
+40	400	21.6388	128.301
+41	410	21.7502	128.788
+42	420	21.7974	145.524
+43	430	22.0387	139.056
+44	440	22.1352	149.944
+45	450	21.7633	150.488
+46	460	22.4218	140.602
+47	470	22.4164	155.2
+48	480	22.5142	151.588
+49	490	22.8133	163.826
+50	500	22.1269	165.748
+51	510	23.0633	167.424
+52	520	23.0214	176.484
+53	530	23.3272	176.52
+54	540	23.2843	179.538
+55	550	23.5947	176.17
+56	560	23.6473	177.257
+57	570	23.8457	174.176
+58	580	23.9096	190.638
+59	590	23.9901	191.696
+60	600	24.0969	194.106
+61	610	22.732	187.171
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	17/05/16 16:51
+geometry	139	177	1241	660	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	-6	1	1222	597
+<PageGeometry>-0.00486618	0.00163399	0.991079	0.97549</PageGeometry>
+PlotTitle	Aumentando cantidad de Autovalores	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Autovalores	Segundos		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	19	75	0	0	0
+ScaleFont0	Ubuntu	16	75	0	0	0
+ScaleFont1	Ubuntu	16	75	0	0	0
+ScaleFont2	Ubuntu	16	75	0	0	0
+ScaleFont3	Ubuntu	16	75	0	0	0
+AxisFont0	Ubuntu	16	50	0	0	0
+AxisFont1	Ubuntu	16	50	0	0	0
+AxisFont2	Ubuntu	16	50	0	0	0
+AxisFont3	Ubuntu	16	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_Autovalores	Tabla1_PCA	2	1	#0000ff	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	61	1
+curve	Tabla1_Autovalores	Tabla1_PLS-DA	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	61	1
+<Function>
+<Type>0</Type>
+<Title>F1</Title>
+<Expression>(x^3)/999990</Expression>
+<Variable>x</Variable>
+<Range>0	620</Range>
+<Points>600</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#00ff00</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>0</Visible>
+</Function>
+scale	0	0	250	0	6	5	0	0
+scale	1	0	250	0	6	5	0	0
+scale	2	0	620	0	8	5	0	0
+scale	3	0	620	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>8.8177777777778</x>
+<y>241.73553719008</y>
+<right>89.8311111111111</right>
+<bottom>194.214876033058</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+
+</Text>
+<Font>Ubuntu	17	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

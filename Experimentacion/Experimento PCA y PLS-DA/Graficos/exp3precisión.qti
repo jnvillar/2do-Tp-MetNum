@@ -1,0 +1,128 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	74	3	17/05/16 14:26
+geometry	0	0	445	220	
+header	Autovectores[X]	PCA[Y]	PLS-DA[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	10	0.79536	0.832933
+1	20	0.88777	0.881685
+2	30	0.90811	0.901558
+3	40	0.91375	0.908491
+4	50	0.91308	0.909449
+5	60	0.91781	0.914359
+6	70	0.91466	0.91234
+7	80	0.91696	0.913184
+8	90	0.91506	0.911214
+9	100	0.91735	0.914695
+10	110	0.9133	0.914286
+11	120	0.91716	0.915107
+12	130	0.91804	0.916038
+13	140	0.91687	0.916389
+14	150	0.91548	0.914668
+15	160	0.91689	0.915946
+16	170	0.9169	0.915612
+17	180	0.91675	0.915446
+18	190	0.91638	0.914721
+19	200	0.90972	0.915177
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	17/05/16 15:28
+geometry	487	29	945	727	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	7	5	927	663
+<PageGeometry>0.00747065	0.00736377	0.989328	0.976436</PageGeometry>
+PlotTitle	Precisión Promedio PLS-DA vs PCA	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de Autovectores	Precisión		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	21	75	0	0	0
+ScaleFont0	Ubuntu	18	75	0	0	0
+ScaleFont1	Ubuntu	18	75	0	0	0
+ScaleFont2	Ubuntu	18	75	0	0	0
+ScaleFont3	Ubuntu	18	75	0	0	0
+AxisFont0	Ubuntu	18	50	0	0	0
+AxisFont1	Ubuntu	18	50	0	0	0
+AxisFont2	Ubuntu	18	50	0	0	0
+AxisFont3	Ubuntu	18	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_Autovectores	Tabla1_PCA	2	1	#000000	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	73	1
+curve	Tabla1_Autovectores	Tabla1_PLS-DA	2	1	#ff0000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	73	1
+scale	0	0.78	1	0	5	5	0	0
+scale	1	0.78	1	0	5	5	0	0
+scale	2	0	205	0	6	5	0	0
+scale	3	0	205	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>2.7539779681763</x>
+<y>0.98861367837338</y>
+<right>48.9596083231334</right>
+<bottom>0.960554528650647</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+</Text>
+<Font>Ubuntu	18	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
