@@ -47,18 +47,15 @@ int main(int argc, char* argv[]){
 	iss2 >> K;
 	str2.clear();
 	for(int j=0; j<K; j++){
-		
-		ifstream in(a);			// train.csv
+		ifstream in(trainPath);			// train.csv
 		vector< vector <float> > mtxTest;
 		vector< vector <float> > mtxTrain;
 		vector<int> numeroReprTrain;
 		vector<int> numeroReprTest;
-
 		// Parseo de la primer línea
 		string str;
 		getline(in, str);
 		str.clear();
-
 
 		// Parseo test.in
 		string strTest;
@@ -67,13 +64,11 @@ int main(int argc, char* argv[]){
 		istringstream issTest;
 		issTest.str(strTest);
 
-
 		// Parseo del resto del archivo train
 		string st;
 		while (getline(in, st)){
 			istringstream iss;
 			iss.str(st);
-
 			int numero;
 			//Extraemos digito que representa la imagen
 			iss>> numero;
@@ -82,7 +77,6 @@ int main(int argc, char* argv[]){
 			//Aca extraemos la info de la línea en la que estamos
 			vector<float> img;
 			for (int i = 0; i<784; i++){
-
 				int pixel;
 				//Extraemos pixel
 				iss>> pixel;
