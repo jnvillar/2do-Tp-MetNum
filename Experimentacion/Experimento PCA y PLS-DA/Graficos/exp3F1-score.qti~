@@ -1,0 +1,167 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	3
+<table>
+Tabla1	30	3	17/05/16 15:35
+geometry	0	0	445	220	
+header	Autovalores[X]	PCA (K=4)[Y]	PLS-DA (K=4)[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	10	0.767022	0.797727
+1	20	0.881038	0.874762
+2	30	0.903485	0.896135
+3	40	0.909672	0.903197
+4	50	0.909085	0.905271
+5	60	0.914293	0.910472
+6	70	0.910955	0.908269
+7	80	0.913404	0.908961
+8	90	0.911294	0.907089
+9	100	0.913787	0.910555
+10	110	0.909339	0.910253
+11	120	0.913581	0.911125
+12	130	0.914569	0.912251
+13	140	0.913575	0.912687
+14	150	0.912295	0.910636
+15	160	0.913394	0.912253
+16	170	0.913265	0.911647
+17	180	0.913303	0.911581
+18	190	0.912539	0.910734
+19	200	0.902782	0.911266
+</data>
+</table>
+<table>
+Tabla2	30	3	17/05/16 20:29
+geometry	0	220	445	220	
+header	1[X]	PCA (K=7)[Y]	PLS-DA (K=7)[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	10	0.674313	0.714925
+1	20	0.830324	0.807711
+2	30	0.858636	0.847226
+3	40	0.876413	0.859371
+4	50	0.876469	0.867573
+5	60	0.882352	0.87347
+6	70	0.885266	0.877977
+7	80	0.885465	0.879919
+8	90	0.884567	0.880687
+9	100	0.885553	0.880417
+10	110	0.886776	0.88086
+11	120	0.886047	0.882096
+12	130	0.886055	0.883125
+13	140	0.886431	0.884332
+14	150	0.887442	0.882222
+15	160	0.887227	0.882413
+16	170	0.887454	0.881832
+17	180	0.887963	0.881813
+18	190	0.884502	0.881977
+19	200	0.885118	0.883155
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	17/05/16 15:42
+geometry	334	93	1500	718	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	1	20	1485	651
+<PageGeometry>0.000670241	0.0298507	0.995308	0.971642</PageGeometry>
+PlotTitle	F1-Score Promedio PLS-DA vs PCA	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Autovectores	F1-Score		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	21	75	0	0	0
+ScaleFont0	Ubuntu	17	75	0	0	0
+ScaleFont1	Ubuntu	17	75	0	0	0
+ScaleFont2	Ubuntu	17	75	0	0	0
+ScaleFont3	Ubuntu	17	75	0	0	0
+AxisFont0	Ubuntu	17	50	0	0	0
+AxisFont1	Ubuntu	17	50	0	0	0
+AxisFont2	Ubuntu	17	50	0	0	0
+AxisFont3	Ubuntu	17	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_Autovalores	Tabla1_PCA (K=4)	2	1	#0000ff	0	1	7	1	#0000ff	#0000ff	0	#000000	14	1	2	0	0	29	1
+curve	Tabla1_Autovalores	Tabla1_PLS-DA (K=4)	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	29	1
+curve	Tabla2_1	Tabla2_PCA (K=7)	2	1	#ff0000	0	1	7	3	#ff0000	#ff0000	0	#000000	14	1	2	0	0	29	1
+curve	Tabla2_1	Tabla2_PLS-DA (K=7)	2	1	#008000	0	1	7	4	#008000	#00ff00	0	#000000	14	1	2	0	0	29	1
+scale	0	0.65	0.95	0	7	5	0	0
+scale	1	0.65	0.95	0	7	5	0	0
+scale	2	0	250	0	6	5	0	0
+scale	3	0	250	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>205.48691860465</x>
+<y>0.80141776937618</y>
+<right>19.1893830703013</right>
+<bottom>0.931180811808118</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+\l(4)%(4)
+</Text>
+<Font>Ubuntu	13	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

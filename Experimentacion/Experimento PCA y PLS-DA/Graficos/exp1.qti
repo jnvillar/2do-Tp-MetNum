@@ -1,0 +1,170 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	42	3	16/05/16 14:47
+geometry	0	0	778	621	
+header	1[X]	PCA[Y]	PLS-DA[Y]
+ColWidth	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0
+HiddenColumn	0	0	0
+Comments				
+WindowLabel		2
+<data>
+0	1000	1.162127	0.645531
+1	2000	6.130688	1.185737
+2	3000	10.312453	1.804412
+3	4000	15.099499	4.292694
+4	5000	16.762642	5.219751
+5	6000	22.3134	6.717784
+6	7000	23.343588	7.241527
+7	8000	29.464684	8.8023
+8	9000	29.986317	9.271124
+9	10000	36.888393	11.075786
+10	11000	36.985043	11.28334
+11	12000	41.024845	12.654184
+12	13000	43.802731	13.301387
+13	14000	52.348293	15.375683
+14	15000	56.166183	16.38991
+15	16000	61.300995	17.567755
+16	17000	64.083488	18.78496
+17	18000	71.1689	19.199572
+18	19000	76.469872	21.048409
+19	20000	89.22982	22.278692
+20	21000	101.46299	23.398993
+21	22000	108.575951	22.889664
+22	23000	119.445343	25.552084
+23	24000	139.586884	25.510736
+24	25000	159.825729	28.3773
+25	26000	194.270355	26.626911
+26	27000	203.308655	31.025511
+27	28000	242.630341	32.437511
+28	29000	245.857391	34.370987
+29	30000	242.302261	35.903358
+30	31000	278.986237	37.418262
+31	32000	299.454285	39.612034
+32	33000	316.827332	42.999542
+33	34000	318.292297	39.415222
+34	35000	321.176666	40.334824
+35	36000	344.928925	42.313255
+36	37000	338.707153	44.268543
+37	38000	379.18161	46.759125
+38	39000	395.209015	46.806007
+39	40000	392.651001	49.147133
+40	41000	435.344818	56.067997
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	16/05/16 15:00
+geometry	139	56	1560	779	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	2	-3	1539	705
+<PageGeometry>0.00128866	-0.00410397	0.991624	0.964432</PageGeometry>
+PlotTitle	Aumentando el Tamaño del Train	#000000	4228
+<Antialiasing>1</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	5
+Border	0	#ff0000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de Imagenes del Train	Tiempo en Segs		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	23	75	0	0	0
+ScaleFont0	Ubuntu	19	75	0	0	0
+ScaleFont1	Ubuntu	19	75	0	0	0
+ScaleFont2	Ubuntu	19	75	0	0	0
+ScaleFont3	Ubuntu	19	75	0	0	0
+AxisFont0	Ubuntu	19	50	0	0	0
+AxisFont1	Ubuntu	19	50	0	0	0
+AxisFont2	Ubuntu	19	50	0	0	0
+AxisFont3	Ubuntu	19	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	71
+curve	Tabla1_1	Tabla1_PCA	2	1	#ff8000	0	1	7	1	#ff8000	#ff8000	0	#000000	14	1	2	0	0	41	1
+curve	Tabla1_1	Tabla1_PLS-DA	2	1	#0000a0	0	1	7	2	#0000a0	#0000a0	0	#000000	14	1	2	0	0	41	1
+<Function>
+<Type>0</Type>
+<Title>F1</Title>
+<Expression>x^3/100000000000</Expression>
+<Variable>x</Variable>
+<Range>0	42000</Range>
+<Points>100</Points>
+<Style>0</Style>
+<LineStyle>1</LineStyle>
+<Pen>
+	<Color>#008000</Color>
+	<Style>0</Style>
+	<Width>1</Width>
+</Pen>
+<xAxis>2</xAxis>
+<yAxis>0</yAxis>
+<CurveType>0</CurveType>
+<Visible>0</Visible>
+</Function>
+scale	0	0	500	0	6	5	0	0
+scale	1	0	500	0	6	5	0	0
+scale	2	0	44000	0	6	5	0	0
+scale	3	0	44000	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	2	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	2	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>1663.3380884451</x>
+<y>492.04946996466</y>
+<right>6967.18972895863</right>
+<bottom>358.657243816254</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+
+
+</Text>
+<Font>Ubuntu	22	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

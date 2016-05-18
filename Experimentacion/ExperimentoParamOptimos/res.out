@@ -1,0 +1,135 @@
+HitRate: 0.65
+Precision de 0: 0.904762
+Precision de 1: 0.472749
+Precision de 2: -nan
+Precision de 3: 0.693333
+Precision de 4: 0.726667
+Precision de 5: -nan
+Precision de 6: 0.85
+Precision de 7: 0.636667
+Precision de 8: 0.8
+Precision de 9: 0.46
+Precision promedio: -nan
+Recall de 0: 0.893333
+Recall de 1: 1
+Recall de 2: -nan
+Recall de 3: 0.736667
+Recall de 4: 0.776667
+Recall de 5: 0.33
+Recall de 6: 0.73
+Recall de 7: 0.65
+Recall de 8: 0.55
+Recall de 9: 0.524286
+Recall promedio: -nan
+F1-score de 0: 0.88603
+F1-score de 1: 0.627821
+F1-score de 2: -nan
+F1-score de 3: 0.633406
+F1-score de 4: 0.730317
+F1-score de 5: -nan
+F1-score de 6: 0.730952
+F1-score de 7: 0.617619
+F1-score de 8: -nan
+F1-score de 9: -nan
+F1-score promedio: -nan
+MatConf: 
+[5,0,0,0,0,0,0,0,0,0,]
+[0,3,0,0,0,0,0,0,0,0,]
+[0,1,2,0,0,0,0,0,1,0,]
+[0,1,1,1,0,0,0,1,0,0,]
+[0,0,0,0,3,0,0,0,0,1,]
+[0,0,0,1,0,3,0,0,0,0,]
+[1,1,0,0,0,1,2,0,0,0,]
+[0,1,0,0,0,0,0,1,0,0,]
+[0,1,2,0,0,0,0,1,0,1,]
+[0,0,0,0,1,0,0,3,0,0,]
+HitRate: 0.77
+Precision de 0: 0.803565
+Precision de 1: 0.652142
+Precision de 2: 0.915659
+Precision de 3: 0.756645
+Precision de 4: 0.865079
+Precision de 5: 0.83
+Precision de 6: 0.867857
+Precision de 7: 0.716667
+Precision de 8: 0.813333
+Precision de 9: 0.740079
+Precision promedio: 0.796103
+Recall de 0: 0.937393
+Recall de 1: 1
+Recall de 2: 0.652564
+Recall de 3: 0.787273
+Recall de 4: 0.775
+Recall de 5: 0.493333
+Recall de 6: 0.784091
+Recall de 7: 0.870635
+Recall de 8: 0.578571
+Recall de 9: 0.769444
+Recall promedio: 0.76483
+F1-score de 0: 0.851453
+F1-score de 1: 0.771401
+F1-score de 2: 0.752564
+F1-score de 3: 0.764707
+F1-score de 4: 0.803076
+F1-score de 5: 0.598974
+F1-score de 6: 0.805275
+F1-score de 7: 0.782592
+F1-score de 8: 0.661605
+F1-score de 9: 0.746928
+F1-score promedio: 0.753857
+MatConf: 
+[7,0,0,0,0,0,0,0,0,0,]
+[0,5,0,0,0,0,0,0,0,0,]
+[1,3,7,0,0,0,0,0,1,0,]
+[0,0,0,8,0,0,0,0,0,0,]
+[0,1,0,0,5,0,0,2,0,1,]
+[3,1,0,2,0,3,0,0,0,1,]
+[1,1,1,0,0,0,5,0,0,0,]
+[0,0,0,0,0,0,0,8,0,1,]
+[1,0,0,0,0,0,0,0,2,1,]
+[0,0,0,0,0,0,0,0,0,8,]
+HitRate: 0.795
+Precision de 0: 0.851818
+Precision de 1: 0.6904
+Precision de 2: 0.947899
+Precision de 3: 0.823095
+Precision de 4: 0.782308
+Precision de 5: 0.865714
+Precision de 6: 0.874192
+Precision de 7: 0.72186
+Precision de 8: 0.869524
+Precision de 9: 0.677227
+Precision promedio: 0.810404
+Recall de 0: 0.974902
+Recall de 1: 1
+Recall de 2: 0.715382
+Recall de 3: 0.865152
+Recall de 4: 0.705303
+Recall de 5: 0.731731
+Recall de 6: 0.778636
+Recall de 7: 0.801585
+Recall de 8: 0.685354
+Recall de 9: 0.711266
+Recall promedio: 0.796931
+F1-score de 0: 0.907259
+F1-score de 1: 0.809975
+F1-score de 2: 0.811128
+F1-score de 3: 0.838277
+F1-score de 4: 0.728157
+F1-score de 5: 0.779599
+F1-score de 6: 0.821732
+F1-score de 7: 0.751667
+F1-score de 8: 0.761337
+F1-score de 9: 0.68333
+F1-score promedio: 0.789246
+MatConf: 
+[9,0,0,0,0,0,0,0,0,0,]
+[0,15,0,0,0,0,0,0,0,0,]
+[0,0,13,0,0,0,0,1,1,1,]
+[0,0,0,11,0,0,0,0,0,0,]
+[0,0,0,0,10,0,1,1,0,4,]
+[1,0,0,1,0,13,0,0,0,1,]
+[1,0,0,0,0,0,7,0,0,0,]
+[0,1,0,0,1,0,0,3,0,4,]
+[0,2,0,0,0,1,0,0,6,0,]
+[1,0,0,0,2,0,0,1,0,7,]

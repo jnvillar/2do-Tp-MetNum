@@ -1,23 +1,30 @@
 #include "../../Matriz/parser.cpp"
+#include <iostream>
+#include <ctime>
+#include <sstream>
+#include <fstream>
+
 
 
 
 int main(int argc, char* argv[]){
 
-	if (argc != 6){
-		printf("%s  [1 INPUT FILE] [2 ALPHA Y GAMMA INCIAL] [3 AUMENTAR ALPHA Y GAMMA] [4 ITERACIONES] [5 OUTLIERS] \n", argv[0]);
+	if (argc != 7){
+		printf("%s  [1 INPUT FILE] [2 ALPHA Y GAMMA INCIAL] [3 AUMENTAR ALPHA Y GAMMA] [4 ITERACIONES] [5 OUTLIERS] [6 CANT IMAGENES]\n", argv[0]);
 		exit(1);
 	}
 
-	int cantTrain = 20000;	
+	int cantTrain = atoi((argv[6]));	
 	int alfa = atoi(argv[2]);
 	int gamma = atoi(argv[2]);
 	int aumento = atoi(argv[3]);
 	int iteraciones = atoi(argv[4]);	
 	int outliers = atoi(argv[5]);
 
-	FILE* out1 = fopen("resultPca2.txt","w");
-	FILE* out2 = fopen("resultPls2.txt","w");
+	ofstream out1; 
+	out1.open("resultPca2.txt");
+	ofstream out2; 
+	out2.open("resultPls2.txt");
 
 	for(int j = 0; j<iteraciones; j++){				
 
@@ -42,19 +49,20 @@ int main(int argc, char* argv[]){
 		}		
 
 		tiempoPca = tiempoPca/outliers;
-		tiempoPls = tiempoPls/outliers;		
+		tiempoPls = tiempoPls/outliers;
 
-		fprintf(out1, "%f\n", tiempoPca);		
+		
+		out1 << tiempoPca << endl;				
 		cout << "tiempoPca: " << tiempoPca << endl;		
 
-		fprintf(out2, "%f\n", tiempoPls);		
+		out2 << tiempoPls << endl;	
 		cout << "tiempoPls: " << tiempoPls << endl;	
 
 		cout << j << endl;
 	}
 
-	fclose(out1);
-	fclose(out2);
+	out1.close();
+	out2.close();
 	return 0;
   
 }
