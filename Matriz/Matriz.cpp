@@ -10,7 +10,7 @@
  using namespace std;
 
 int debug = 0;
-
+bool imprimir = true;
 class Matriz{
 
     private:
@@ -249,9 +249,6 @@ class Matriz{
                     }
                     res.push_back(num);
                 }
-            } else {
-                if(debug == 1) cout << "SOS UN GIL" << endl;
-                exit(1);
             }
             return res;
         }
@@ -275,10 +272,7 @@ class Matriz{
                     }
                     v[i] = num;
                 }
-            } else {
-                if(debug == 1) cout << "SOS UN GIL" << endl;
-                exit(1);
-            }
+            } 
             return;
         }
 
@@ -348,9 +342,13 @@ class Matriz{
             pair<vector<float>,float> res;
             res.first =  v;
             res.second = autovalor;
-            //FILE* out = fopen("test1.out","a");
-            //fprintf(out, "%e\n", autovalor);
-            //fclose(out);
+
+            if (imprimir == true){
+                FILE* out = fopen("result.out","a");
+                fprintf(out, "%e\n", autovalor);
+                fclose(out);
+            }
+         
             return res;
         }
 
