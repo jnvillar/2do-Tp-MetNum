@@ -928,6 +928,7 @@ vector<int> utilizarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecin
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<float> fila = imagenesTest.obtenerFila(i);
         int digito = imagenesTrain.caenene(cantVecinos, fila);
+        cout << "Resultado: " << digito << "\n";
         res.push_back(digito);
     }
 
