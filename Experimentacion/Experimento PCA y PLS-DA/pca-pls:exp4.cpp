@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
 		//vector<vector<float> > confKnn = crearvector(10,10);
 
 		for(int i = 0; i<k; i++){
-			if(debug)cout<<"Grupo "<< i << "Iteración: " << u << endl;  
+			if(debug)cout<<"Grupo "<< i << " Iteración: " << u << endl;  
 			Matriz testpca = imagenesPca.subMatriz(i*tamConj,(i+1)*tamConj);
 			Matriz testplc = imagenesPls.subMatriz(i*tamConj,(i+1)*tamConj);
 			//Matriz testknn = imagenesKnn.subMatriz(i*tamConj,(i+1)*tamConj);
