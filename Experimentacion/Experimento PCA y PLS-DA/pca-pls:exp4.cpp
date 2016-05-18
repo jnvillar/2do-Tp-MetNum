@@ -52,57 +52,55 @@ void imprimirMatConf(ostream &salida, vector<vector<float> > v){
 int main(int argc, char* argv[]){
 	bool debug = true;
 	if (argc != 9){		
-		cout << "USO " << argv[0] << "[1 INPUT FILE] [2 CANT DE IMAGENES] [3 CANT DE AUTOVECTORES] [4 CANTIDAD ITERACIONES METODO POTENCIA] [5 CANTIDAD VECINOS] [6 K-FOLD] [7 AUMENTAR AUTOV Y K EN] [8 ITERACIONES]" << endl;
+		cout << "USO " << argv[0] << "[1 INPUT FILE] [2 CANT DE IMAGENES] [3 AUMENTAR IMAGENES EN] [4 CANT DE AUTOVECTORES] [5 CANTIDAD ITERACIONES METODO POTENCIA] [6 CANTIDAD VECINOS] [7 K-FOLD] [8 ITERACIONES]" << endl;
 		return 0;
 	}
 	ofstream out1; 
-	out1.open("calidadPca.txt");
+	out1.open("calidadPca2-2.txt");
 	ofstream out2; 
-	out2.open("calidadPls.txt");
-	ofstream out3; 
-	out3.open("calidadKnn.txt");
+	out2.open("calidadPls2-2.txt");
+	//ofstream out3; 
+	//out3.open("calidadKnn2.txt");
 
 	int cantIm = atoi(argv[2]);
-	int cantAutov = atoi(argv[3]);
-	int cantIterMetPot = atoi(argv[4]);
-	int cantVecinos = atoi(argv[5]);
+	int aumentarImg = atoi(argv[3]);
+	int cantAutov = atoi(argv[4]);
+	int cantIterMetPot = atoi(argv[5]);
+	int cantVecinos = atoi(argv[6]);
 	int cantVecinosInicial = atoi(argv[5]);
-	int k = atoi(argv[6]);
-	int tamConj = cantIm/k;	
-	int aumentar = atoi(argv[7]);
-	int iteraciones = atoi(argv[8]);
-	
-	Matriz imagenesPca = parser(argv[1],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
-	Matriz imagenesPls = parser(argv[1],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
-	Matriz imagenesKnn = parser(argv[1],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
+	int k = atoi(argv[7]);	
+	int iteraciones = atoi(argv[8]);	
 
 	for (int u = 0; u < iteraciones; ++u){
 
-		out1 << "Iteracion: " << u << " Alpha: " << cantAutov << endl;
-		out2 << "Iteracion: " << u << " Gamma: " << cantAutov << endl;
-		out3 << "Iteracion: " << u << " k: " << cantVecinos << endl;		
-		if(debug)cout<<"Iteracion "<< u << endl;  		
+		int tamConj = cantIm/k;			
+		Matriz imagenesPca = parser(argv[1],cantIm); 		// ENTRADA, CANTIDAD DE IMAGENES
+		Matriz imagenesPls = parser(argv[1],cantIm); 		// ENTRADA, CANTIDAD DE IMAGENES
+		//Matriz imagenesKnn = parser(argv[1],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
 
+		out1 << "Iteracion: " << u << " Imagenes: " << cantIm << endl;		
+
+		if(debug)cout<<"Iteracion "<< u << endl;  	
 		vector<float> aux(1,0);
 		vector<vector<float> > metricasPromPca = crearvector(11,3);
 		metricasPromPca.push_back(aux);
 		vector<vector<float> > metricasPromPls = crearvector(11,3);
 		metricasPromPls.push_back(aux);
-		vector<vector<float> > metricasPromKnn = crearvector(11,3);
-		metricasPromKnn.push_back(aux);
+		//vector<vector<float> > metricasPromKnn = crearvector(11,3);
+		//metricasPromKnn.push_back(aux);
 
 		vector<vector<float> > confPca = crearvector(10,10);
 		vector<vector<float> > confPls = crearvector(10,10);
-		vector<vector<float> > confKnn = crearvector(10,10);
+		//vector<vector<float> > confKnn = crearvector(10,10);
 
 		for(int i = 0; i<k; i++){
-			if(debug)cout<<"Grupo "<< i << "Iteracion" << u << endl;  
+			if(debug)cout<<"Grupo "<< i << "Iteración: " << u << endl;  
 			Matriz testpca = imagenesPca.subMatriz(i*tamConj,(i+1)*tamConj);
 			Matriz testplc = imagenesPls.subMatriz(i*tamConj,(i+1)*tamConj);
-			Matriz testknn = imagenesKnn.subMatriz(i*tamConj,(i+1)*tamConj);
+			//Matriz testknn = imagenesKnn.subMatriz(i*tamConj,(i+1)*tamConj);
 			Matriz trainpca = imagenesPca.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
 			Matriz trainpls = imagenesPls.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
-			Matriz trainknn = imagenesKnn.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
+			//Matriz trainknn = imagenesKnn.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
 
 			if(debug)cout<< "metricas Pca" << endl;
 			pair<vector<vector<float> >,vector<vector<float> > > metricasPca= usarPca2(trainpca,testpca,cantAutov,cantIterMetPot,cantVecinosInicial);
@@ -110,17 +108,17 @@ int main(int argc, char* argv[]){
 			if(debug)cout<< "Metricas Pls" << endl;
 			pair<vector<vector<float> >,vector<vector<float> > > metricasPls= usarPls2(trainpls,testplc,cantAutov,cantIterMetPot,cantVecinosInicial);
 			if(debug)cout<< "Listo" << endl;
-			if(debug)cout<< "Metricas Knn" << endl;
-			pair<vector<vector<float> >,vector<vector<float> > > metricasKnn= usarKnn2(trainknn,testknn,cantVecinos);	
-			if(debug)cout<< "Listo" << endl;
+			//if(debug)cout<< "Metricas Knn" << endl;
+			//pair<vector<vector<float> >,vector<vector<float> > > metricasKnn= usarKnn2(trainknn,testknn,cantVecinos);	
+			//if(debug)cout<< "Listo" << endl;
 
 			if(debug)cout<< "Guardando Metricas" << endl;
 			sumMat(metricasPromPca,metricasPca.first);
 			sumMat(metricasPromPls,metricasPls.first);
-			sumMat(metricasPromKnn,metricasKnn.first);
+			//sumMat(metricasPromKnn,metricasKnn.first);
 			sumMat(confPca,metricasPca.second);
 			sumMat(confPls,metricasPls.second);
-			sumMat(confKnn,metricasKnn.second);
+			//sumMat(confKnn,metricasKnn.second);
 			if(debug)cout<< "Listo" << endl;
 			
 		}
@@ -128,10 +126,9 @@ int main(int argc, char* argv[]){
 		//SACO PROMEDIO
 
 		if(debug)cout<< "Promedios" << endl;
-
 		promedio(metricasPromPca,k);
 		promedio(metricasPromPls,k);
-		promedio(metricasPromKnn,k);
+		//promedio(metricasPromKnn,k);
 		
 		//A LA MATRIZ DE CONFUSION NO SE LE SACA EL PROMEDIO
 
@@ -143,35 +140,35 @@ int main(int argc, char* argv[]){
 			if (i==0){
 				imprimir(out1,"Presicion:",metricasPromPca[i]);
 				imprimir(out2,"Presicion:",metricasPromPls[i]);	
-				imprimir(out3,"Presicion:",metricasPromKnn[i]);	
+				//imprimir(out3,"Presicion:",metricasPromKnn[i]);	
 			}
 
 			if (i==1){
 				imprimir(out1,"Recall:",metricasPromPca[i]);
 				imprimir(out2,"Recall:",metricasPromPls[i]);	
-				imprimir(out3,"Recall:",metricasPromKnn[i]);
+				//imprimir(out3,"Recall:",metricasPromKnn[i]);
 			}
 
 			if (i==2){
 				imprimir(out1,"F1-Score:",metricasPromPca[i]);
 				imprimir(out2,"F1-Score:",metricasPromPls[i]);	
-				imprimir(out3,"F1-Score:",metricasPromKnn[i]);
+				//imprimir(out3,"F1-Score:",metricasPromKnn[i]);
 			}
 
 			if(i==3){
 				imprimir(out1,"Hitrate:",metricasPromPca[i]);
 				imprimir(out2,"Hitrate:",metricasPromPls[i]);	
-				imprimir(out3,"Hitrate:",metricasPromKnn[i]);
+				//imprimir(out3,"Hitrate:",metricasPromKnn[i]);
 			}
 		}		
 		// IMPRIMO MATCONF
 
 		imprimirMatConf(out1,confPca);
 		imprimirMatConf(out2,confPls);
-		imprimirMatConf(out3,confKnn);
+		//imprimirMatConf(out3,confKnn);
+		cantIm += aumentarImg;
 
-		cantAutov+= aumentar;
-		cantVecinos+= aumentar;
+		
 	}
 
 return 0;
