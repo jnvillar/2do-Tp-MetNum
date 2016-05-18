@@ -1,5 +1,6 @@
 #include "parser.cpp"
-
+#include <stdio.h>
+#include <string.h>
 
 
 int main(int argc, char* argv[]){
@@ -46,7 +47,7 @@ int main(int argc, char* argv[]){
 	iss2 >> K;
 	str2.clear();
 	for(int j=0; j<K; j++){
-
+		
 		ifstream in(a);			// train.csv
 		vector< vector <float> > mtxTest;
 		vector< vector <float> > mtxTrain;
@@ -118,41 +119,37 @@ int main(int argc, char* argv[]){
 
 
 
-	char* aux = new char[trainPath.length() + 1];
-	strcpy(cstr, trainPath.c_str());
-	// do stuff
-	delete [] cstr;
+	char* trainPath2 = new char[trainPath.length() + 1];
+	strcpy(trainPath2, trainPath.c_str());
+	
 
-	char* aux2 = new char[testPath.length() + 1];
-	strcpy(cstr, testPath.c_str());
-	// do stuff
-	delete [] cstr;
+	char* testPath2 = new char[testPath.length() + 1];
+	strcpy(testPath2, testPath.c_str());
 
-	char* aux = testPath.c_str();
-	char* aux2 = trainPath.c_str();
 
-	train = parser(aux,-1);
-	test = parser2(aux2,-1);
+
+	train = parser(trainPath2,-1);
+	test = parserTest2(testPath2,-1);
+
+	delete [] trainPath2;
+	delete [] testPath2;
 
 	vector<int> res;
 
 	if (metodo == 0){
 		res = utilizarKnn(train,test,k);
 	} else if (metodo == 1){
-		res = usarPca(train,test,alpha,40,k);
+		res = utilizarPca(train,test,alpha,40,k);
 	} else if (metodo == 2){
-		res = usarPls(train,test,gamma,40,k);
+		res = utilizarPls(train,test,gamma,40,k);
 	}
 
-	FILE* testOut = fopen(fileOut.c_str(),"a");
+	FILE* testOut = fopen(fileOut,"a");
 	for (int i = 0; i < res.size(); ++i){
 		fprintf(testOut, "%d\n",res[i]);
 	}
 	fclose(testOut);
 	
-
-	fclose(testFile);
-	fclose(trainFile);
 
 
 	return 0;
