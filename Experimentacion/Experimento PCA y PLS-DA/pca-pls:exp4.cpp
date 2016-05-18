@@ -27,7 +27,7 @@ void promedio(vector<vector<float> > &m, float k){
 	}
 }
 
-void imprimir(ostream &salida, string a ,vector<float> v){
+void imprimirVec(ostream &salida, string a ,vector<float> v){
 	salida << a.c_str() << endl;
 	for (int i = 0; i < v.size()-1; ++i){			
 		salida << i << " "<< v[i] << endl;		
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
 		//vector<vector<float> > confKnn = crearvector(10,10);
 
 		for(int i = 0; i<k; i++){
-			if(debug)cout<<"Grupo "<< i << "Iteración: " << u << endl;  
+			if(debug)cout<<"Grupo "<< i << " Iteración: " << u << endl;  
 			Matriz testpca = imagenesPca.subMatriz(i*tamConj,(i+1)*tamConj);
 			Matriz testplc = imagenesPls.subMatriz(i*tamConj,(i+1)*tamConj);
 			//Matriz testknn = imagenesKnn.subMatriz(i*tamConj,(i+1)*tamConj);
@@ -138,27 +138,27 @@ int main(int argc, char* argv[]){
 		
 		for (int i = 0; i < 4; ++i){
 			if (i==0){
-				imprimir(out1,"Presicion:",metricasPromPca[i]);
-				imprimir(out2,"Presicion:",metricasPromPls[i]);	
-				//imprimir(out3,"Presicion:",metricasPromKnn[i]);	
+				imprimirVec(out1,"Presicion:",metricasPromPca[i]);
+				imprimirVec(out2,"Presicion:",metricasPromPls[i]);	
+				//imprimirVec(out3,"Presicion:",metricasPromKnn[i]);	
 			}
 
 			if (i==1){
-				imprimir(out1,"Recall:",metricasPromPca[i]);
-				imprimir(out2,"Recall:",metricasPromPls[i]);	
-				//imprimir(out3,"Recall:",metricasPromKnn[i]);
+				imprimirVec(out1,"Recall:",metricasPromPca[i]);
+				imprimirVec(out2,"Recall:",metricasPromPls[i]);	
+				//imprimirVec(out3,"Recall:",metricasPromKnn[i]);
 			}
 
 			if (i==2){
-				imprimir(out1,"F1-Score:",metricasPromPca[i]);
-				imprimir(out2,"F1-Score:",metricasPromPls[i]);	
-				//imprimir(out3,"F1-Score:",metricasPromKnn[i]);
+				imprimirVec(out1,"F1-Score:",metricasPromPca[i]);
+				imprimirVec(out2,"F1-Score:",metricasPromPls[i]);	
+				//imprimirVec(out3,"F1-Score:",metricasPromKnn[i]);
 			}
 
 			if(i==3){
-				imprimir(out1,"Hitrate:",metricasPromPca[i]);
-				imprimir(out2,"Hitrate:",metricasPromPls[i]);	
-				//imprimir(out3,"Hitrate:",metricasPromKnn[i]);
+				imprimirVec(out1,"Hitrate:",metricasPromPca[i]);
+				imprimirVec(out2,"Hitrate:",metricasPromPls[i]);	
+				//imprimirVec(out3,"Hitrate:",metricasPromKnn[i]);
 			}
 		}		
 		// IMPRIMO MATCONF
