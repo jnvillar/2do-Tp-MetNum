@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
 			mtx.push_back(img);
 
 		}
-		for (int i = 0; i < 42000; ++i){
+		for (int i = 0; i < 200000; ++i){
 			int a = rand()%42000;
 			int b = rand()%42000;
 			if (a != b){
