@@ -36,7 +36,7 @@ void imprimir(ostream &salida, string a ,vector<float> v){
 	salida << v[v.size()-1] << endl;
 }
 
-void imprimirMatConf(ostream &salida, string a, vector<vector<float> > v){
+void imprimirMatConf(ostream &salida, vector<vector<float> > v){
 	salida << "MatConf: " << endl;
 	for (int i = 0; i < v.size(); ++i){
 		salida << "[";
@@ -166,9 +166,9 @@ int main(int argc, char* argv[]){
 		}		
 		// IMPRIMO MATCONF
 
-		imprimirMatConf(out1,"MatConf:",confPca);
-		imprimirMatConf(out2,"MatConf:",confPls);
-		imprimirMatConf(out3,"MatConf:",confKnn);
+		imprimirMatConf(out1,confPca);
+		imprimirMatConf(out2,confPls);
+		imprimirMatConf(out3,confKnn);
 
 		cantAutov+= aumentar;
 		cantVecinos+= aumentar;
