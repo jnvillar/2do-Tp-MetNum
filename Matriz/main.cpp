@@ -118,8 +118,8 @@ int main(int argc, char* argv[]){
 
 
 
-	char* aux = new char[testPath.length() + 1];
-	strcpy(cstr, testPath.c_str());
+	char* aux = new char[trainPath.length() + 1];
+	strcpy(cstr, trainPath.c_str());
 	// do stuff
 	delete [] cstr;
 
