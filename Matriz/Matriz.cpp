@@ -10,7 +10,7 @@
  using namespace std;
 
 int debug = 0;
-
+bool imprimir = true;
 class Matriz{
 
     private:
@@ -249,9 +249,6 @@ class Matriz{
                     }
                     res.push_back(num);
                 }
-            } else {
-                if(debug == 1) cout << "SOS UN GIL" << endl;
-                exit(1);
             }
             return res;
         }
@@ -275,10 +272,7 @@ class Matriz{
                     }
                     v[i] = num;
                 }
-            } else {
-                if(debug == 1) cout << "SOS UN GIL" << endl;
-                exit(1);
-            }
+            } 
             return;
         }
 
@@ -348,9 +342,13 @@ class Matriz{
             pair<vector<float>,float> res;
             res.first =  v;
             res.second = autovalor;
-            //FILE* out = fopen("test1.out","a");
-            //fprintf(out, "%e\n", autovalor);
-            //fclose(out);
+
+            if (imprimir == true){
+                FILE* out = fopen("result.out","a");
+                fprintf(out, "%e\n", autovalor);
+                fclose(out);
+            }
+         
             return res;
         }
 
@@ -627,7 +625,45 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
 }
 
 
-float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+// float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+//     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+//     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+//     //Calculamos el cambio de base mediante pca
+//     vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+    
+//     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+//     imagenesTest.restarMedia(imagenesTrain);        
+//     imagenesTrain.restarMedia(imagenesTrain);       
+
+//     //Aplicamos el cambio de base al train
+//     Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+    
+    
+//     //Aplicamos el cambio de base al test
+//     Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+//     //Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
+//     imagenesTrainReducida.cambiarDigitos(digitoRepr);
+
+//     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+//     int aciertos = 0;
+//     for(int i = 0; i<imagenesTest.Filas(); i++){
+//         vector<float> fila = imagenesTestReducida.obtenerFila(i);
+//         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+//         if (res == digitoRepr2[i]){
+//             aciertos++;
+//             cout << i << ": Funciona bien" << endl;
+//         } else {
+//             cout << i << ": Funciona mal" << endl;
+//         }
+//     }
+//     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+ 
+//     return hitRate;
+// }
+
+vector<int> usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
@@ -648,21 +684,16 @@ float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cant
     //Le asignamos a la matriz los digitos que antes guardamos (pues con las otras funciones sino se pierden)
     imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
-    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
-    int aciertos = 0;
+    //Hacemos el reconocimiento de digitos mediante kNN 
+    vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
+        cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<float> fila = imagenesTestReducida.obtenerFila(i);
-        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
-        if (res == digitoRepr2[i]){
-            aciertos++;
-            cout << i << ": Funciona bien" << endl;
-        } else {
-            cout << i << ": Funciona mal" << endl;
-        }
+        int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
+        res.push_back(digito);
     }
-    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
- 
-    return hitRate;
+
+    return res;    
 }
 
 pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
@@ -726,7 +757,58 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
 }
 
 
-float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+// float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+
+//     //Guardamos digitos que representa cada imagen del train y del test
+//     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
+//     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
+
+//     //Calculamos preY 
+//     Matriz Y = preY(digitoRepr);
+
+//     //Le restamos la media y dividimos por sqrt(n-1) para obtener Y
+//     Y.restarMedia(Y);
+
+//     Matriz X = imagenesTrain;
+
+//     //Calculamos el cambio de base mediante pls-da
+//     vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+
+
+//     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
+//     imagenesTest.restarMedia(imagenesTrain); 
+//     imagenesTrain.restarMedia(imagenesTrain); 
+
+
+//     //Aplicamos el cambio de base al train y al test
+//     Matriz imagenesTrainReducida = imagenesTrain.cambioDeBase(cambioBase); // imagenesTrain con o sin media?
+
+    
+
+//     //Aplicamos el cambio de base al test
+//     Matriz imagenesTestReducida = imagenesTest.cambioDeBase(cambioBase);
+
+//     //Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
+//     imagenesTrainReducida.cambiarDigitos(digitoRepr);
+
+//     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
+//     int aciertos = 0;
+//     for(int i = 0; i<imagenesTest.Filas(); i++){
+//         vector<float> fila = imagenesTestReducida.obtenerFila(i);
+//         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
+//         if (res == digitoRepr2[i]){
+//             aciertos++;
+//             cout << i << ": Funciona bien" << endl;
+//         } else {
+//             cout << i << ": Funciona mal" << endl;
+//         }
+//     }
+//     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+
+//     return hitRate;
+// }
+
+vector<int> usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
     //Guardamos digitos que representa cada imagen del train y del test
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -760,21 +842,16 @@ float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int ca
     //Le asignamos los digitos que antes guardamos a la matriz (pues con las otras funciones sino se pierden)
     imagenesTrainReducida.cambiarDigitos(digitoRepr);
 
-    //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
-    int aciertos = 0;
+    //Hacemos el reconocimiento de digitos mediante kNN 
+    vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
+        cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<float> fila = imagenesTestReducida.obtenerFila(i);
-        int res = imagenesTrainReducida.caenene(cantVecinos, fila);
-        if (res == digitoRepr2[i]){
-            aciertos++;
-            cout << i << ": Funciona bien" << endl;
-        } else {
-            cout << i << ": Funciona mal" << endl;
-        }
+        int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
+        res.push_back(digito);
     }
-    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
 
-    return hitRate;
+    return res;    
 }
 
 pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
@@ -850,20 +927,34 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
 }
 
 
-float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
-    int aciertos = 0;
+// float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+//     int aciertos = 0;
+//     for(int i = 0; i<imagenesTest.Filas(); i++){
+//         vector<float> fila = imagenesTest.obtenerFila(i);
+//         int res = imagenesTrain.caenene(cantVecinos, fila);
+//         if (res == imagenesTest.digitoRepresentado(i)){
+//             aciertos++;
+//             cout << i << ": Funciona bien" << endl;
+//         } else {
+//             cout << i << ": Funciona mal" << endl;
+//         }
+//     }
+//     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+//     return hitRate;
+// }
+
+vector<int> usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+
+    //Hacemos el reconocimiento de digitos mediante kNN 
+    vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
+        cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<float> fila = imagenesTest.obtenerFila(i);
-        int res = imagenesTrain.caenene(cantVecinos, fila);
-        if (res == imagenesTest.digitoRepresentado(i)){
-            aciertos++;
-            cout << i << ": Funciona bien" << endl;
-        } else {
-            cout << i << ": Funciona mal" << endl;
-        }
+        int digito = imagenesTrain.caenene(cantVecinos, fila);
+        res.push_back(digito);
     }
-    float hitRate = (float )aciertos/(float )imagenesTest.Filas();
-    return hitRate;
+
+    return res; 
 }
 
 

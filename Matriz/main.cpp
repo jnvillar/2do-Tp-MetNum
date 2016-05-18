@@ -4,8 +4,14 @@
 
 int main(int argc, char* argv[]){
 
-	char* file = argv[1];			// test.in
-	
+
+	char* file = argv[1];			// archivo entrada
+	char* fileOut = argv[2];			// archivo salida
+	int metodo = atoi(argv[3]); 	// metodo
+
+
+	imprimir = fileOut;
+
 
 	Matriz test;
 	Matriz train;
@@ -28,7 +34,10 @@ int main(int argc, char* argv[]){
 		int gamma;
 		int K;
 
-		iss2 >> a;
+		iss2 >> a;		// path
+
+		string trainPath = a+"train.csv";
+		string testPath = a+"test.csv";
 
 		iss2 >> k;
 
@@ -40,8 +49,7 @@ int main(int argc, char* argv[]){
 		str2.clear();
 		for(int j=0; j<K; j++){
 
-			char* file2 = argv[2]; 		// train.cvs
-			ifstream in(file2);
+			ifstream in(a);			// train.csv
 			vector< vector <float> > mtxTest;
 			vector< vector <float> > mtxTrain;
 			vector<int> numeroReprTrain;
@@ -101,9 +109,13 @@ int main(int argc, char* argv[]){
 			Matriz train(mtxTrain,numeroReprTrain);
 			Matriz test(mtxTest,numeroReprTest);
 
-			//usarPca(train,test,alpha,40,k);
-			usarPls(train,test,gamma,40,k);
+			float hitRatePca = usarPca(train,test,alpha,40,k);
+			float hitRatePls = usarPls(train,test,gamma,40,k);
 
+			FILE* out = fopen("hitRate.out","a");
+            fprintf(out, "Hit rate pca: Particion %d: %f\n", j+1, hitRatePca);
+            fprintf(out, "Hit rate pls: Particion %d: %f\n", j+1, hitRatePls);
+            fclose(out);
 		}
 
 		
