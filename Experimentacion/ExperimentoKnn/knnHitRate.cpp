@@ -18,10 +18,10 @@ int main(int argc, char* argv[]){
 
 	for(int j = 0; j<10; j++){
 	
-		int cantIm = atoi(argv[3]);
+		int cantIm = atoi(argv[3])+j*1000;
 		Matriz imagenes = parser(argv[2],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
 
-		int cantVecinos = atoi(argv[4])+j;
+		int cantVecinos = atoi(argv[4]);
 		int k = atoi(argv[5]);
 
 		int tamConj = cantIm/k;
