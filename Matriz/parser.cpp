@@ -78,8 +78,6 @@ Matriz parserTest2(char* file, int cantImagenes){ // cantImagenes con -1 es equi
 			istringstream iss;
 			iss.str(st);
 
-			char aux;
-			iss>> aux;
 			//Aca extraemos la info de la línea en la que estamos
 			vector<float> img;
 			for (int i = 0; i<784; i++){
@@ -88,6 +86,7 @@ Matriz parserTest2(char* file, int cantImagenes){ // cantImagenes con -1 es equi
 				//Extraemos pixel
 				iss>> pixel;
 				//Extraemos espacio en blanco (solo para avanzar)
+				char aux;
 				iss>> aux;
 				img.push_back(pixel);
 			}
