@@ -653,9 +653,9 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
          int res = imagenesTrainReducida.caenene(cantVecinos, fila);
          if (res == digitoRepr2[i]){
              aciertos++;
-             cout << i << ": Funciona bien" << endl;
+           //  cout << i << ": Funciona bien" << endl;
          } else {
-             cout << i << ": Funciona mal" << endl;
+             //cout << i << ": Funciona mal" << endl;
          }
      }
      float hitRate = (float )aciertos/(float )imagenesTest.Filas();
@@ -767,9 +767,9 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
          int res = imagenesTrainReducida.caenene(cantVecinos, fila);
          if (res == digitoRepr2[i]){
              aciertos++;
-             cout << i << ": Funciona bien" << endl;
+             //cout << i << ": Funciona bien" << endl;
          } else {
-             cout << i << ": Funciona mal" << endl;
+             //cout << i << ": Funciona mal" << endl;
          }
      }
      float hitRate = (float )aciertos/(float )imagenesTest.Filas();
@@ -859,9 +859,9 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
          int res = imagenesTrain.caenene(cantVecinos, fila);
          if (res == imagenesTest.digitoRepresentado(i)){
              aciertos++;
-             cout << i << ": Funciona bien" << endl;
+            //cout << i << ": Funciona bien" << endl;
          } else {
-             cout << i << ": Funciona mal" << endl;
+             //cout << i << ": Funciona mal" << endl;
          }
      }
      float hitRate = (float )aciertos/(float )imagenesTest.Filas();
