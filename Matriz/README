@@ -1,0 +1,8 @@
+Uso:
+./main [INPUT FILE] [OUTPUT FILE] [METODO]
+donde metodo 0:kNN, 1:PCA, 2:PLS-DA
+
+El INPUT FILE debera contener en su primer linea el path de test.csv y train.csv y los valores necesarios para ejecutar los metodos
+
+Se devolveran 3 archivos. Uno contendra los autovalores de PCA y PLS-DA (autov.out). Otro los respectivos hit rates de aplicar ambos metodos (hitRate.out). Finalmente, se devolvera en [OUTPUT FILE] la salida en el formato necesario para la competencia KAGGLE.
+Observacion: La escritura se realiza en modo append

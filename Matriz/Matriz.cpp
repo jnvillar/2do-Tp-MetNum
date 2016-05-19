@@ -390,7 +390,7 @@ class Matriz{
             res.second = autovalor;
 
             if (imprimir == true){
-                FILE* out = fopen("result.out","a");
+                FILE* out = fopen("autov.out","a");
                 fprintf(out, "%e\n", autovalor);
                 fclose(out);
             }

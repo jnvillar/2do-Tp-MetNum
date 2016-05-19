@@ -46,6 +46,7 @@ int main(int argc, char* argv[]){
 
 	iss2 >> K;
 	str2.clear();
+
 	for(int j=0; j<K; j++){
 		ifstream in(trainPath);			// train.csv
 		vector< vector <double> > mtxTest;
@@ -110,6 +111,7 @@ int main(int argc, char* argv[]){
         fprintf(out, "Hit rate pls: Particion %d: %f\n", j+1, hitRatePls);
         fclose(out);
 	}
+	
 
 
 
@@ -134,13 +136,13 @@ int main(int argc, char* argv[]){
 	if (metodo == 0){
 		res = utilizarKnn(train,test,k);
 	} else if (metodo == 1){
-		res = utilizarPca(train,test,alpha,40,k);
+		res = utilizarPcaMejorado(train,test,alpha,40,k);
 	} else if (metodo == 2){
-		res = utilizarPls(train,test,gamma,40,k);
+		res = utilizarPlsMejorado(train,test,gamma,40,k);
 	}
 
 	FILE* testOut = fopen(fileOut,"a");
-	fprintf(testOut, "ImageId,Label");
+	fprintf(testOut, "ImageId,Label\n");
 	for (int i = 0; i < res.size(); ++i){
 		fprintf(testOut, "%d,%d\n", i+1,res[i]);
 	}
