@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
     //Mido el tiempo
     clock_t t;
     t = clock();
-    vector<int> res = utilizarPca(train, test, cantAutov, cantIterMetPot, cantVecinos);
+    vector<int> res = utilizarPcaMejorado(train, test, cantAutov, cantIterMetPot, cantVecinos);
     t = clock() - t;
     tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]){
     //Mido el tiempo
     clock_t t;
     t = clock();
-    vector<int> res = utilizarPls(train, test, cantIterPls, cantIterMetPot, cantVecinos);
+    vector<int> res = utilizarPlsMejorado(train, test, cantIterPls, cantIterMetPot, cantVecinos);
     t = clock() - t;
     tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]){
     //Mido el tiempo
     clock_t t;
     t = clock();
-    vector<int> res = utilizarKnn(train, test, cantVecinos);
+    vector<int> res = utilizarKnnMejorado(train, test, cantVecinos);
     t = clock() - t;
     tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo

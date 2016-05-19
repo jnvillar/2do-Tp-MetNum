@@ -18,12 +18,11 @@ int main(int argc, char* argv[]){
 	int gamma = atoi(argv[6]);
 	int cantVecinos = atoi(argv[7]);
 	int outliers = atoi(argv[8]);
-/*
+
 	ofstream out1; 
 	out1.open("tiemposPca.txt");
 	ofstream out2; 
-	out2.open("tiemposPls.txt");
-	*/
+	out2.open("tiemposPls.txt");	
 	ofstream out3; 
 	out3.open("tiemposKnn.txt");
 	
@@ -33,29 +32,27 @@ int main(int argc, char* argv[]){
 		if(debug) cout << "Iteracion: "<<  j <<  " Imagenes: " <<cantTrain+(aumentarTrain*j) << endl;
 
 		if(debug) cout << "Parseando "<<  endl;
-		/*
+		
 		Matriz trainPca = parser(argv[1],cantTrain+(aumentarTrain*j));
-		Matriz trainPls = parser(argv[1],cantTrain+(aumentarTrain*j));
-		*/
+		Matriz trainPls = parser(argv[1],cantTrain+(aumentarTrain*j));		
 		Matriz trainKnn = parser(argv[1],cantTrain+(aumentarTrain*j));
 
 		
-		/*
+		
 		Matriz testPca = parserImgTest(argv[1],40000,42000);
-		Matriz testPls = parserImgTest(argv[1],40000,42000);
-		*/
+		Matriz testPls = parserImgTest(argv[1],40000,42000);		
 		Matriz testKnn = parserImgTest(argv[1],40000,42000);
 
-	/*
+	
 
 		double tiempoPca = 0;
 		double tiempoPls = 0;
-		*/
+		
 		double tiempoKnn = 0;			
 
 		for(int h = 0; h<outliers; h++){
 
-			/*
+			
 
 			if(debug) cout << "PCA" << endl;
 			clock_t t1 = clock();
@@ -74,7 +71,7 @@ int main(int argc, char* argv[]){
 			tiempoPls += (((double)t2)/CLOCKS_PER_SEC);
 			if(debug) cout << "Tiempos PLS" << tiempoPls << endl;
 			
-			*/
+			
 
 			if(debug) cout << "Knn" << endl;
 			clock_t t3 = clock();
@@ -83,22 +80,20 @@ int main(int argc, char* argv[]){
 			tiempoKnn += (((double)t3)/CLOCKS_PER_SEC);
 			if(debug) cout << "Tiempos Knn" << tiempoKnn << endl;
 		}		
-		/*
+		
 		tiempoPca = tiempoPca/outliers;
 		tiempoPls = tiempoPls/outliers;	
 		tiempoKnn = tiempoKnn/outliers;
-		*/
-/*
+		
+
 		out1 << tiempoPca << endl;		
-		out2 <<  tiempoPls << endl;
-		*/
+		out2 <<  tiempoPls << endl;		
 		out3 << tiempoKnn << endl;		
 		
 	}
-/*
+
 	out1.close();
-	out2.close();
-	*/
+	out2.close();	
 	out3.close();
 	return 0;
   

@@ -996,7 +996,23 @@ vector<int> utilizarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecin
 }
 
 
-vector<int> utilizarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+vector<int> utilizarKnnMejorado(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+
+    //Hacemos el reconocimiento de digitos mediante kNN 
+    vector<int> res;
+    for(int i = 0; i<imagenesTest.Filas(); i++){
+        cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
+        vector<double> fila = imagenesTest.obtenerFila(i);
+        int digito = imagenesTrain.caeneneMejorado(cantVecinos, fila);
+        cout << "Resultado: " << digito << "\n";
+        res.push_back(digito);
+    }
+
+    return res; 
+}
+
+
+vector<int> utilizarPlsMejorado(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
     //Guardamos digitos que representa cada imagen del train y del test
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -1035,7 +1051,7 @@ vector<int> utilizarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterP
     for(int i = 0; i<imagenesTest.Filas(); i++){
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<double> fila = imagenesTestReducida.obtenerFila(i);
-        int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
+        int digito = imagenesTrainReducida.caeneneMejorado(cantVecinos, fila);
         res.push_back(digito);
     }
 
@@ -1046,7 +1062,7 @@ vector<int> utilizarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterP
 
 
 
-vector<int> utilizarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+vector<int> utilizarPcaMejorado(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
@@ -1072,7 +1088,7 @@ vector<int> utilizarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov
     for(int i = 0; i<imagenesTest.Filas(); i++){
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
         vector<double> fila = imagenesTestReducida.obtenerFila(i);
-        int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
+        int digito = imagenesTrainReducida.caeneneMejorado(cantVecinos, fila);
         res.push_back(digito);
     }
 
