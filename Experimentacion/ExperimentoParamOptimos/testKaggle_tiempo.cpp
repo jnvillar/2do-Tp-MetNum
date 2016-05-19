@@ -42,6 +42,7 @@ int main(int argc, char* argv[]){
     cout << "Escribiendo resultados en " << argv[4] << "\n";
     if (out.is_open())
     {
+      out << "Tiempo empleado (segundos): " << tiempo << "\n"
       for (int i = 0; i < res.size(); i++)
       {
         out << res[i] << "\n";
@@ -73,6 +74,7 @@ int main(int argc, char* argv[]){
     cout << "Escribiendo resultados en " << argv[4] << "\n";
     if (out.is_open())
     {
+      out << "Tiempo empleado (segundos): " << tiempo << "\n"
       for (int i = 0; i < res.size(); i++)
       {
         out << res[i] << "\n";
@@ -99,6 +101,7 @@ int main(int argc, char* argv[]){
     cout << "Escribiendo resultados en " << argv[4] << "\n";
     if (out.is_open())
     {
+      out << "Tiempo empleado (segundos): " << tiempo << "\n"
       for (int i = 0; i < res.size(); i++)
       {
         out << res[i] << "\n";
