@@ -6,9 +6,9 @@ int main(int argc, char* argv[]){
 
 	/* 				
 	//					TEST MULTIPLICACION MATRIZ
-	vector<float> fil1;
-	vector<float> fil2;
-	vector<float> fil3;
+	vector<double> fil1;
+	vector<double> fil2;
+	vector<double> fil3;
 	fil1.push_back(1);
 	fil1.push_back(2);
 	fil1.push_back(3);
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
 	fil3.push_back(8);
 	fil3.push_back(9);
 
-	vector< vector<float> > mtx;
+	vector< vector<double> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
 	mtx.push_back(fil3); 
@@ -30,9 +30,9 @@ int main(int argc, char* argv[]){
 	Matriz m(mtx,a);
 
 
-	vector<float> fila1;
-	vector<float> fila2;
-	vector<float> fila3;
+	vector<double> fila1;
+	vector<double> fila2;
+	vector<double> fila3;
 	fila1.push_back(1);
 	fila1.push_back(0);
 
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
 	fila3.push_back(4);
 	fila3.push_back(2);
 
-	vector< vector<float> > mtx2;
+	vector< vector<double> > mtx2;
 	mtx2.push_back(fila1); 
 	mtx2.push_back(fila2); 
 	mtx2.push_back(fila3);
@@ -56,9 +56,9 @@ int main(int argc, char* argv[]){
 
 /*
 // 					MULTIPLICACION POR VECTOR
-	vector<float> fil1;
-	vector<float> fil2;
-	vector<float> fil3;
+	vector<double> fil1;
+	vector<double> fil2;
+	vector<double> fil3;
 	fil1.push_back(1);
 	fil1.push_back(2);
 	fil1.push_back(3);
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
 	fil3.push_back(8);
 	fil3.push_back(9);
 
-	vector< vector<float> > mtx;
+	vector< vector<double> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
 	mtx.push_back(fil3); 
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]){
 	vector<int> a(3,0);
 	Matriz m(mtx,a);
 
-	vector<float> v;
+	vector<double> v;
 	v.push_back(3);
 	v.push_back(1);
 	v.push_back(4);
@@ -96,9 +96,9 @@ int main(int argc, char* argv[]){
 
 /*
 	// 					TEST AUTOVALORES Y AUTOVECTORES
-	vector<float> fil1;
-	vector<float> fil2;
-	vector<float> fil3;
+	vector<double> fil1;
+	vector<double> fil2;
+	vector<double> fil3;
 
 	fil1.push_back(1);
 	fil1.push_back(0);
@@ -114,7 +114,7 @@ int main(int argc, char* argv[]){
 
 
 
-	vector< vector<float> > mtx;
+	vector< vector<double> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
 	mtx.push_back(fil3); 
@@ -122,7 +122,7 @@ int main(int argc, char* argv[]){
 	vector<int> a(3,0);
 	Matriz m(mtx,a);
 	//m.imprimirMatriz(stdout);
-	vector< vector<float> > res = m.obtenerAutovectores(3,200);
+	vector< vector<double> > res = m.obtenerAutovectores(3,200);
 	
 	for (int i = 0; i < res.size(); ++i){
 		for (int j = 0; j < res[i].size(); ++j){
@@ -134,9 +134,9 @@ int main(int argc, char* argv[]){
 
 	/*
 	// 					TEST TRASPONER
-	vector<float> fil1;
-	vector<float> fil2;
-	vector<float> fil3;
+	vector<double> fil1;
+	vector<double> fil2;
+	vector<double> fil3;
 	fil1.push_back(15);
 	fil1.push_back(3);
 
@@ -148,7 +148,7 @@ int main(int argc, char* argv[]){
 
 
 
-	vector< vector<float> > mtx;
+	vector< vector<double> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
 	mtx.push_back(fil3); 
@@ -162,9 +162,9 @@ int main(int argc, char* argv[]){
 
 /*
 	//					TEST MULTIPLICACION MATRIZ MEJORADA
-	vector<float> fil1;
-	vector<float> fil2;
-	vector<float> fil3;
+	vector<double> fil1;
+	vector<double> fil2;
+	vector<double> fil3;
 	fil1.push_back(1);
 	fil1.push_back(2);
 
@@ -174,7 +174,7 @@ int main(int argc, char* argv[]){
 	fil3.push_back(7);
 	fil3.push_back(8);
 
-	vector< vector<float> > mtx;
+	vector< vector<double> > mtx;
 	mtx.push_back(fil1); 
 	mtx.push_back(fil2); 
 	mtx.push_back(fil3); 

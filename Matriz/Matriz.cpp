@@ -14,15 +14,15 @@ bool imprimir = true;
 class Matriz{
 
     private:
-        vector< vector <float> > m;
+        vector< vector <double> > m;
         int filas;
         int cols;
         vector<int> digitos;
         // El vector en la posicion "i" de m es una imagen del digito en la posicion "i" de digitos
 
         //Devuelve el resultado de la resta vectorial entre v1 y v2 (v1-v2)
-        vector<float> resta(const vector<float>& v1,const vector<float>& v2) const{
-            vector<float> res;
+        vector<double> resta(const vector<double>& v1,const vector<double>& v2) const{
+            vector<double> res;
             for (int i = 0; i < v1.size(); ++i) {
                 res.push_back(v1[i]-v2[i]);
             }
@@ -30,8 +30,8 @@ class Matriz{
         }
 
         //Devuelve el resultado de la norma vectorial 2 realizada sobre el vector v
-        float norma2(const vector<float>& v) const{
-            float sum = 0;
+        double norma2(const vector<double>& v) const{
+            double sum = 0;
             for (int i = 0; i < v.size(); ++i)
             {
                 sum += v[i]*v[i];
@@ -40,7 +40,7 @@ class Matriz{
         }
 
         //Devuelve el digito que más cantidad de veces aparece como segunda coordenada en los pares contenidos por el vector 
-        int masVotado(const vector<pair<float,int> >& v) const{
+        int masVotado(const vector<pair<double,int> >& v) const{
             vector<int> counting(10,0);
             for (int i = 0; i < v.size(); ++i) {
                 counting[v[i].second]++;
@@ -55,6 +55,25 @@ class Matriz{
             return max;
         }
         
+        int masVotadoMejorado(const vector<pair<double,int> >& v) const{
+            vector<double> counting(10,0);
+            for (int i = 0; i < v.size(); ++i) {
+                if (v[i].first == 0){
+                    return v[i].second;
+                }
+                counting[v[i].second] += 1/ (double) v[i].first;
+            }
+            int max = 0;
+            for (int i = 0; i < 10; ++i)
+            {
+                if(counting[i]>counting[max]){
+                    max = i;
+                }
+            }
+            return max;
+        }
+
+
     public: 
         //Constructor de matriz por defecto
         Matriz() {}
@@ -62,8 +81,8 @@ class Matriz{
         //Constructor de matriz llena de ceros dadas la cantidad de filas y columnas
         Matriz(int fils, int columnas){
             m.clear();
-            vector<float> fil(columnas,0);
-            vector< vector<float> > mtx(fils,fil);
+            vector<double> fil(columnas,0);
+            vector< vector<double> > mtx(fils,fil);
             m = mtx;
             filas = fils;
             cols = columnas;
@@ -72,7 +91,7 @@ class Matriz{
         };
 
         //Constructor de matriz al cual le damos como argumentos el conjunto de imagenes (dado como un vector de vectores) y los digitos que representa cada una
-        Matriz(vector< vector <float> > mtx, vector<int> num){
+        Matriz(vector< vector <double> > mtx, vector<int> num){
             m.clear();
             m = mtx;
             filas = mtx.size();
@@ -92,18 +111,18 @@ class Matriz{
         }
 
         //Reemplaza el valor en la posicion i,j de la matriz por v 
-        void modValor(int i, int j, float v){
+        void modValor(int i, int j, double v){
             m[i][j] = v;
             return;
         }
 
         //Devuelve el valor en la posicion i,j de la matriz
-        float obtenerValor(int i, int j) const{
+        double obtenerValor(int i, int j) const{
             return m[i][j];
         }
 
         //Devuelve la fila i de la matriz
-        vector<float> obtenerFila(int i) const{
+        vector<double> obtenerFila(int i) const{
             return m[i];
         }
         
@@ -144,13 +163,13 @@ class Matriz{
         }
 
         //Método kNN para asignarle un digito a una imagen dada
-        int caenene(int k, const vector<float>& img) const{
+        int caenene(int k, const vector<double>& img) const{
             
-            vector<pair<float,int> > normas;
-            vector<pair<float,int> > kmenores;
-            pair<float,int> res;            
+            vector<pair<double,int> > normas;
+            vector<pair<double,int> > kmenores;
+            pair<double,int> res;            
             for (int i = 0; i < filas; ++i) {       
-                vector<float> rest = resta(m[i],img);
+                vector<double> rest = resta(m[i],img);
                 res.first = norma2(rest);
                 res.second = digitos[i];
                 normas.push_back(res);                              
@@ -166,6 +185,33 @@ class Matriz{
             return result;
         }
 
+
+        int caeneneMejorado(int k, const vector<double>& img) const{
+            
+            vector<pair<double,int> > normas;
+            vector<pair<double,int> > kmenores;
+            pair<double,int> res;            
+            for (int i = 0; i < filas; ++i) {       
+                vector<double> rest = resta(m[i],img);
+                res.first = norma2(rest);
+                res.second = digitos[i];
+                normas.push_back(res);                              
+            }
+
+            sort(normas.begin(), normas.end());
+            for (int i = 0; i < k; ++i) {
+                kmenores.push_back(normas[i]);
+            }
+
+            int result;
+            result = masVotadoMejorado(kmenores);
+            return result;
+        }
+
+
+
+
+
         //Devuelve el resultado del producto matricial m*m2 
         Matriz mult(const Matriz &m2) const{
             if(debug == 1) cout << "mult" << endl;
@@ -173,7 +219,7 @@ class Matriz{
             if(debug == 1) cout << "ciclo" << endl;
             for (int i = 0; i < filas; ++i){
                 for (int j = 0; j < m2.Columnas(); ++j){
-                    float sumaProd = 0;
+                    double sumaProd = 0;
                     for (int h = 0; h < cols; ++h){
                         sumaProd += m[i][h] * m2.obtenerValor(h,j);
                     }
@@ -193,7 +239,7 @@ class Matriz{
             if(debug == 1) cout << "ciclo" << endl;
             for (int i = 0; i < cols; ++i){
                 for (int j = 0; j <=i; ++j){
-                    float sumaProd = 0;
+                    double sumaProd = 0;
                     for (int h = 0; h < filas; ++h){
                         sumaProd += m[h][i] * m[h][j];
                     }
@@ -214,7 +260,7 @@ class Matriz{
             if(debug == 1) cout << "ciclo" << endl;
             for (int i = 0; i < filas; ++i){
                 for (int j = 0; j <=i; ++j){
-                    float sumaProd = 0;
+                    double sumaProd = 0;
                     for (int h = 0; h < cols; ++h){
                         sumaProd += m[i][h] * m[j][h];
                     }
@@ -231,11 +277,11 @@ class Matriz{
 
 
         //Devuelve el resultado del producto matricial m*v si lado = d (derecha); y v*m si lado = i (izquierda)  
-        vector<float> multxVect(const vector<float>& v, char lado) const{
-            vector<float> res;
+        vector<double> multxVect(const vector<double>& v, char lado) const{
+            vector<double> res;
             if (lado == 'i'){
                 for (int i = 0; i < cols; ++i){
-                    float num = 0;
+                    double num = 0;
                     for (int j = 0; j < v.size(); ++j){
                         num += v[j]*m[j][i];
                     }
@@ -243,7 +289,7 @@ class Matriz{
                 }
             } else if (lado == 'd'){
                 for (int i = 0; i < filas; ++i){
-                    float num = 0;
+                    double num = 0;
                     for (int j = 0; j < v.size(); ++j){
                         num += v[j]*m[i][j];
                     }
@@ -254,11 +300,11 @@ class Matriz{
         }
 
         // Modifica v
-        void multxVect2(vector<float>& v, char lado) const{
-            vector<float> copiaV = v;
+        void multxVect2(vector<double>& v, char lado) const{
+            vector<double> copiaV = v;
             if (lado == 'i'){
                 for (int i = 0; i < cols; ++i){
-                    float num = 0;
+                    double num = 0;
                     for (int j = 0; j < v.size(); ++j){
                         num += copiaV[j]*m[j][i];
                     }
@@ -266,7 +312,7 @@ class Matriz{
                 }
             } else if (lado == 'd'){
                 for (int i = 0; i < filas; ++i){
-                    float num = 0;
+                    double num = 0;
                     for (int j = 0; j < v.size(); ++j){
                         num += copiaV[j]*m[i][j];
                     }
@@ -279,7 +325,7 @@ class Matriz{
         //Calcula la media entre los elementos de cada una de las columnas de la matriz pasada como parametro y luego se la resta a cada elemento de la columna de la matriz del objeto respectivamente. Ademas divide por sqrt(n-1) cada elemento
         void restarMedia(const Matriz& mtx){
             // CALCULAMOS LAS MEDIAS
-            vector<float> media(cols,0);
+            vector<double> media(cols,0);
             for (int i = 0; i < filas; ++i){
                 for (int j = 0; j < cols; ++j){
                     media[j] += mtx.obtenerValor(i,j);
@@ -290,7 +336,7 @@ class Matriz{
             }
 
             // RESTAMOS Y DIVIDIMOS
-            float divi = sqrt(filas-1);
+            double divi = sqrt(filas-1);
             for (int i = 0; i < filas; ++i){
                 for (int j = 0; j < cols; ++j){
                     m[i][j] = (m[i][j]-media[j])/divi;
@@ -299,18 +345,18 @@ class Matriz{
 
         }
 
-        void normalizarVector(vector<float>& v) const{
-            float normV = norma2(v);
+        void normalizarVector(vector<double>& v) const{
+            double normV = norma2(v);
             for (int j = 0; j < v.size(); ++j)  {
                 v[j] = v[j]/normV;
             }   
         }
 
         //Metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
-        pair<vector<float>,float> metodoPotencia(int iter) const{
+        pair<vector<double>,double> metodoPotencia(int iter) const{
             /*Genero Vector Random*/
             srand (time(NULL));
-            vector<float> v;
+            vector<double> v;
             for (int i = 0; i < filas; ++i) {
                 v.push_back(rand());
             }
@@ -330,16 +376,16 @@ class Matriz{
             
 
             /*Calculo Autovalor*/
-            vector<float> Bv = multxVect(v,'d');
-            float vtBv = 0;
+            vector<double> Bv = multxVect(v,'d');
+            double vtBv = 0;
             for (int i = 0; i < v.size(); ++i){
                 vtBv += v[i]*Bv[i];
             }
-            float vtv = pow(norma2(v),2);
-            float autovalor = vtBv/vtv;
+            double vtv = pow(norma2(v),2);
+            double autovalor = vtBv/vtv;
             /*Calculo Autovalor*/
 
-            pair<vector<float>,float> res;
+            pair<vector<double>,double> res;
             res.first =  v;
             res.second = autovalor;
 
@@ -354,10 +400,10 @@ class Matriz{
 
         
         //Devuelve el conjunto de autovectores de la matriz calculados mediante el metodo de la potencia y luego aplicando deflacion
-        vector< vector<float> > obtenerAutovectores(int cantAutov, int cantIterMetPot) const{
+        vector< vector<double> > obtenerAutovectores(int cantAutov, int cantIterMetPot) const{
             if(debug == 1) cout << "obtenerAutovectores " << endl;
 
-            vector< vector<float> > res;
+            vector< vector<double> > res;
             vector<int> a(filas,0);
             Matriz mtx(m,a);
 
@@ -365,16 +411,16 @@ class Matriz{
                 if(debug == 1) cout << h << endl;
 
                 //Aplico metodo de la potencia para obtener autovalor de modulo maximo y su autovector asociado
-                pair<vector<float>,float> autov = mtx.metodoPotencia(cantIterMetPot);
+                pair<vector<double>,double> autov = mtx.metodoPotencia(cantIterMetPot);
 
-                vector<float> v = autov.first;
+                vector<double> v = autov.first;
                 res.push_back(v);
 
                 //Deflacion
                 //Calculo v*vt
-                vector< vector <float> > mat;
+                vector< vector <double> > mat;
                 for (int i = 0; i<v.size(); i++){
-                    vector <float> fil;
+                    vector <double> fil;
                     for (int j = 0; j < v.size(); j++){
                         fil.push_back(v[i]*v[j]);
                     }
@@ -400,7 +446,7 @@ class Matriz{
             }
         }
 
-        Matriz cambioDeBase(const vector< vector<float> >& p){
+        Matriz cambioDeBase(const vector< vector<double> >& p){
             if(debug == 1) cout << "cambioDeBase " << endl;
 
             vector<int> a(p.size(),0);
@@ -419,9 +465,9 @@ class Matriz{
         Matriz trasponer(){
             if(debug == 1) cout << "trasponer " << endl;
 
-            vector<vector<float> > mtx;
+            vector<vector<double> > mtx;
             for (int i = 0; i < cols; ++i) {
-                vector<float> fila;
+                vector<double> fila;
                 for (int j = 0; j < filas; ++j) {
                     fila.push_back(obtenerValor(j,i));
                 }
@@ -437,7 +483,7 @@ class Matriz{
         
 
 
-        vector< vector<float> > pca(int cantAutov, int cantIterMetPot) const{
+        vector< vector<double> > pca(int cantAutov, int cantIterMetPot) const{
             if(debug == 1) cout << "pca " << endl;
             Matriz aux = *this;
             aux.restarMedia(aux);
@@ -445,19 +491,19 @@ class Matriz{
             if(debug == 1) cout << "Mx " << endl;   
             Matriz mx = aux.multXtX();
 
-            vector< vector<float> > p = mx.obtenerAutovectores(cantAutov,cantIterMetPot);
+            vector< vector<double> > p = mx.obtenerAutovectores(cantAutov,cantIterMetPot);
             return p;
         }
 
         
 
 
-        vector<vector<float> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot) const{
+        vector<vector<double> > pls_da(Matriz& X, Matriz& Y, int iteraciones, int metpot) const{
             
 
             X.restarMedia(X);
 
-            vector< vector<float> > autovec;
+            vector< vector<double> > autovec;
 
             for (int i = 0; i < iteraciones; ++i) {
 
@@ -469,23 +515,23 @@ class Matriz{
 
 
                 /*Calculo autovector asociado al autovalor mas grande*/     
-                pair<vector<float>,float> Mayor; //(Autovector Asociado, Mayor autovalor)
+                pair<vector<double>,double> Mayor; //(Autovector Asociado, Mayor autovalor)
 
                 Mayor = mi.metodoPotencia(metpot); //ya esta normalizado
 
-                vector<float> ti = X.multxVect(Mayor.first,'d');    
+                vector<double> ti = X.multxVect(Mayor.first,'d');    
                 autovec.push_back(Mayor.first); // Guardo autovector
                 normalizarVector(ti);
                 /*Calculo autovector asociado al autovalor mas grande*/
 
 
                 
-                vector<float> tit_X = X.multxVect(ti,'i');
+                vector<double> tit_X = X.multxVect(ti,'i');
 
 
-                vector< vector <float> > mat;
+                vector< vector <double> > mat;
                 for (int h = 0; h<ti.size(); h++){
-                    vector <float> fil;
+                    vector <double> fil;
                     for (int j = 0; j < tit_X.size(); j++){
                         fil.push_back(ti[h]*tit_X[j]);
                     }
@@ -498,10 +544,10 @@ class Matriz{
                 X.restaMatrices(ti_tit_X);
 
 
-                vector <float> tit_Y = Y.multxVect(ti,'i');
-                vector< vector <float> > mat2;
+                vector <double> tit_Y = Y.multxVect(ti,'i');
+                vector< vector <double> > mat2;
                 for (int h = 0; h<ti.size(); h++){
-                    vector <float> fil;
+                    vector <double> fil;
                     for (int j = 0; j < tit_Y.size(); j++){
                         fil.push_back(ti[h]*tit_Y[j]);
                     }
@@ -520,7 +566,7 @@ class Matriz{
 
 
         Matriz subMatriz(int desde, int hasta) const{
-            vector< vector <float> > mtx;
+            vector< vector <double> > mtx;
             vector<int> dig;
             for (int i = desde; i < hasta; ++i){
                 mtx.push_back(obtenerFila(i));
@@ -531,7 +577,7 @@ class Matriz{
         }
         
         Matriz subMatriz(int desde1, int hasta1, int desde2, int hasta2) const{
-            vector< vector <float> > mtx;
+            vector< vector <double> > mtx;
             vector<int> dig;
             for (int i = desde1; i < hasta1; ++i){
                 mtx.push_back(obtenerFila(i));
@@ -549,9 +595,9 @@ class Matriz{
 };
 
 Matriz preY(vector<int> dig){
-    vector< vector<float> > mtx;
+    vector< vector<double> > mtx;
     for (int i = 0; i<dig.size(); i++){
-        vector<float> fil(10,-1);
+        vector<double> fil(10,-1);
         fil[dig[i]] = 1;
         mtx.push_back(fil);
     }
@@ -560,9 +606,9 @@ Matriz preY(vector<int> dig){
     return res;
 }
 
-vector< vector<float> > MatConf(){
-    vector<float> fila(10,0);
-    vector<vector<float> > mat;
+vector< vector<double> > MatConf(){
+    vector<double> fila(10,0);
+    vector<vector<double> > mat;
     for (int i = 0; i < 10; ++i)
     {
         mat.push_back(fila);
@@ -571,15 +617,15 @@ vector< vector<float> > MatConf(){
 }
 
 
-vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<int> FN){
+vector< vector<double> > calcularMetricas(vector<int> VP, vector<int> FP, vector<int> FN){
 
     //Calculo de precision
-    vector<float> precision;
-    float total_prec = 0;
+    vector<double> precision;
+    double total_prec = 0;
     for (int i = 0; i < 10; i++)
     {
         //Calculo precision del digito i y lo sumo a total_prec para calcular promedio de precisiones
-        float precision_i = (float ) VP[i]/((float ) VP[i] + (float ) FP[i]);
+        double precision_i = (double ) VP[i]/((double ) VP[i] + (double ) FP[i]);
         precision.push_back(precision_i);
         total_prec += precision_i;
     }
@@ -589,12 +635,12 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
 
 
     //Calculo de recall
-    vector<float> recall;
-    float total_recall = 0;
+    vector<double> recall;
+    double total_recall = 0;
     for (int i = 0; i < 10; i++)
     {
         //Calculo recall del digito i y lo sumo a total_recall para calcular promedio de los recall
-        float recall_i = (float ) VP[i]/((float ) VP[i] + (float ) FN[i]);
+        double recall_i = (double ) VP[i]/((double ) VP[i] + (double ) FN[i]);
         recall.push_back(recall_i);
         total_recall += recall_i;
     }
@@ -603,12 +649,12 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
     recall.push_back(total_recall);
 
     //Calculo de f1-score
-    vector<float> f1Score;
-    float total_f1Score = 0;
+    vector<double> f1Score;
+    double total_f1Score = 0;
     for (int i = 0; i < 10; i++)
     {
         //Calculo recall del digito i y lo sumo a total_recall para calcular promedio de los recall
-        float f1Score_i = (2 * precision[i] * recall[i]) / (precision[i] + recall[i]);
+        double f1Score_i = (2 * precision[i] * recall[i]) / (precision[i] + recall[i]);
         f1Score.push_back(f1Score_i);
         total_f1Score += f1Score_i;
     }
@@ -616,7 +662,7 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
     //La ultima posicion del vector contiene el promedio
     f1Score.push_back(total_f1Score);
 
-    vector< vector<float> > res;
+    vector< vector<double> > res;
     res.push_back(precision);
     res.push_back(recall);
     res.push_back(f1Score);
@@ -625,12 +671,12 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
 }
 
 
- float usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+ double usarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
      vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
      vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
      //Calculamos el cambio de base mediante pca
-     vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+     vector< vector<double> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
     
      //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
      imagenesTest.restarMedia(imagenesTrain);        
@@ -649,7 +695,7 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
      //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
      int aciertos = 0;
      for(int i = 0; i<imagenesTest.Filas(); i++){
-         vector<float> fila = imagenesTestReducida.obtenerFila(i);
+         vector<double> fila = imagenesTestReducida.obtenerFila(i);
          int res = imagenesTrainReducida.caenene(cantVecinos, fila);
          if (res == digitoRepr2[i]){
              aciertos++;
@@ -658,19 +704,19 @@ vector< vector<float> > calcularMetricas(vector<int> VP, vector<int> FP, vector<
              //cout << i << ": Funciona mal" << endl;
          }
      }
-     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+     double hitRate = (double )aciertos/(double )imagenesTest.Filas();
  
      return hitRate;
  }
 
 
 
-pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
+pair<vector< vector<double> >,vector< vector<double> > > usarPca2(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov, int cantIterMetPot, int cantVecinos){
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
     //Calculamos el cambio de base mediante pca
-    vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+    vector< vector<double> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
     
     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
     imagenesTest.restarMedia(imagenesTrain);        
@@ -693,10 +739,10 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
-    vector<vector<float> > matConf = MatConf();
+    vector<vector<double> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
-        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        vector<double> fila = imagenesTestReducida.obtenerFila(i);
         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
             matConf[res][res]++;
@@ -709,16 +755,16 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
         }
     }
     //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
-    vector<float> hitRate;
-    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+    vector<double> hitRate;
+    hitRate.push_back((double )aciertos/(double )imagenesTest.Filas());
 
     //Calculo precision, recall y f1-score
-    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+    vector< vector<double> > metricas = calcularMetricas(VP, FP, FN);
 
     //Agregamos el hit rate
     metricas.push_back(hitRate);
 
-    pair<vector< vector<float> >,vector< vector<float> > > res;
+    pair<vector< vector<double> >,vector< vector<double> > > res;
     res.first = metricas;
     res.second = matConf;
 
@@ -726,7 +772,7 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
 }
 
 
- float usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+ double usarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
      //Guardamos digitos que representa cada imagen del train y del test
      vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -741,7 +787,7 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
      Matriz X = imagenesTrain;
 
      //Calculamos el cambio de base mediante pls-da
-     vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+     vector< vector<double> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
 
 
      //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
@@ -763,7 +809,7 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
      //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
      int aciertos = 0;
      for(int i = 0; i<imagenesTest.Filas(); i++){
-         vector<float> fila = imagenesTestReducida.obtenerFila(i);
+         vector<double> fila = imagenesTestReducida.obtenerFila(i);
          int res = imagenesTrainReducida.caenene(cantVecinos, fila);
          if (res == digitoRepr2[i]){
              aciertos++;
@@ -772,14 +818,14 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPca2(Matriz imagenesT
              //cout << i << ": Funciona mal" << endl;
          }
      }
-     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+     double hitRate = (double )aciertos/(double )imagenesTest.Filas();
 
      return hitRate;
  }
 
 
 
-pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
+pair<vector< vector<double> >,vector< vector<double> > > usarPls2(Matriz imagenesTrain, Matriz imagenesTest, int cantIterPls, int cantIterMetPot, int cantVecinos){
 
     //Guardamos digitos que representa cada imagen del train y del test
     vector<int> digitoRepr = imagenesTrain.obtenerDigitos();
@@ -794,7 +840,7 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
     Matriz X = imagenesTrain;
 
     //Calculamos el cambio de base mediante pls-da
-    vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+    vector< vector<double> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
 
 
     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
@@ -820,10 +866,10 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
-    vector<vector<float> > matConf = MatConf();
+    vector<vector<double> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
-        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        vector<double> fila = imagenesTestReducida.obtenerFila(i);
         int res = imagenesTrainReducida.caenene(cantVecinos, fila);
         if (res == digitoRepr2[i]){
             matConf[res][res]++;
@@ -836,15 +882,15 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
         }
     }
     //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
-    vector<float> hitRate;
-    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+    vector<double> hitRate;
+    hitRate.push_back((double )aciertos/(double )imagenesTest.Filas());
 
     //Calculo precision, recall y f1-score
-    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+    vector< vector<double> > metricas = calcularMetricas(VP, FP, FN);
 
     //Agregamos el hit rate
     metricas.push_back(hitRate);
-    pair<vector< vector<float> >,vector< vector<float> > > res;
+    pair<vector< vector<double> >,vector< vector<double> > > res;
     res.first = metricas;
     res.second = matConf;
 
@@ -852,10 +898,10 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
 }
 
 
- float usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+ double usarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
      int aciertos = 0;
      for(int i = 0; i<imagenesTest.Filas(); i++){
-         vector<float> fila = imagenesTest.obtenerFila(i);
+         vector<double> fila = imagenesTest.obtenerFila(i);
          int res = imagenesTrain.caenene(cantVecinos, fila);
          if (res == imagenesTest.digitoRepresentado(i)){
              aciertos++;
@@ -864,24 +910,38 @@ pair<vector< vector<float> >,vector< vector<float> > > usarPls2(Matriz imagenesT
              //cout << i << ": Funciona mal" << endl;
          }
      }
-     float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+     double hitRate = (double )aciertos/(double )imagenesTest.Filas();
+     return hitRate;
+ }
+
+ double usarKnnMejorado(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+     int aciertos = 0;
+     for(int i = 0; i<imagenesTest.Filas(); i++){
+         vector<double> fila = imagenesTest.obtenerFila(i);
+         int res = imagenesTrain.caeneneMejorado(cantVecinos, fila);
+         if (res == imagenesTest.digitoRepresentado(i)){
+             aciertos++;
+            //cout << i << ": Funciona bien" << endl;
+         } else {
+             //cout << i << ": Funciona mal" << endl;
+         }
+     }
+     double hitRate = (double )aciertos/(double )imagenesTest.Filas();
      return hitRate;
  }
 
 
-
-
-pair<vector< vector<float> >,vector< vector<float> > > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
+pair<vector< vector<double> >,vector< vector<double> > > usarKnn2(Matriz imagenesTrain, Matriz imagenesTest, int cantVecinos){
     //Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
     int aciertos = 0;
     //Para calcular metricas precision, recall y f1-score 
     vector<int> VP(10, 0);
     vector<int> FP(10, 0);
     vector<int> FN(10, 0);
-    vector<vector<float> > matConf = MatConf();
+    vector<vector<double> > matConf = MatConf();
 
     for(int i = 0; i<imagenesTest.Filas(); i++){
-        vector<float> fila = imagenesTest.obtenerFila(i);
+        vector<double> fila = imagenesTest.obtenerFila(i);
         int res = imagenesTrain.caenene(cantVecinos, fila);
         if (res == imagenesTest.digitoRepresentado(i)){
             matConf[res][res]++;
@@ -894,13 +954,13 @@ pair<vector< vector<float> >,vector< vector<float> > > usarKnn2(Matriz imagenesT
         }
     }
     //Calculo de hit rate. En este caso es un vector de un elemento porque no es por digito
-    vector<float> hitRate;
-    hitRate.push_back((float )aciertos/(float )imagenesTest.Filas());
+    vector<double> hitRate;
+    hitRate.push_back((double )aciertos/(double )imagenesTest.Filas());
 
     //Calculo precision, recall y f1-score
-    vector< vector<float> > metricas = calcularMetricas(VP, FP, FN);
+    vector< vector<double> > metricas = calcularMetricas(VP, FP, FN);
     metricas.push_back(hitRate);
-    pair<vector< vector<float> >,vector< vector<float> > > res;
+    pair<vector< vector<double> >,vector< vector<double> > > res;
     res.first = metricas;
     res.second = matConf;
 
@@ -926,7 +986,7 @@ vector<int> utilizarKnn(Matriz imagenesTrain, Matriz imagenesTest, int cantVecin
     vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
-        vector<float> fila = imagenesTest.obtenerFila(i);
+        vector<double> fila = imagenesTest.obtenerFila(i);
         int digito = imagenesTrain.caenene(cantVecinos, fila);
         cout << "Resultado: " << digito << "\n";
         res.push_back(digito);
@@ -951,7 +1011,7 @@ vector<int> utilizarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterP
     Matriz X = imagenesTrain;
 
     //Calculamos el cambio de base mediante pls-da
-    vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+    vector< vector<double> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
 
 
     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
@@ -974,7 +1034,7 @@ vector<int> utilizarPls(Matriz imagenesTrain, Matriz imagenesTest, int cantIterP
     vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
-        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        vector<double> fila = imagenesTestReducida.obtenerFila(i);
         int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
         res.push_back(digito);
     }
@@ -991,7 +1051,7 @@ vector<int> utilizarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov
     vector<int> digitoRepr2 = imagenesTest.obtenerDigitos();
 
     //Calculamos el cambio de base mediante pca
-    vector< vector<float> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
+    vector< vector<double> > cambioBase = imagenesTrain.pca(cantAutov,cantIterMetPot);
     
     //Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
     imagenesTest.restarMedia(imagenesTrain);        
@@ -1011,7 +1071,7 @@ vector<int> utilizarPca(Matriz imagenesTrain, Matriz imagenesTest, int cantAutov
     vector<int> res;
     for(int i = 0; i<imagenesTest.Filas(); i++){
         cout << "Hacemos kNN para clasificar la imagen " << i+1 << " del test\n";
-        vector<float> fila = imagenesTestReducida.obtenerFila(i);
+        vector<double> fila = imagenesTestReducida.obtenerFila(i);
         int digito = imagenesTrainReducida.caenene(cantVecinos, fila);
         res.push_back(digito);
     }

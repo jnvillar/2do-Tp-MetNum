@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include <string.h>
 
-vector<vector<float> > crearvector(int k,int j){
-	vector<float> aux(k,0);
-	vector<vector<float> > res;
+vector<vector<double> > crearvector(int k,int j){
+	vector<double> aux(k,0);
+	vector<vector<double> > res;
 	for (int i = 0; i < j; ++i){
 		res.push_back(aux);
 	}		
 	return res;
 }
 
-void sumMat(vector<vector<float> > &m1,vector<vector<float> > &m2){
+void sumMat(vector<vector<double> > &m1,vector<vector<double> > &m2){
 	for (int i = 0; i < m1.size() ; ++i){
 		for (int j = 0; j < m1[i].size(); ++j){
 			m1[i][j] = m1[i][j]+m2[i][j];
@@ -19,7 +19,7 @@ void sumMat(vector<vector<float> > &m1,vector<vector<float> > &m2){
 	}	
 }
 
-void promedio(vector<vector<float> > &m, float k){
+void promedio(vector<vector<double> > &m, double k){
 	for (int i = 0; i < m.size(); ++i){
 		for (int j = 0; j < m[i].size(); ++j){
 			m[i][j] = m[i][j]/k;
@@ -27,7 +27,7 @@ void promedio(vector<vector<float> > &m, float k){
 	}
 }
 
-void imprimirVec(ostream &salida, string a ,vector<float> v){
+void imprimirVec(ostream &salida, string a ,vector<double> v){
 	salida << a.c_str() << endl;
 	for (int i = 0; i < v.size()-1; ++i){			
 		salida << i << " "<< v[i] << endl;		
@@ -36,7 +36,7 @@ void imprimirVec(ostream &salida, string a ,vector<float> v){
 	salida << v[v.size()-1] << endl;
 }
 
-void imprimirMatConf(ostream &salida, vector<vector<float> > v){
+void imprimirMatConf(ostream &salida, vector<vector<double> > v){
 	salida << "MatConf: " << endl;
 	for (int i = 0; i < v.size(); ++i){
 		salida << "[";
@@ -83,17 +83,17 @@ int main(int argc, char* argv[]){
 		out3 << "Iteracion: " << u << " k: " << cantVecinos << endl;		
 		if(debug)cout<<"Iteracion "<< u << endl;  		
 
-		vector<float> aux(1,0);
-		vector<vector<float> > metricasPromPca = crearvector(11,3);
+		vector<double> aux(1,0);
+		vector<vector<double> > metricasPromPca = crearvector(11,3);
 		metricasPromPca.push_back(aux);
-		vector<vector<float> > metricasPromPls = crearvector(11,3);
+		vector<vector<double> > metricasPromPls = crearvector(11,3);
 		metricasPromPls.push_back(aux);
-		vector<vector<float> > metricasPromKnn = crearvector(11,3);
+		vector<vector<double> > metricasPromKnn = crearvector(11,3);
 		metricasPromKnn.push_back(aux);
 
-		vector<vector<float> > confPca = crearvector(10,10);
-		vector<vector<float> > confPls = crearvector(10,10);
-		vector<vector<float> > confKnn = crearvector(10,10);
+		vector<vector<double> > confPca = crearvector(10,10);
+		vector<vector<double> > confPls = crearvector(10,10);
+		vector<vector<double> > confKnn = crearvector(10,10);
 
 		for(int i = 0; i<k; i++){
 			if(debug)cout<<"Grupo "<< i << "Iteracion" << u << endl;  
@@ -105,13 +105,13 @@ int main(int argc, char* argv[]){
 			Matriz trainknn = imagenesKnn.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
 
 			if(debug)cout<< "metricas Pca" << endl;
-			pair<vector<vector<float> >,vector<vector<float> > > metricasPca= usarPca2(trainpca,testpca,cantAutov,cantIterMetPot,cantVecinosInicial);
+			pair<vector<vector<double> >,vector<vector<double> > > metricasPca= usarPca2(trainpca,testpca,cantAutov,cantIterMetPot,cantVecinosInicial);
 			if(debug)cout<< "Listo" << endl;
 			if(debug)cout<< "Metricas Pls" << endl;
-			pair<vector<vector<float> >,vector<vector<float> > > metricasPls= usarPls2(trainpls,testplc,cantAutov,cantIterMetPot,cantVecinosInicial);
+			pair<vector<vector<double> >,vector<vector<double> > > metricasPls= usarPls2(trainpls,testplc,cantAutov,cantIterMetPot,cantVecinosInicial);
 			if(debug)cout<< "Listo" << endl;
 			if(debug)cout<< "Metricas Knn" << endl;
-			pair<vector<vector<float> >,vector<vector<float> > > metricasKnn= usarKnn2(trainknn,testknn,cantVecinos);	
+			pair<vector<vector<double> >,vector<vector<double> > > metricasKnn= usarKnn2(trainknn,testknn,cantVecinos);	
 			if(debug)cout<< "Listo" << endl;
 
 			if(debug)cout<< "Guardando Metricas" << endl;

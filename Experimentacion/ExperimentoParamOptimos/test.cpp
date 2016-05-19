@@ -5,9 +5,9 @@
 #include <time.h>       /* clock_t, clock, CLOCKS_PER_SEC */
 
 
-vector<float> sumarVectores(vector<float> v1, vector<float> v2)
+vector<double> sumarVectores(vector<double> v1, vector<double> v2)
 {
-  vector<float> res;
+  vector<double> res;
   for (int i = 0; i < v1.size(); i++)
   {
     res.push_back(v1[i] + v2[i]);
@@ -15,9 +15,9 @@ vector<float> sumarVectores(vector<float> v1, vector<float> v2)
   return res;
 }
 
-vector<float> dividirVector(vector<float> v, float divisor)
+vector<double> dividirVector(vector<double> v, double divisor)
 {
-  vector<float> res;
+  vector<double> res;
   for (int i = 0; i < v.size(); i++)
   {
     res.push_back(v[i]/divisor);
@@ -25,7 +25,7 @@ vector<float> dividirVector(vector<float> v, float divisor)
   return res;
 }
 
-void imprimirMatConf(ostream &salida, vector<vector<float> > v){
+void imprimirMatConf(ostream &salida, vector<vector<double> > v){
   salida << "MatConf: " << endl;
   for (int i = 0; i < v.size(); ++i){
     salida << "[";
@@ -62,11 +62,11 @@ int main(int argc, char* argv[]){
     while (cantIm < total_imag)
     {
 
-      float hR = 0;
-      vector<float> precision(11, 0);
-      vector<float> recall(11, 0);
-      vector<float> f1Score(11, 0);
-      vector< vector<float> > matrizConf;
+      double hR = 0;
+      vector<double> precision(11, 0);
+      vector<double> recall(11, 0);
+      vector<double> f1Score(11, 0);
+      vector< vector<double> > matrizConf;
 
       if(strcmp(argv[1],"pca") == 0)
       {
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]){
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos pca con kNN
           cout << "Aplico PCA y luego kNN\n";
-          pair< vector< vector<float> >, vector< vector<float> > > res = usarPca2(train,test,cantAutov,cantIterMetPot,cantVecinos);
+          pair< vector< vector<double> >, vector< vector<double> > > res = usarPca2(train,test,cantAutov,cantIterMetPot,cantVecinos);
           cout << "Sumo resultados para calcular metricas finales\n";
           precision = sumarVectores(precision, res.first[0]);
           recall = sumarVectores(recall, res.first[1]);
@@ -138,7 +138,7 @@ int main(int argc, char* argv[]){
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos pls con kNN
           cout << "Aplico PLS y luego kNN\n";
-          pair< vector< vector<float> >, vector< vector<float> > > res = usarPls2(train,test,cantIterPls,cantIterMetPot,cantVecinos);
+          pair< vector< vector<double> >, vector< vector<double> > > res = usarPls2(train,test,cantIterPls,cantIterMetPot,cantVecinos);
           cout << "Sumo resultados para calcular metricas finales\n";        
           precision = sumarVectores(precision, res.first[0]);
           recall = sumarVectores(recall, res.first[1]);
@@ -173,7 +173,7 @@ int main(int argc, char* argv[]){
           Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
           //Aplicamos kNN
           cout << "Aplico kNN\n";
-          pair< vector< vector<float> >, vector< vector<float> > > res = usarKnn2(train,test,cantVecinos);
+          pair< vector< vector<double> >, vector< vector<double> > > res = usarKnn2(train,test,cantVecinos);
           cout << "Sumo resultados para calcular metricas finales\n";
           precision = sumarVectores(precision, res.first[0]);
           recall = sumarVectores(recall, res.first[1]);
@@ -186,7 +186,7 @@ int main(int argc, char* argv[]){
 
       //Divido todas las sumas por k para calcular promedio e imprimio por std output
       cout << "Divido la suma de los resultados para calcular el promedio final\n";
-      hR = hR/(float) k;
+      hR = hR/(double) k;
       cout << "HitRate: " << hR << endl;
       myfile << "HitRate: " << hR << "\n";
       precision = dividirVector(precision, k);

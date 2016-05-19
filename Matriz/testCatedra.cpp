@@ -42,8 +42,8 @@ int main(int argc, char* argv[]){
 
 			char* file2 = argv[2]; 		// train.cvs
 			ifstream in(file2);
-			vector< vector <float> > mtxTest;
-			vector< vector <float> > mtxTrain;
+			vector< vector <double> > mtxTest;
+			vector< vector <double> > mtxTrain;
 			vector<int> numeroReprTrain;
 			vector<int> numeroReprTest;
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
 				char aux;
 				iss>> aux;
 				//Aca extraemos la info de la línea en la que estamos
-				vector<float> img;
+				vector<double> img;
 				for (int i = 0; i<784; i++){
 
 					int pixel;

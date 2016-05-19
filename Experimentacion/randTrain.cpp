@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
 	char* file = argv[1];
 	ifstream in(file);
 	if (in.is_open()){
-		vector< vector <float> > mtx;
+		vector< vector <double> > mtx;
 		vector<int> numeroRepresentado;
 
 		// Parseo de la primer línea
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
 			char aux;
 			iss>> aux;
 			//Aca extraemos la info de la línea en la que estamos
-			vector<float> img;
+			vector<double> img;
 			for (int i = 0; i<784; i++){
 
 				int pixel;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]){
 			int a = rand()%42000;
 			int b = rand()%42000;
 			if (a != b){
-				vector<float> swap = mtx[a];
+				vector<double> swap = mtx[a];
 				mtx[a] = mtx[b];
 				mtx[b] = swap;
 

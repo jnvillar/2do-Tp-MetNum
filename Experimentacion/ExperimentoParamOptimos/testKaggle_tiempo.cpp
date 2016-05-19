@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
   Matriz train = parser(argv[2],-1);
   cout << "Parseo del test\n";
   Matriz test = parserTest2(argv[3],-1);
-  float tiempo;
+  double tiempo;
 
   if(strcmp(argv[1],"pca") == 0)
   {
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
     t = clock();
     vector<int> res = utilizarPca(train, test, cantAutov, cantIterMetPot, cantVecinos);
     t = clock() - t;
-    tiempo = ((float)t)/CLOCKS_PER_SEC;
+    tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo
     ofstream out(argv[4]);
     cout << "Escribiendo resultados en " << argv[4] << "\n";
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]){
     t = clock();
     vector<int> res = utilizarPls(train, test, cantIterPls, cantIterMetPot, cantVecinos);
     t = clock() - t;
-    tiempo = ((float)t)/CLOCKS_PER_SEC;
+    tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo
     ofstream out(argv[4]);
     cout << "Escribiendo resultados en " << argv[4] << "\n";
@@ -95,7 +95,7 @@ int main(int argc, char* argv[]){
     t = clock();
     vector<int> res = utilizarKnn(train, test, cantVecinos);
     t = clock() - t;
-    tiempo = ((float)t)/CLOCKS_PER_SEC;
+    tiempo = ((double)t)/CLOCKS_PER_SEC;
     //Escribimos resultados en archivo
     ofstream out(argv[4]);
     cout << "Escribiendo resultados en " << argv[4] << "\n";

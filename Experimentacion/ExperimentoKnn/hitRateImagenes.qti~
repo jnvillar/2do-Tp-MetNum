@@ -1,0 +1,268 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	4
+<table>
+Tabla1	60	2	17/05/16 15:38
+geometry	0	0	449	285	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel		2
+<data>
+0	100	0.67
+1	300	0.753333
+2	500	0.772
+3	700	0.827143
+4	900	0.852222
+5	1100	0.866364
+6	1300	0.876154
+7	1500	0.885333
+8	1700	0.891177
+9	1900	0.898947
+10	2100	0.903333
+11	2300	0.909565
+12	2500	0.9112
+13	2700	0.911111
+14	2900	0.911379
+15	3100	0.915484
+16	3300	0.919394
+17	3500	0.922571
+18	3700	0.919189
+19	3900	0.917436
+20	4100	0.916585
+21	4300	0.918605
+22	4500	0.920222
+23	4700	0.921915
+24	4900	0.922245
+25	5100	0.922745
+26	5300	0.924528
+27	5500	0.926545
+28	5700	0.925614
+29	5900	0.926441
+30	6100	0.92918
+31	6300	0.933651
+32	6500	0.933231
+33	6700	0.933881
+34	6900	0.936232
+35	7100	0.935915
+36	7300	0.937534
+37	7500	0.937733
+38	7700	0.937792
+39	7900	0.938228
+40	8100	0.939506
+41	8300	0.941325
+42	8500	0.941235
+43	8700	0.941264
+44	8900	0.941011
+45	9100	0.940769
+46	9300	0.941075
+47	9500	0.941684
+48	9700	0.941856
+49	9900	0.942626
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	17/05/16 15:40
+geometry	253	3	810	388	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	791	325
+<PageGeometry>0.00623441	0.0147059	0.986284	0.955882</PageGeometry>
+PlotTitle	Hit rate, aumentando la cantidad de imagenes	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de imagenes	Hit Rate		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	10	75	0	0	0
+ScaleFont0	Ubuntu	9	75	0	0	0
+ScaleFont1	Ubuntu	9	75	0	0	0
+ScaleFont2	Ubuntu	9	75	0	0	0
+ScaleFont3	Ubuntu	9	75	0	0	0
+AxisFont0	Ubuntu	9	50	0	0	0
+AxisFont1	Ubuntu	9	50	0	0	0
+AxisFont2	Ubuntu	9	50	0	0	0
+AxisFont3	Ubuntu	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#212121	#212121	#212121	#212121
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_1	Tabla1_2	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	59	1
+scale	0	0.65	0.95	0	7	5	0	0
+scale	1	0.65	0.95	0	7	5	0	0
+scale	2	0	10000	0	6	5	0	0
+scale	3	0	10000	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>28.011204481793</x>
+<y>965.75342465753</y>
+<right>2405.34521158129</right>
+<bottom>0.9134375</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+</Text>
+<Font>Ubuntu	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<table>
+Tabla2	30	2	18/05/16 14:39
+geometry	0	285	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel		2
+<data>
+0	10000	0.9442
+1	11000	0.946727
+2	12000	0.94775
+3	13000	0.948923
+4	14000	0.95
+5	15000	0.951067
+6	16000	0.952688
+7	17000	0.952588
+8	18000	0.953556
+9	19000	0.955789
+</data>
+</table>
+<multiLayer>
+Gráfica2	1	1	18/05/16 14:40
+geometry	301	144	906	404	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	4	13	878	343
+<PageGeometry>0.00445434	0.0365169	0.977728	0.963483</PageGeometry>
+PlotTitle	Hit rate, aumentando la cantidad de imagenes	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de imagenes	Hit Rate		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	11	75	0	0	0
+ScaleFont0	Ubuntu	9	75	0	0	0
+ScaleFont1	Ubuntu	9	75	0	0	0
+ScaleFont2	Ubuntu	9	75	0	0	0
+ScaleFont3	Ubuntu	9	75	0	0	0
+AxisFont0	Ubuntu	9	50	0	0	0
+AxisFont1	Ubuntu	9	50	0	0	0
+AxisFont2	Ubuntu	9	50	0	0	0
+AxisFont3	Ubuntu	9	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#212121	#212121	#212121	#212121
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla2_1	Tabla2_2	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	29	1
+scale	0	0.941	0.958	0	4	5	0	0
+scale	1	0.941	0.958	0	4	5	0	0
+scale	2	8000	20000	0	7	5	0	0
+scale	3	8000	20000	0	7	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>28.011204481793</x>
+<y>965.75342465753</y>
+<right>305.322128851541</right>
+<bottom>866.438356164384</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+</Text>
+<Font>Ubuntu	9	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

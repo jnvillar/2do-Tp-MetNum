@@ -3,16 +3,16 @@
 #include <string.h>
 
 
-vector<vector<float> > crearvector(int k,int j){
-	vector<float> aux(k,0);
-	vector<vector<float> > res;
+vector<vector<double> > crearvector(int k,int j){
+	vector<double> aux(k,0);
+	vector<vector<double> > res;
 	for (int i = 0; i < j; ++i){
 		res.push_back(aux);
 	}		
 	return res;
 }
 
-void sumMat(vector<vector<float> > &m1,vector<vector<float> > &m2){
+void sumMat(vector<vector<double> > &m1,vector<vector<double> > &m2){
 	for (int i = 0; i < m1.size() ; ++i){
 		for (int j = 0; j < m1[i].size(); ++j){
 			m1[i][j] = m1[i][j]+m2[i][j];
@@ -20,7 +20,7 @@ void sumMat(vector<vector<float> > &m1,vector<vector<float> > &m2){
 	}	
 }
 
-void promedio(vector<vector<float> > &m, float k){
+void promedio(vector<vector<double> > &m, double k){
 	for (int i = 0; i < m.size(); ++i){
 		for (int j = 0; j < m[i].size(); ++j){
 			m[i][j] = m[i][j]/k;
@@ -28,7 +28,7 @@ void promedio(vector<vector<float> > &m, float k){
 	}
 }
 
-void imprimir(ostream &salida, string a ,vector<float> v){
+void imprimir(ostream &salida, string a ,vector<double> v){
 	salida << a.c_str() << endl;
 	for (int i = 0; i < v.size()-1; ++i){			
 		salida << i << " "<< v[i] << endl;		
@@ -37,7 +37,7 @@ void imprimir(ostream &salida, string a ,vector<float> v){
 	salida << v[v.size()-1] << endl;
 }
 
-void imprimirMatConf(ostream &salida, vector<vector<float> > v){
+void imprimirMatConf(ostream &salida, vector<vector<double> > v){
 	salida << "MatConf: " << endl;
 	for (int i = 0; i < v.size(); ++i){
 		salida << "[";
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
 	out.open("mc.txt");
 
 	
-	vector<vector<float> > confKnn = crearvector(10,10);
+	vector<vector<double> > confKnn = crearvector(10,10);
 	
 	
 	
@@ -73,14 +73,14 @@ int main(int argc, char* argv[]){
 	int k = atoi(argv[5]);
 
 	int tamConj = cantIm/k;
-	vector<float> hitRate;
+	vector<double> hitRate;
 	for(int i = 0; i<k; i++){
 		
 		Matriz test = imagenes.subMatriz(i*tamConj,(i+1)*tamConj);
 		Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
-		//float hR = usarKnn(train,test,cantVecinos);
+		//double hR = usarKnn(train,test,cantVecinos);
 		
-		pair<vector<vector<float> >,vector<vector<float> > > metricasKnn= usarKnn2(train,test,cantVecinos);	
+		pair<vector<vector<double> >,vector<vector<double> > > metricasKnn= usarKnn2(train,test,cantVecinos);	
 		sumMat(confKnn,metricasKnn.second);
 
 		//hitRate.push_back(hR);

@@ -48,10 +48,10 @@ int main(int argc, char* argv[]){
 
 	/*
 
-		float tiempoPca = 0;
-		float tiempoPls = 0;
+		double tiempoPca = 0;
+		double tiempoPls = 0;
 		*/
-		float tiempoKnn = 0;			
+		double tiempoKnn = 0;			
 
 		for(int h = 0; h<outliers; h++){
 
@@ -59,9 +59,9 @@ int main(int argc, char* argv[]){
 
 			if(debug) cout << "PCA" << endl;
 			clock_t t1 = clock();
-			float hitrate1 = usarPca(trainPca,testPca,alfa,20,cantVecinos);		
+			double hitrate1 = usarPca(trainPca,testPca,alfa,20,cantVecinos);		
 			t1 = clock() - t1;
-			tiempoPca += (((float)t1)/CLOCKS_PER_SEC);
+			tiempoPca += (((double)t1)/CLOCKS_PER_SEC);
 			if(debug) cout << "Tiempos PCA "<<  tiempoPca << endl;
 
 			if(debug) cout << "PLS" << endl;
@@ -69,18 +69,18 @@ int main(int argc, char* argv[]){
 			vector<int> digitoRepr = trainPls.obtenerDigitos(); digitoRepr = trainPls.obtenerDigitos();
 			Matriz Y = preY(digitoRepr);
 			Y.restarMedia(Y);
-			float hitrate2 = usarPls(trainPls,testPls,alfa,20,cantVecinos);		
+			double hitrate2 = usarPls(trainPls,testPls,alfa,20,cantVecinos);		
 			t2 = clock() - t2;
-			tiempoPls += (((float)t2)/CLOCKS_PER_SEC);
+			tiempoPls += (((double)t2)/CLOCKS_PER_SEC);
 			if(debug) cout << "Tiempos PLS" << tiempoPls << endl;
 			
 			*/
 
 			if(debug) cout << "Knn" << endl;
 			clock_t t3 = clock();
-			float hitrate3 = usarKnn(trainKnn,testKnn,20);		
+			double hitrate3 = usarKnn(trainKnn,testKnn,20);		
 			t3 = clock() - t3;
-			tiempoKnn += (((float)t3)/CLOCKS_PER_SEC);
+			tiempoKnn += (((double)t3)/CLOCKS_PER_SEC);
 			if(debug) cout << "Tiempos Knn" << tiempoKnn << endl;
 		}		
 		/*

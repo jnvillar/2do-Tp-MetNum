@@ -48,8 +48,8 @@ int main(int argc, char* argv[]){
 	str2.clear();
 	for(int j=0; j<K; j++){
 		ifstream in(trainPath);			// train.csv
-		vector< vector <float> > mtxTest;
-		vector< vector <float> > mtxTrain;
+		vector< vector <double> > mtxTest;
+		vector< vector <double> > mtxTrain;
 		vector<int> numeroReprTrain;
 		vector<int> numeroReprTest;
 		// Parseo de la primer línea
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
 			char aux;
 			iss>> aux;
 			//Aca extraemos la info de la línea en la que estamos
-			vector<float> img;
+			vector<double> img;
 			for (int i = 0; i<784; i++){
 				int pixel;
 				//Extraemos pixel
@@ -102,8 +102,8 @@ int main(int argc, char* argv[]){
 		Matriz train(mtxTrain,numeroReprTrain);
 		Matriz test(mtxTest,numeroReprTest);
 
-		float hitRatePca = usarPca(train,test,alpha,40,k);
-		float hitRatePls = usarPls(train,test,gamma,40,k);
+		double hitRatePca = usarPca(train,test,alpha,40,k);
+		double hitRatePls = usarPls(train,test,gamma,40,k);
 
 		FILE* out = fopen("hitRate.out","a");
         fprintf(out, "Hit rate pca: Particion %d: %f\n", j+1, hitRatePca);
@@ -130,6 +130,7 @@ int main(int argc, char* argv[]){
 
 	vector<int> res;
 
+	imprimir = false;
 	if (metodo == 0){
 		res = utilizarKnn(train,test,k);
 	} else if (metodo == 1){
@@ -139,8 +140,9 @@ int main(int argc, char* argv[]){
 	}
 
 	FILE* testOut = fopen(fileOut,"a");
+	fprintf(testOut, "ImageId,Label");
 	for (int i = 0; i < res.size(); ++i){
-		fprintf(testOut, "%d\n",res[i]);
+		fprintf(testOut, "%d,%d\n", i+1,res[i]);
 	}
 	fclose(testOut);
 	

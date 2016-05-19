@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
 
 	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTest.obtenerFila(i);
+		vector<double> fila = imagenesTest.obtenerFila(i);
 		int res = m.caenene(cantVecinos, fila);
 		if (res == imagenesTest.digitoRepresentado(i)){
 			aciertos++;
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
 			cout << i << ": Funciona mal" << endl;
 		}
 	}
-	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+	double hitRate = (double )aciertos/(double )imagenesTest.Filas();
 	cout << hitRate << endl;
 
 	return 0;

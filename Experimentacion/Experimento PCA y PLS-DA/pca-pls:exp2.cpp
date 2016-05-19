@@ -30,22 +30,22 @@ int main(int argc, char* argv[]){
 
 		Matriz trainPca = parser(argv[1],cantTrain);
 		Matriz trainPls = parser(argv[1],cantTrain);
-		float tiempoPca = 0;
-		float tiempoPls = 0;		
+		double tiempoPca = 0;
+		double tiempoPls = 0;		
 
 		for(int h = 0; h<outliers; h++){
 			clock_t t1 = clock();
-			vector< vector<float> > cambioBase1 = trainPca.pca(alfa+(aumento*j),20);		
+			vector< vector<double> > cambioBase1 = trainPca.pca(alfa+(aumento*j),20);		
 			t1 = clock() - t1;
-			tiempoPca += (((float)t1)/CLOCKS_PER_SEC);
+			tiempoPca += (((double)t1)/CLOCKS_PER_SEC);
 
 			clock_t t2 = clock();
 			vector<int> digitoRepr = trainPls.obtenerDigitos();
 			Matriz Y = preY(digitoRepr);
 			Y.restarMedia(Y);
-			vector< vector<float> > cambioBase2 = trainPls.pls_da(trainPls,Y,gamma+(aumento*j),20);		
+			vector< vector<double> > cambioBase2 = trainPls.pls_da(trainPls,Y,gamma+(aumento*j),20);		
 			t2 = clock() - t2;
-			tiempoPls += (((float)t2)/CLOCKS_PER_SEC);
+			tiempoPls += (((double)t2)/CLOCKS_PER_SEC);
 		}		
 
 		tiempoPca = tiempoPca/outliers;

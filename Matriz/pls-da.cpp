@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 	Matriz X = imagenesTrain;
 
 	//Calculamos el cambio de base mediante pls-da
-	vector< vector<float> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
+	vector< vector<double> > cambioBase = imagenesTrain.pls_da(X,Y,cantIterPls,cantIterMetPot);
 
 
 	//Le restamos la media del train y dividimos por sqrt(n-1) a las imagenes del test
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
 	//Hacemos el reconocimiento de digitos mediante kNN y comparamos los resultados con los valores reales
 	int aciertos = 0;
 	for(int i = 0; i<imagenesTest.Filas(); i++){
-		vector<float> fila = imagenesTestReducida.obtenerFila(i);
+		vector<double> fila = imagenesTestReducida.obtenerFila(i);
 		int res = imagenesTrainReducida.caenene(cantVecinos, fila);
 		if (res == digitoRepr2[i]){
 			aciertos++;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]){
 			cout << i << ": Funciona mal" << endl;
 		}
 	}
-	float hitRate = (float )aciertos/(float )imagenesTest.Filas();
+	double hitRate = (double )aciertos/(double )imagenesTest.Filas();
 	cout << hitRate << endl;
 
 

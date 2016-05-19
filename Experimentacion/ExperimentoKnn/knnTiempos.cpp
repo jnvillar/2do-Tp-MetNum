@@ -20,23 +20,23 @@ int main(int argc, char* argv[]){
 		int cantVecinos = atoi(argv[4])+j*1;
 
 
-		//float tiempo = 0;
-		float hitRate;
+		//double tiempo = 0;
+		double hitRate;
 		for(int h = 0; h<1; h++){
 		//	clock_t t = clock();
 
 			int aciertos = 0;
 			for(int i = 0; i<imagenesTest.Filas(); i++){
-				vector<float> fila = imagenesTest.obtenerFila(i);
+				vector<double> fila = imagenesTest.obtenerFila(i);
 				int res = m.caenene(cantVecinos, fila);
 				if (res == imagenesTest.digitoRepresentado(i)){
 					aciertos++;
 				} else {
 				}
 			}
-			hitRate = (float )aciertos/(float )imagenesTest.Filas();
+			hitRate = (double )aciertos/(double )imagenesTest.Filas();
 		//	t = clock() - t;
-		//	tiempo += (((float)t)/CLOCKS_PER_SEC);
+		//	tiempo += (((double)t)/CLOCKS_PER_SEC);
 		}
 		//tiempo = tiempo/50;
 		//fprintf(out, "%f\n", tiempo);
