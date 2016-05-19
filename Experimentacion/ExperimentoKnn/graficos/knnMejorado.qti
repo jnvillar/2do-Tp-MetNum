@@ -1,0 +1,247 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	3
+<table>
+Tabla1	50	2	19/05/16 16:51
+geometry	0	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel		2
+<data>
+0	100	0.67
+1	300	0.753333
+2	500	0.772
+3	700	0.827143
+4	900	0.852222
+5	1100	0.866364
+6	1300	0.876154
+7	1500	0.885333
+8	1700	0.891177
+9	1900	0.898947
+10	2100	0.903333
+11	2300	0.909565
+12	2500	0.9112
+13	2700	0.911111
+14	2900	0.911379
+15	3100	0.915484
+16	3300	0.919394
+17	3500	0.922571
+18	3700	0.919189
+19	3900	0.917436
+20	4100	0.916585
+21	4300	0.918605
+22	4500	0.920222
+23	4700	0.921915
+24	4900	0.922245
+25	5100	0.922745
+26	5300	0.924528
+27	5500	0.926545
+28	5700	0.925614
+29	5900	0.926441
+30	6100	0.92918
+31	6300	0.933651
+32	6500	0.933231
+33	6700	0.933881
+34	6900	0.936232
+35	7100	0.935915
+36	7300	0.937534
+37	7500	0.937733
+38	7700	0.937792
+39	7900	0.938228
+40	8100	0.939506
+41	8300	0.941325
+42	8500	0.941235
+43	8700	0.941264
+44	8900	0.941011
+45	9100	0.940769
+46	9300	0.941075
+47	9500	0.941684
+48	9700	0.941856
+49	9900	0.942626
+</data>
+</table>
+<table>
+Tabla2	50	2	19/05/16 16:52
+geometry	445	0	445	220	
+header	1[X]	2[Y]
+ColWidth	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13
+ReadOnlyColumn	0	0
+HiddenColumn	0	0
+Comments			
+WindowLabel	Mejorado	2
+<data>
+0	100	0.69
+1	300	0.786667
+2	500	0.796
+3	700	0.848571
+4	900	0.857778
+5	1100	0.878182
+6	1300	0.889231
+7	1500	0.898
+8	1700	0.898235
+9	1900	0.905263
+10	2100	0.908571
+11	2300	0.916087
+12	2500	0.9196
+13	2700	0.916667
+14	2900	0.916552
+15	3100	0.921613
+16	3300	0.923333
+17	3500	0.926857
+18	3700	0.923514
+19	3900	0.921026
+20	4100	0.920488
+21	4300	0.92186
+22	4500	0.925556
+23	4700	0.927021
+24	4900	0.926327
+25	5100	0.926863
+26	5300	0.928302
+27	5500	0.930182
+28	5700	0.929123
+29	5900	0.931017
+30	6100	0.932787
+31	6300	0.934921
+32	6500	0.934769
+33	6700	0.935224
+34	6900	0.937246
+35	7100	0.937606
+36	7300	0.939726
+37	7500	0.94
+38	7700	0.940649
+39	7900	0.941392
+40	8100	0.941975
+41	8300	0.943855
+42	8500	0.944353
+43	8700	0.944713
+44	8900	0.944607
+45	9100	0.943077
+46	9300	0.943548
+47	9500	0.944211
+48	9700	0.944433
+49	9900	0.945051
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	19/05/16 16:53
+geometry	186	61	1090	518	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	1072	455
+<PageGeometry>0.00462107	0.0106383	0.990758	0.968085</PageGeometry>
+PlotTitle	Comparación kNN mejorado	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	0	0	0	0	#0000ff	0	0.5	#a0a0a4	2	0.4	#0000ff	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de imagenes	Hit Rate		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	14	75	0	0	0
+ScaleFont0	Ubuntu	12	75	0	0	0
+ScaleFont1	Ubuntu	12	75	0	0	0
+ScaleFont2	Ubuntu	12	75	0	0	0
+ScaleFont3	Ubuntu	12	75	0	0	0
+AxisFont0	Ubuntu	12	50	0	0	0
+AxisFont1	Ubuntu	12	50	0	0	0
+AxisFont2	Ubuntu	12	50	0	0	0
+AxisFont3	Ubuntu	12	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#212121	#212121	#212121	#212121
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_1	Tabla1_2	2	1	#000000	0	1	7	1	#000000	#000000	0	#000000	14	1	2	0	0	49	1
+curve	Tabla2_1	Tabla2_2	2	1	#ff0000	0	1	7	2	#ff0000	#ff0000	0	#000000	14	1	2	0	0	49	1
+scale	0	0.65	0.95	0	7	5	0	0
+scale	1	0.65	0.95	0	7	5	0	0
+scale	2	0	10000	0	6	5	0	0
+scale	3	0	10000	0	6	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>28.011204481793</x>
+<y>965.75342465753</y>
+<right>305.322128851541</right>
+<bottom>866.438356164384</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+</Text>
+<Font>Ubuntu	12	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+<Legend>
+<Frame>1</Frame>
+<Color>#000000</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>51.177072671443</x>
+<y>0.95</y>
+<right>1760.49129989765</right>
+<bottom>0.9125</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)kNN
+\l(2)kNN mejorado
+</Text>
+<Font>Ubuntu	11	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>

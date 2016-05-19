@@ -16,9 +16,9 @@ int main(int argc, char* argv[]){
 
 	FILE* out = fopen("kHR.txt","w");
 
-	for(int j = 0; j<1; j++){
+	for(int j = 0; j<50; j++){
 	
-		int cantIm = atoi(argv[3]);
+		int cantIm = atoi(argv[3])+j*200;
 		Matriz imagenes = parser(argv[2],cantIm); 	// ENTRADA, CANTIDAD DE IMAGENES
 
 		int cantVecinos = atoi(argv[4]);
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]){
 			cout << "i " << i << endl;
 			Matriz test = imagenes.subMatriz(i*tamConj,(i+1)*tamConj);
 			Matriz train = imagenes.subMatriz(0,i*tamConj,(i+1)*tamConj,cantIm);
-			double hR = usarKnn(train,test,cantVecinos);
+			double hR = usarKnnMejorado(train,test,cantVecinos);
 			hitRate.push_back(hR);
 		}
 		double hR = 0;
