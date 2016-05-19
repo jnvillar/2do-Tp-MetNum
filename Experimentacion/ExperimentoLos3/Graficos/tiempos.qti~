@@ -1,0 +1,140 @@
+QtiPlot 0.9.8 project file
+<scripting-lang>	muParser
+<windows>	2
+<table>
+Tabla1	47	4	19/05/16 13:01
+geometry	0	0	448	220	
+header	Imagenes[X]	PCA[Y]	PLS-DA[Y]	kNN[Y]
+ColWidth	100	100	100	100	
+<com>
+</com>
+ColType	0;0/13	0;0/13	0;0/13	0;0/13
+ReadOnlyColumn	0	0	0	0
+HiddenColumn	0	0	0	0
+Comments					
+WindowLabel		2
+<data>
+0	1000	35.6724	36.5256	5.06973
+1	2000	38.9392	39.2697	10.4898
+2	3000	42.4717	43.1727	15.6175
+3	4000	45.4675	45.7615	20.6499
+4	5000	49.2725	49.3758	25.9056
+5	6000	52.5107	51.8514	30.5278
+6	7000	57.1187	56.889	36.0646
+7	8000	55.6124	58.8921	41.3446
+8	9000	62.5458	62.8647	47.6619
+9	10000	66.4498	65.0532	54.2827
+10	11000	70.705	71.2185	58.215
+11	12000	73.4563	74.5944	63.0815
+12	13000	78.5635	74.6465	69.0844
+13	14000	82.4169	81.0765	73.8454
+14	15000	87.0155	84.6962	78.3732
+15	16000	91.7189	84.3057	84.2327
+16	17000	100.192	93.8353	87.1745
+17	18000	103.915	96.9289	94.8542
+18	19000	108.919	99.3522	98.6869
+19	20000	116.738	103.071	106.662
+20	21000	116.437	106.982	110.934
+21	22000	124.664	112.135	118.518
+22	23000	130.399	114.878	120.129
+23	24000	133.782	119.106	127.222
+24	25000	143.55	119.633	129.108
+25	26000	137.796	126.803	136.722
+26	27000	147.343	129.627	144.115
+27	28000	148.275	133.399	146.817
+28	29000	159.358	138.314	156.585
+29	30000	161.728	143.404	162.058
+</data>
+</table>
+<multiLayer>
+Gráfica1	1	1	19/05/16 14:00
+geometry	164	43	1335	618	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	400	300
+Alignement	0	0
+<AlignPolicy>0</AlignPolicy>
+<CommonAxes>0</CommonAxes>
+<graph>
+ggeometry	5	5	1316	555
+<PageGeometry>0.0037679	0.00877193	0.991711	0.973684</PageGeometry>
+PlotTitle	Tiempos Aumentando Cantidad de Imágenes	#000000	4228
+<Antialiasing>0</Antialiasing>
+<Autoscaling>1</Autoscaling>
+<ScaleFonts>1</ScaleFonts>
+<GridOnTop>0</GridOnTop>
+<MissingDataGap>1</MissingDataGap>
+Background	#ffffff	0
+Margin	0
+Border	0	#000000
+grid	1	1	1	1	#000000	0	0.5	#a0a0a4	2	0.4	#000000	0	0.5	#a0a0a4	2	0.4	0	0	2	0	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Cantidad de Imágenes	Segundos		%(?Y)	
+AxesTitleColors	#000000	#000000	#000000	#000000	
+AxesTitleAlignment	5124	4	5124	4
+AxesTitleDistance	2	-1	2	-1
+InvertedTitle	0	0	0	0
+TitleFont	Ubuntu	18	75	0	0	0
+ScaleFont0	Ubuntu	15	75	0	0	0
+ScaleFont1	Ubuntu	15	75	0	0	0
+ScaleFont2	Ubuntu	15	75	0	0	0
+ScaleFont3	Ubuntu	15	75	0	0	0
+AxisFont0	Ubuntu	15	50	0	0	0
+AxisFont1	Ubuntu	15	50	0	0	0
+AxisFont2	Ubuntu	15	50	0	0	0
+AxisFont3	Ubuntu	15	50	0	0	0
+AxesColors	#000000	#000000	#000000	#000000
+AxesNumberColors	#3c3c3c	#3c3c3c	#3c3c3c	#3c3c3c
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffff	0
+curve	Tabla1_Imagenes	Tabla1_PCA	2	1	#00ff00	0	1	7	1	#00ff00	#00ff00	0	#000000	14	1	2	0	0	46	1
+curve	Tabla1_Imagenes	Tabla1_PLS-DA	2	1	#ff8000	0	1	7	2	#ff8000	#ff8000	0	#000000	14	1	2	0	0	46	1
+curve	Tabla1_Imagenes	Tabla1_kNN	2	1	#0000a0	0	1	7	3	#0000a0	#0000a0	0	#000000	14	1	2	0	0	46	1
+scale	0	0	200	0	5	5	0	0
+scale	1	0	200	0	5	5	0	0
+scale	2	0	31000	0	8	5	0	0
+scale	3	0	31000	0	8	5	0	0
+LabelsFormat	0	6	0	6	0	6	0	6
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1
+MinorTicks	1	1	1	1
+TicksLength	5	9
+DrawAxesBackbone	1	1	1	1	1
+AxesLineWidth	1
+LabelsRotation	0	0	0	0
+LabelsPrefix				
+LabelsSuffix				
+TickLabelsSpace	4	4	4	4
+ShowTicksPolicy	0	0	0	0
+EnabledTickLabels	1	1	1	1
+<Legend>
+<Frame>1</Frame>
+<Color>#ffffff</Color>
+<FrameWidth>1</FrameWidth>
+<LineStyle>0</LineStyle>
+<x>959.72579263068</x>
+<y>188.17966903073</y>
+<right>5368.46615252785</right>
+<bottom>144.68085106383</bottom>
+<attachTo>1</attachTo>
+<onTop>1</onTop>
+<visible>1</visible>
+<Text>
+\l(1)%(1)
+\l(2)%(2)
+\l(3)%(3)
+</Text>
+<Font>Ubuntu	16	50	0	0	0</Font>
+<TextColor>#000000</TextColor>
+<Background>#ffffff</Background>
+<Alpha>0</Alpha>
+<Angle>0</Angle>
+<AutoUpdate>1</AutoUpdate>
+<TeXOutput>0</TeXOutput>
+</Legend>
+</graph>
+<LinkXAxes>0</LinkXAxes>
+<ScaleLayers>1</ScaleLayers>
+</multiLayer>
+<open>1</open>
