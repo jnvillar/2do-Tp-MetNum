@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
 	int outliers = atoi(argv[8]);
 
 	ofstream out1; 
-	out1.open("calidadPca.txt");
+	out1.open("tiemposPca.txt");
 	ofstream out2; 
 	out2.open("tiemposPls.txt");
 	ofstream out3; 
