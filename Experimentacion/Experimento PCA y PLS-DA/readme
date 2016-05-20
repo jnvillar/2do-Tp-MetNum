@@ -1,0 +1,4 @@
+Cada cpp representa un expremento realizado comparando PCA y PLS-DA
+El orden es el mismo que en el infrome
+Los resultados que obtuvimos para realizar el informe y los graficos se encuentran en la carpeta "outs"
+Para generar los ejecutable correr el main, luego para ejecutarlos simplemente correr el ejecutable deseado sin parametros y el mismo le devolvera por terminal los parametros que necesita.
